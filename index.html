@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מעקב תזונה ופעילות יומי</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>🥗 מעקב תזונה ופעילות</h1>
+      <div class="date-nav">
+        <button id="prevDay" class="btn btn-ghost">&#8250;</button>
+        <span id="currentDateLabel" class="date-label"></span>
+        <button id="nextDay" class="btn btn-ghost">&#8249;</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Summary bar -->
+    <section class="summary-bar">
+      <div class="summary-card calories-in">
+        <span class="summary-icon">🍽️</span>
+        <div>
+          <div class="summary-value" id="totalCaloriesIn">0</div>
+          <div class="summary-label">קלוריות נצרכו</div>
+        </div>
+      </div>
+      <div class="summary-card calories-out">
+        <span class="summary-icon">🔥</span>
+        <div>
+          <div class="summary-value" id="totalCaloriesOut">0</div>
+          <div class="summary-label">קלוריות נשרפו</div>
+        </div>
+      </div>
+      <div class="summary-card net-calories">
+        <span class="summary-icon">⚖️</span>
+        <div>
+          <div class="summary-value" id="netCalories">0</div>
+          <div class="summary-label">מאזן קלורי</div>
+        </div>
+      </div>
+      <div class="summary-card water-card">
+        <span class="summary-icon">💧</span>
+        <div>
+          <div class="summary-value" id="totalWater">0</div>
+          <div class="summary-label">כוסות מים</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-layout">
+      <!-- Food Log -->
+      <section class="card" id="foodSection">
+        <div class="card-header">
+          <h2>🍽️ יומן אכילה</h2>
+          <button class="btn btn-primary" onclick="openModal('foodModal')">+ הוסף ארוחה</button>
+        </div>
+        <div id="foodList" class="item-list">
+          <div class="empty-state">לא נרשמו ארוחות היום</div>
+        </div>
+      </section>
+
+      <!-- Exercise Log -->
+      <section class="card" id="exerciseSection">
+        <div class="card-header">
+          <h2>💪 פעילות גופנית</h2>
+          <button class="btn btn-primary" onclick="openModal('exerciseModal')">+ הוסף פעילות</button>
+        </div>
+        <div id="exerciseList" class="item-list">
+          <div class="empty-state">לא נרשמה פעילות גופנית היום</div>
+        </div>
+      </section>
+
+      <!-- Walking Screenshots -->
+      <section class="card wide-card" id="walkingSection">
+        <div class="card-header">
+          <h2>🚶‍♀️ צילומי מסך הליכה מהירה</h2>
+          <label class="btn btn-primary" for="screenshotInput">+ העלה צילום מסך</label>
+          <input type="file" id="screenshotInput" accept="image/*" multiple style="display:none" onchange="handleScreenshotUpload(event)" />
+        </div>
+        <div id="screenshotGallery" class="screenshot-gallery">
+          <div class="empty-state">לא הועלו צילומי מסך היום</div>
+        </div>
+      </section>
+
+      <!-- Notes -->
+      <section class="card" id="notesSection">
+        <div class="card-header">
+          <h2>📝 הערות יומיות</h2>
+        </div>
+        <textarea id="dailyNotes" class="notes-area" placeholder="הוסף הערות לגבי היום שלך..."></textarea>
+        <button class="btn btn-secondary" onclick="saveNotes()">שמור הערות</button>
+      </section>
+    </div>
+  </main>
+
+  <!-- Food Modal -->
+  <div id="foodModal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'foodModal')">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>הוספת ארוחה / מזון</h3>
+        <button class="modal-close" onclick="closeModal('foodModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>שם המזון / הארוחה</label>
+          <input type="text" id="foodName" placeholder="לדוגמה: אוכל צהריים - עוף ואורז" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>קלוריות</label>
+            <input type="number" id="foodCalories" placeholder="0" min="0" />
+          </div>
+          <div class="form-group">
+            <label>כמות / מנה</label>
+            <input type="text" id="foodPortion" placeholder="לדוגמה: 200 גרם" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>פחמימות (גרם)</label>
+            <input type="number" id="foodCarbs" placeholder="0" min="0" />
+          </div>
+          <div class="form-group">
+            <label>חלבון (גרם)</label>
+            <input type="number" id="foodProtein" placeholder="0" min="0" />
+          </div>
+          <div class="form-group">
+            <label>שומן (גרם)</label>
+            <input type="number" id="foodFat" placeholder="0" min="0" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>סוג ארוחה</label>
+          <select id="foodMealType">
+            <option value="breakfast">ארוחת בוקר</option>
+            <option value="lunch">ארוחת צהריים</option>
+            <option value="dinner">ארוחת ערב</option>
+            <option value="snack">חטיף / נשנוש</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>כוסות מים שתיתי</label>
+          <div class="water-counter">
+            <button class="btn btn-ghost water-btn" onclick="adjustWater(-1)">−</button>
+            <span id="waterCount">0</span>
+            <button class="btn btn-ghost water-btn" onclick="adjustWater(1)">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('foodModal')">ביטול</button>
+        <button class="btn btn-primary" onclick="addFood()">הוסף</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise Modal -->
+  <div id="exerciseModal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'exerciseModal')">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>הוספת פעילות גופנית</h3>
+        <button class="modal-close" onclick="closeModal('exerciseModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>סוג פעילות</label>
+          <select id="exerciseType">
+            <option value="walking">הליכה</option>
+            <option value="fast-walking">הליכה מהירה</option>
+            <option value="running">ריצה</option>
+            <option value="cycling">רכיבה על אופניים</option>
+            <option value="swimming">שחייה</option>
+            <option value="gym">חדר כושר</option>
+            <option value="yoga">יוגה / פילאטיס</option>
+            <option value="dancing">ריקוד</option>
+            <option value="other">אחר</option>
+          </select>
+        </div>
+        <div class="form-group" id="customExerciseGroup" style="display:none">
+          <label>שם הפעילות</label>
+          <input type="text" id="customExerciseName" placeholder="תאר את הפעילות..." />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>משך (דקות)</label>
+            <input type="number" id="exerciseDuration" placeholder="0" min="0" />
+          </div>
+          <div class="form-group">
+            <label>קלוריות נשרפו</label>
+            <input type="number" id="exerciseCalories" placeholder="0" min="0" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>מרחק (ק"מ)</label>
+            <input type="number" id="exerciseDistance" placeholder="0" min="0" step="0.1" />
+          </div>
+          <div class="form-group">
+            <label>עצימות</label>
+            <select id="exerciseIntensity">
+              <option value="low">נמוכה</option>
+              <option value="medium" selected>בינונית</option>
+              <option value="high">גבוהה</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>הערות</label>
+          <input type="text" id="exerciseNotes" placeholder="לדוגמה: הליכה בפארק עם כלב..." />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('exerciseModal')">ביטול</button>
+        <button class="btn btn-primary" onclick="addExercise()">הוסף</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Lightbox -->
+  <div id="lightbox" class="modal-overlay" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="modal-close lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightboxImg" src="" alt="צילום מסך הליכה" />
+      <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
