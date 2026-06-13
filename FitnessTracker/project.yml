@@ -1,0 +1,40 @@
+name: FitnessTracker
+options:
+  bundleIdPrefix: com.fitlife
+  deploymentTarget:
+    iOS: "17.0"
+  defaultConfig: Debug
+  xcodeVersion: "15.0"
+
+settings:
+  base:
+    PRODUCT_NAME: FitnessTracker
+    SWIFT_VERSION: "5.9"
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    TARGETED_DEVICE_FAMILY: "1"
+
+targets:
+  FitnessTracker:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: FitnessTracker
+        excludes:
+          - "**/.DS_Store"
+    resources:
+      - path: FitnessTracker/Resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.fitlife.tracker
+        INFOPLIST_FILE: FitnessTracker/Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: FitnessTracker/App/FitnessTracker.entitlements
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Automatic
+    entitlements:
+      com.apple.developer.healthkit: true
+      com.apple.developer.healthkit.access:
+        - health-records
+    dependencies:
+      - sdk: HealthKit.framework
+      - sdk: SwiftUI.framework
