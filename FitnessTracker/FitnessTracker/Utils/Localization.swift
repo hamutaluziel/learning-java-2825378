@@ -87,8 +87,8 @@ enum L {
     static var female: String { s("נקבה", "Female") }
     static var male: String { s("זכר", "Male") }
     static var goalCalories: String { s("קלוריות יעד ליום", "Daily Calorie Goal") }
-    static var claudeAPIKeyTitle: String { s("מפתח API של Claude", "Claude API Key") }
-    static var claudeAPIKeyHint: String { s("sk-ant-...", "sk-ant-...") }
+    static var claudeAPIKeyTitle: String { s("מפתח API של Google Gemini", "Google Gemini API Key") }
+    static var claudeAPIKeyHint: String { s("AIza...", "AIza...") }
     static var language: String { s("שפה", "Language") }
     static var connectHealthApp: String { s("חבר Apple Health", "Connect Apple Health") }
     static var runnaIntegrationNote: String { s("כדי לסנכרן Runna: פתחי את Runna → הגדרות → Connections → Apple Health → הפעילי", "To sync Runna: open Runna → Settings → Connections → Apple Health → Enable") }

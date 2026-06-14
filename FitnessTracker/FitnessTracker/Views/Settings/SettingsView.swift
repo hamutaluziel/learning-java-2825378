@@ -78,9 +78,9 @@ struct SettingsView: View {
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
                 } header: {
-                    Text("Claude AI")
+                    Text("Google Gemini AI (חינם!)")
                 } footer: {
-                    Text("המפתח נשמר מאובטח במכשיר בלבד ואינו נשלח שום מקום מלבד Anthropic.")
+                    Text("המפתח נשמר מאובטח במכשיר בלבד. קבלי מפתח חינמי ב-aistudio.google.com")
                         .font(.caption2)
                 }
 
@@ -146,10 +146,10 @@ struct SettingsView: View {
             }
             .navigationTitle(L.settings)
             .onAppear { profile = settings.profile }
-            .alert("מפתח Claude API", isPresented: $showAPIKeyInfo) {
+            .alert("מפתח Google Gemini AI", isPresented: $showAPIKeyInfo) {
                 Button(L.ok) {}
             } message: {
-                Text("קבלי מפתח API חינמי בכתובת console.anthropic.com\n\nהמפתח מאפשר לאפליקציה לנתח את הארוחות שלך ולתת לך משוב אישי.")
+                Text("קבלי מפתח API חינמי לגמרי (ללא כרטיס אשראי) בכתובת:\naistudio.google.com\n\nלחצי על 'Get API Key' → 'Create API key'.\nהמפתח מתחיל ב-AIza...")
             }
         }
     }

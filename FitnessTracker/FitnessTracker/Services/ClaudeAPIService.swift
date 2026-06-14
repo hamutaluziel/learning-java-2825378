@@ -1,9 +1,14 @@
 import Foundation
 
+// Uses Google Gemini API (free tier, no credit card required)
+// Get a free key at: aistudio.google.com
 class ClaudeAPIService {
     static let shared = ClaudeAPIService()
-    private let endpoint = "https://api.anthropic.com/v1/messages"
-    private let model = "claude-sonnet-4-6"
+    private let model = "gemini-1.5-flash"
+
+    private func endpoint(for apiKey: String) -> String {
+        "https://generativelanguage.googleapis.com/v1beta/models/\(model):generateContent?key=\(apiKey)"
+    }
 
     func analyzeFoodLog(
         mealDescription: String,
@@ -12,14 +17,12 @@ class ClaudeAPIService {
         previousMeals: [FoodEntry]
     ) async throws -> FoodAnalysisResult {
         let apiKey = userProfile.claudeAPIKey
-        guard !apiKey.isEmpty else {
-            throw ClaudeError.noAPIKey
-        }
+        guard !apiKey.isEmpty else { throw ClaudeError.noAPIKey }
 
         let lang = userProfile.language == .hebrew ? "Hebrew" : "English"
         let previousMealsSummary = buildPreviousMealsSummary(previousMeals, language: lang)
 
-        let systemPrompt = """
+        let fullPrompt = """
         You are a certified nutritionist and fitness coach specializing in weight loss and muscle building.
         You are helping a \(userProfile.age)+ year old woman, \(userProfile.weightKg)kg, \(userProfile.heightCm)cm tall,
         who has already lost 29kg. She walks/runs 7-10km daily and is starting calisthenics training.
@@ -34,9 +37,7 @@ class ClaudeAPIService {
         \(previousMealsSummary.isEmpty ? "None yet" : previousMealsSummary)
 
         Respond ONLY in \(lang). Be warm, encouraging, and specific.
-        """
 
-        let userPrompt = """
         I just ate (\(mealType)): \(mealDescription)
 
         Please:
@@ -45,44 +46,19 @@ class ClaudeAPIService {
         3. Suggest 1-2 specific improvements or additions for the rest of the day
         4. Rate this meal 1-5 stars for nutritional quality
 
-        Format your response as JSON with these fields:
+        Respond ONLY with a JSON object, no extra text:
         {
           "estimatedCalories": number,
           "estimatedProteinG": number,
           "estimatedCarbsG": number,
           "estimatedFatG": number,
-          "stars": number (1-5),
-          "feedback": "your warm feedback text here",
-          "suggestions": "specific suggestions for rest of day"
+          "stars": number,
+          "feedback": "warm feedback text",
+          "suggestions": "specific suggestions"
         }
         """
 
-        let body: [String: Any] = [
-            "model": model,
-            "max_tokens": 1024,
-            "system": systemPrompt,
-            "messages": [["role": "user", "content": userPrompt]]
-        ]
-
-        var request = URLRequest(url: URL(string: endpoint)!)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
-        request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
-        request.httpBody = try JSONSerialization.data(withJSONObject: body)
-        request.timeoutInterval = 30
-
-        let (data, response) = try await URLSession.shared.data(for: request)
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            if let errorData = try? JSONDecoder().decode(AnthropicError.self, from: data) {
-                throw ClaudeError.apiError(errorData.error.message)
-            }
-            throw ClaudeError.networkError
-        }
-
-        let apiResponse = try JSONDecoder().decode(AnthropicResponse.self, from: data)
-        let text = apiResponse.content.first?.text ?? ""
-
+        let text = try await callGemini(prompt: fullPrompt, apiKey: apiKey)
         return try parseAnalysisResult(from: text)
     }
 
@@ -91,34 +67,43 @@ class ClaudeAPIService {
         guard !apiKey.isEmpty else { throw ClaudeError.noAPIKey }
 
         let lang = profile.language == .hebrew ? "Hebrew" : "English"
-        let body: [String: Any] = [
-            "model": model,
-            "max_tokens": 512,
-            "messages": [[
-                "role": "user",
-                "content": """
-                I'm a \(profile.age)+ woman, \(profile.weightKg)kg who walks 7-10km daily.
-                Today I ate a total of \(summary.totalCalories) calories, \(Int(summary.totalProtein))g protein,
-                \(Int(summary.totalCarbs))g carbs, \(Int(summary.totalFat))g fat.
-                My goal is \(profile.goalCalories) cal, \(Int(profile.dailyProteinTarget))g protein.
+        let prompt = """
+        I'm a \(profile.age)+ woman, \(profile.weightKg)kg who walks 7-10km daily.
+        Today I ate a total of \(summary.totalCalories) calories, \(Int(summary.totalProtein))g protein,
+        \(Int(summary.totalCarbs))g carbs, \(Int(summary.totalFat))g fat.
+        My goal is \(profile.goalCalories) cal, \(Int(profile.dailyProteinTarget))g protein.
 
-                Give me a brief end-of-day nutrition recap with encouragement and one tip for tomorrow.
-                Respond in \(lang) only. Keep it under 150 words.
-                """
-            ]]
+        Give me a brief end-of-day nutrition recap with encouragement and one tip for tomorrow.
+        Respond in \(lang) only. Keep it under 150 words.
+        """
+
+        return try await callGemini(prompt: prompt, apiKey: apiKey)
+    }
+
+    private func callGemini(prompt: String, apiKey: String) async throws -> String {
+        let body: [String: Any] = [
+            "contents": [["parts": [["text": prompt]]]],
+            "generationConfig": ["temperature": 0.7, "maxOutputTokens": 1024]
         ]
 
-        var request = URLRequest(url: URL(string: endpoint)!)
+        var request = URLRequest(url: URL(string: endpoint(for: apiKey))!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
-        request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         request.timeoutInterval = 30
 
-        let (data, _) = try await URLSession.shared.data(for: request)
-        let apiResponse = try JSONDecoder().decode(AnthropicResponse.self, from: data)
-        return apiResponse.content.first?.text ?? ""
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse else { throw ClaudeError.networkError }
+        guard httpResponse.statusCode == 200 else {
+            if let errorResp = try? JSONDecoder().decode(GeminiErrorResponse.self, from: data) {
+                throw ClaudeError.apiError(errorResp.error.message)
+            }
+            throw ClaudeError.networkError
+        }
+
+        let geminiResponse = try JSONDecoder().decode(GeminiResponse.self, from: data)
+        return geminiResponse.candidates.first?.content.parts.first?.text ?? ""
     }
 
     private func buildPreviousMealsSummary(_ meals: [FoodEntry], language: String) -> String {
@@ -176,14 +161,20 @@ enum ClaudeError: LocalizedError {
     }
 }
 
-private struct AnthropicResponse: Codable {
-    let content: [ContentBlock]
-    struct ContentBlock: Codable {
+private struct GeminiResponse: Codable {
+    let candidates: [Candidate]
+    struct Candidate: Codable {
+        let content: Content
+    }
+    struct Content: Codable {
+        let parts: [Part]
+    }
+    struct Part: Codable {
         let text: String
     }
 }
 
-private struct AnthropicError: Codable {
+private struct GeminiErrorResponse: Codable {
     let error: ErrorDetail
     struct ErrorDetail: Codable {
         let message: String
