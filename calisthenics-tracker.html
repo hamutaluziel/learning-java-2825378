@@ -711,6 +711,18 @@ input[type="range"]::-webkit-slider-thumb {
         <label>קצב ממוצע (דק'/ק"מ)</label>
         <input type="text" id="cardio-pace" placeholder="9:26" pattern="[0-9]+:[0-5][0-9]">
       </div>
+      <div class="form-group">
+        <label>קצב מקסימלי (דק'/ק"מ)</label>
+        <input type="text" id="cardio-maxpace" placeholder="6:01" pattern="[0-9]+:[0-5][0-9]">
+      </div>
+      <div class="form-group">
+        <label>קדנס ממוצע (צעד/דקה)</label>
+        <input type="number" id="cardio-cadence" placeholder="123" min="0" max="250">
+      </div>
+      <div class="form-group">
+        <label>עלייה מצטברת (מ')</label>
+        <input type="number" id="cardio-elevation" placeholder="48" min="0">
+      </div>
     </div>
   </div>
 
@@ -774,9 +786,12 @@ input[type="range"]::-webkit-slider-thumb {
           <th>תאריך</th>
           <th>שבוע</th>
           <th>אימון</th>
-          <th>קרדיו</th>
+          <th>ק"מ</th>
+          <th>זמן</th>
+          <th>קצב</th>
+          <th>קדנס</th>
+          <th>עלייה</th>
           <th>כאב</th>
-          <th>אנרגיה</th>
           <th>הערות</th>
           <th></th>
         </tr>
@@ -1261,7 +1276,7 @@ async function scanRunna(input) {
 }
 
 function parseRunnaText(text) {
-  const data = { km: null, time: null, pace: null };
+  const data = { km: null, time: null, pace: null, maxPace: null, cadence: null, elevation: null };
 
   // Distance
   const dM = text.match(/(\d+[.,]\d+|\d+)\s*km\b/i);
@@ -1272,10 +1287,19 @@ function parseRunnaText(text) {
   if (hmsM) data.time = parseInt(hmsM[1])*60 + parseInt(hmsM[2]) + Math.round(parseInt(hmsM[3])/60);
 
   // Pace labeled near /km
-  const pM = text.match(/(\d{1,2}):(\d{2})\s*(?:\/km|min\/km|'\/km|per\s*km)/i);
-  if (pM) data.pace = `${pM[1]}:${pM[2]}`;
+  const paceMatches = [...text.matchAll(/(\d{1,2}):(\d{2})\s*(?:\/km|min\/km|'\/km|per\s*km)/gi)];
+  if (paceMatches.length >= 1) data.pace = `${paceMatches[0][1]}:${paceMatches[0][2]}`;
+  if (paceMatches.length >= 2) data.maxPace = `${paceMatches[1][1]}:${paceMatches[1][2]}`;
 
-  // Collect all MM:SS
+  // Cadence: number near "spm" or "cadence"
+  const cadM = text.match(/(\d{2,3})\s*spm/i) || text.match(/cadence[^\d]*(\d{2,3})/i);
+  if (cadM) data.cadence = parseInt(cadM[1]);
+
+  // Elevation: number near "m" or "elevation"
+  const elevM = text.match(/(?:elevation|elev)[^\d]*(\d+)\s*m\b/i) || text.match(/(\d+)\s*m\b(?!\s*\/)/i);
+  if (elevM) data.elevation = parseInt(elevM[1]);
+
+  // Collect all MM:SS for fallback duration/pace detection
   const allT = [];
   const reT = /\b(\d{1,2}):(\d{2})\b/g;
   let m;
@@ -1285,7 +1309,8 @@ function parseRunnaText(text) {
   }
 
   if (!data.time) {
-    const cands = data.pace ? allT.filter(t => t.str !== data.pace) : allT;
+    const usedPaces = [data.pace, data.maxPace].filter(Boolean);
+    const cands = allT.filter(t => !usedPaces.includes(t.str));
     if (cands.length) {
       const longest = cands.reduce((a,b) => a.tot > b.tot ? a : b);
       data.time = longest.mn + Math.round(longest.sc/60);
@@ -1300,9 +1325,12 @@ function parseRunnaText(text) {
 
 function showRunnaFound() {
   const items = [
-    runnaData.km   ? `<div class="runna-found-item"><small>מרחק</small>${runnaData.km} ק"מ</div>` : '',
-    runnaData.time ? `<div class="runna-found-item"><small>זמן</small>${runnaData.time} דק'</div>` : '',
-    runnaData.pace ? `<div class="runna-found-item"><small>קצב</small>${runnaData.pace} /ק"מ</div>` : '',
+    runnaData.km        ? `<div class="runna-found-item"><small>מרחק</small>${runnaData.km} ק"מ</div>` : '',
+    runnaData.time      ? `<div class="runna-found-item"><small>זמן</small>${runnaData.time} דק'</div>` : '',
+    runnaData.pace      ? `<div class="runna-found-item"><small>קצב ממוצע</small>${runnaData.pace} /ק"מ</div>` : '',
+    runnaData.maxPace   ? `<div class="runna-found-item"><small>קצב מקס'</small>${runnaData.maxPace} /ק"מ</div>` : '',
+    runnaData.cadence   ? `<div class="runna-found-item"><small>קדנס</small>${runnaData.cadence} spm</div>` : '',
+    runnaData.elevation ? `<div class="runna-found-item"><small>עלייה</small>↑${runnaData.elevation} מ'</div>` : '',
   ].join('');
   document.getElementById('runna-found').innerHTML =
     `<div class="runna-found-box">
@@ -1313,9 +1341,12 @@ function showRunnaFound() {
 }
 
 function applyRunnaData() {
-  if (runnaData.km)   document.getElementById('cardio-km').value   = runnaData.km;
-  if (runnaData.time) document.getElementById('cardio-time').value = runnaData.time;
-  if (runnaData.pace) document.getElementById('cardio-pace').value = runnaData.pace;
+  if (runnaData.km)        document.getElementById('cardio-km').value        = runnaData.km;
+  if (runnaData.time)      document.getElementById('cardio-time').value      = runnaData.time;
+  if (runnaData.pace)      document.getElementById('cardio-pace').value      = runnaData.pace;
+  if (runnaData.maxPace)   document.getElementById('cardio-maxpace').value   = runnaData.maxPace;
+  if (runnaData.cadence)   document.getElementById('cardio-cadence').value   = runnaData.cadence;
+  if (runnaData.elevation) document.getElementById('cardio-elevation').value = runnaData.elevation;
   if (runnaData.pace && parseInt(runnaData.pace) < 7)
     document.getElementById('cardio-type').value = 'ריצה';
   document.getElementById('cardio-km').scrollIntoView({ behavior:'smooth', block:'center' });
@@ -1380,6 +1411,9 @@ function saveLog() {
     km: km,
     time: document.getElementById('cardio-time').value,
     pace: document.getElementById('cardio-pace').value,
+    maxPace: document.getElementById('cardio-maxpace').value,
+    cadence: parseInt(document.getElementById('cardio-cadence').value) || null,
+    elevation: parseInt(document.getElementById('cardio-elevation').value) || null,
     pain: parseInt(document.getElementById('pain-slider').value),
     energy: parseInt(document.getElementById('energy-slider').value),
     painLocation: document.getElementById('pain-location').value,
@@ -1396,6 +1430,9 @@ function saveLog() {
   document.getElementById('cardio-km').value = '';
   document.getElementById('cardio-time').value = '';
   document.getElementById('cardio-pace').value = '';
+  document.getElementById('cardio-maxpace').value = '';
+  document.getElementById('cardio-cadence').value = '';
+  document.getElementById('cardio-elevation').value = '';
   document.getElementById('pain-slider').value = 0;
   document.getElementById('energy-slider').value = 5;
   updateSlider('pain'); updateSlider('energy');
@@ -1476,14 +1513,18 @@ function renderTable() {
     const painClass = l.pain <= 3 ? 'pain-low' : l.pain <= 6 ? 'pain-mid' : 'pain-high';
     const dateStr = l.date ? new Date(l.date+'T12:00').toLocaleDateString('he-IL',{day:'numeric',month:'short'}) : '–';
     const tr = document.createElement('tr');
+    const paceCell = l.pace ? `<span style="font-weight:700">${l.pace}</span>${l.maxPace?'<br><small style="color:#999">מקס: '+l.maxPace+'</small>':''}` : '–';
     tr.innerHTML = `
       <td>${dateStr}</td>
       <td>שבוע ${l.week||'?'}</td>
       <td>${l.workout||'–'}</td>
-      <td>${l.km ? l.km+'ק"מ' : '–'} ${l.pace ? '|'+l.pace : ''}</td>
+      <td>${l.km ? '<b>'+l.km+'</b>' : '–'}</td>
+      <td>${l.time ? l.time+'דק\'' : '–'}</td>
+      <td>${paceCell}</td>
+      <td>${l.cadence ? l.cadence+' spm' : '–'}</td>
+      <td>${l.elevation ? '↑'+l.elevation+'מ\'' : '–'}</td>
       <td><span class="pain-pill ${painClass}">${l.pain}/10</span></td>
-      <td>${l.energy}/10 ⚡</td>
-      <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${l.notes||''}">${l.notes||'–'}</td>
+      <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${l.notes||''}">${l.notes||'–'}</td>
       <td><button class="btn btn-danger" onclick="deleteLog(${l.id})">🗑</button></td>
     `;
     tbody.appendChild(tr);
