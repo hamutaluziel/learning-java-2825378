@@ -232,6 +232,25 @@ input[type="range"]::-webkit-slider-thumb {
   .stats-grid { grid-template-columns:1fr 1fr; }
   header h1 { font-size:1.25rem; }
 }
+
+/* ===== RUNNA SCANNER ===== */
+.runna-card { border:2px dashed #0096C7; background:linear-gradient(135deg,#f0f8ff 0%,#e6f4fa 100%); }
+.runna-hint { font-size:0.82rem; color:#555; margin:4px 0 12px; }
+.btn-runna {
+  display:block; width:100%; background:linear-gradient(135deg,#0077B6,#0096C7);
+  color:white; border:none; padding:13px 20px; border-radius:10px;
+  font-size:1rem; font-weight:600; cursor:pointer; text-align:center;
+  box-shadow:0 3px 10px rgba(0,119,182,0.3);
+}
+.btn-runna:active { opacity:0.85; }
+#runna-status { margin-top:10px; font-size:0.88rem; color:var(--primary); min-height:20px; text-align:center; }
+#runna-preview { width:100%; border-radius:8px; margin-top:10px; border:1px solid var(--border); max-height:220px; object-fit:contain; display:none; }
+.runna-found-box { background:white; border-radius:10px; padding:12px; margin-top:12px; border:1px solid var(--border); }
+.runna-found-title { font-size:0.8rem; color:#777; margin-bottom:8px; }
+.runna-found-items { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
+.runna-found-item { background:var(--light); border-radius:8px; padding:8px 14px; font-size:0.9rem; color:var(--text-dark); font-weight:700; display:flex; flex-direction:column; align-items:center; }
+.runna-found-item small { font-size:0.72rem; color:#666; font-weight:400; margin-bottom:2px; }
+.btn-runna-confirm { background:var(--primary); color:white; border:none; padding:10px; border-radius:8px; font-size:0.92rem; cursor:pointer; font-weight:600; width:100%; }
 </style>
 </head>
 <body>
@@ -642,6 +661,16 @@ input[type="range"]::-webkit-slider-thumb {
         </select>
       </div>
     </div>
+  </div>
+
+  <div class="card runna-card">
+    <h3>📸 סריקת Runna – אוטומטי</h3>
+    <p class="runna-hint">צלמי צילום מסך מ-Runna → לחצי כאן → הנתונים ימולאו לבד ✨</p>
+    <button class="btn-runna" onclick="document.getElementById('runna-input').click()">📱 העלי צילום מסך מ-Runna</button>
+    <input type="file" id="runna-input" accept="image/*" style="display:none" onchange="scanRunna(this)">
+    <div id="runna-status"></div>
+    <img id="runna-preview" alt="תצוגה מקדימה">
+    <div id="runna-found"></div>
   </div>
 
   <div class="card">
@@ -1170,6 +1199,113 @@ function injectExerciseSVGs() {
       el.parentElement.appendChild(div);
     }
   });
+}
+
+// ===== RUNNA SCANNER =====
+let runnaData = {};
+
+async function scanRunna(input) {
+  const file = input.files[0];
+  if (!file) return;
+  input.value = '';
+  const statusEl = document.getElementById('runna-status');
+  const previewEl = document.getElementById('runna-preview');
+  const foundEl  = document.getElementById('runna-found');
+
+  previewEl.src = URL.createObjectURL(file);
+  previewEl.style.display = 'block';
+  foundEl.innerHTML = '';
+  statusEl.textContent = '⏳ טוענת...';
+
+  if (typeof Tesseract === 'undefined') {
+    statusEl.textContent = '⏳ טוענת מנוע קריאה... (בפעם הראשונה ~30 שניות)';
+    await new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js';
+      s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+
+  try {
+    const result = await Tesseract.recognize(file, 'eng', {
+      logger: m => {
+        if (m.status === 'recognizing text')
+          statusEl.textContent = `⏳ קוראת... ${Math.round(m.progress * 100)}%`;
+      }
+    });
+    runnaData = parseRunnaText(result.data.text);
+    if (runnaData.km || runnaData.time || runnaData.pace) {
+      showRunnaFound();
+      statusEl.textContent = '✅ נמצאו נתונים!';
+    } else {
+      statusEl.textContent = '⚠️ לא זוהו נתונים. נסי תמונה ברורה יותר או הזיני ידנית.';
+    }
+  } catch(e) {
+    statusEl.textContent = '❌ שגיאה בקריאה. אנא הזיני ידנית.';
+  }
+}
+
+function parseRunnaText(text) {
+  const data = { km: null, time: null, pace: null };
+
+  // Distance
+  const dM = text.match(/(\d+[.,]\d+|\d+)\s*km\b/i);
+  if (dM) data.km = parseFloat(dM[1].replace(',', '.'));
+
+  // H:MM:SS total duration
+  const hmsM = text.match(/\b(\d{1,2}):(\d{2}):(\d{2})\b/);
+  if (hmsM) data.time = parseInt(hmsM[1])*60 + parseInt(hmsM[2]) + Math.round(parseInt(hmsM[3])/60);
+
+  // Pace labeled near /km
+  const pM = text.match(/(\d{1,2}):(\d{2})\s*(?:\/km|min\/km|'\/km|per\s*km)/i);
+  if (pM) data.pace = `${pM[1]}:${pM[2]}`;
+
+  // Collect all MM:SS
+  const allT = [];
+  const reT = /\b(\d{1,2}):(\d{2})\b/g;
+  let m;
+  while ((m = reT.exec(text)) !== null) {
+    const mn = parseInt(m[1]), sc = parseInt(m[2]);
+    if (sc <= 59) allT.push({ str: m[0], mn, sc, tot: mn*60+sc });
+  }
+
+  if (!data.time) {
+    const cands = data.pace ? allT.filter(t => t.str !== data.pace) : allT;
+    if (cands.length) {
+      const longest = cands.reduce((a,b) => a.tot > b.tot ? a : b);
+      data.time = longest.mn + Math.round(longest.sc/60);
+    }
+  }
+  if (!data.pace) {
+    const pc = allT.find(t => t.mn >= 4 && t.mn <= 20);
+    if (pc) data.pace = `${pc.mn}:${String(pc.sc).padStart(2,'0')}`;
+  }
+  return data;
+}
+
+function showRunnaFound() {
+  const items = [
+    runnaData.km   ? `<div class="runna-found-item"><small>מרחק</small>${runnaData.km} ק"מ</div>` : '',
+    runnaData.time ? `<div class="runna-found-item"><small>זמן</small>${runnaData.time} דק'</div>` : '',
+    runnaData.pace ? `<div class="runna-found-item"><small>קצב</small>${runnaData.pace} /ק"מ</div>` : '',
+  ].join('');
+  document.getElementById('runna-found').innerHTML =
+    `<div class="runna-found-box">
+       <div class="runna-found-title">זוהה מהצילום:</div>
+       <div class="runna-found-items">${items}</div>
+       <button class="btn-runna-confirm" onclick="applyRunnaData()">✅ מלאי את הטופס</button>
+     </div>`;
+}
+
+function applyRunnaData() {
+  if (runnaData.km)   document.getElementById('cardio-km').value   = runnaData.km;
+  if (runnaData.time) document.getElementById('cardio-time').value = runnaData.time;
+  if (runnaData.pace) document.getElementById('cardio-pace').value = runnaData.pace;
+  if (runnaData.pace && parseInt(runnaData.pace) < 7)
+    document.getElementById('cardio-type').value = 'ריצה';
+  document.getElementById('cardio-km').scrollIntoView({ behavior:'smooth', block:'center' });
+  document.getElementById('runna-status').textContent = '✅ הנתונים מולאו! בדקי ושמרי.';
 }
 
 // ===== INIT =====
