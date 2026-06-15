@@ -6,45 +6,50 @@
 <title>תוכנית קליסטניקס | מעקב אישי</title>
 <style>
 :root {
-  --primary: #2D6A4F;
-  --primary-light: #40916C;
-  --accent: #74C69D;
-  --light: #D8F3DC;
-  --bg: #F0FBF4;
+  --primary: #111111;
+  --primary-light: #333333;
+  --accent: #F5C518;
+  --accent-dark: #D4A017;
+  --light: #F0F0F0;
+  --bg: #EBEBEB;
   --white: #FFFFFF;
-  --text-dark: #1B4332;
-  --border: #B7E4C7;
-  --shadow: 0 2px 12px rgba(45,106,79,0.12);
+  --text-dark: #111111;
+  --text-mid: #555555;
+  --border: #DCDCDC;
+  --shadow: 0 2px 16px rgba(0,0,0,0.10);
   --pain-high: #E63946;
-  --pain-mid: #F4A261;
-  --pain-low: #52B788;
+  --pain-mid: #F5C518;
+  --pain-low: #AAAAAA;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Segoe UI',Tahoma,sans-serif; background:var(--bg); color:var(--text-dark); direction:rtl; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text-dark); direction:rtl; }
 
 /* ===== HEADER ===== */
 header {
-  background: linear-gradient(135deg, #1B4332 0%, #40916C 100%);
-  color: white; padding: 22px 20px 16px; text-align:center;
+  background: #111111;
+  color: white; padding: 26px 20px 18px; text-align:center;
+  border-bottom: 4px solid var(--accent);
 }
-header h1 { font-size:1.5rem; letter-spacing:0.5px; }
-header .subtitle { font-size:0.82rem; opacity:0.8; margin-top:4px; }
+header h1 { font-size:1.5rem; font-weight:800; letter-spacing:0.5px; }
+header h1 em { color:var(--accent); font-style:normal; }
+header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
 .user-badge {
-  display:inline-block; background:rgba(255,255,255,0.15);
-  border-radius:20px; padding:4px 14px; font-size:0.78rem; margin-top:8px;
+  display:inline-block; border:1.5px solid var(--accent);
+  border-radius:20px; padding:4px 14px; font-size:0.76rem;
+  margin-top:10px; color:var(--accent); font-weight:600; letter-spacing:0.3px;
 }
 
 /* ===== NAVIGATION ===== */
 .nav-tabs {
-  display:flex; background:white; border-bottom:2px solid var(--border);
-  position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.07);
+  display:flex; background:var(--white); border-bottom:1px solid var(--border);
+  position:sticky; top:0; z-index:100; box-shadow:0 2px 10px rgba(0,0,0,0.10);
 }
 .nav-tab {
   flex:1; padding:13px 4px; text-align:center; cursor:pointer;
-  font-size:0.82rem; color:#666; border-bottom:3px solid transparent;
-  transition:all 0.2s; font-weight:500; line-height:1.3;
+  font-size:0.8rem; color:#888; border-bottom:3px solid transparent;
+  transition:all 0.2s; font-weight:600; line-height:1.3;
 }
-.nav-tab.active { color:var(--primary); border-bottom-color:var(--primary); background:var(--bg); }
+.nav-tab.active { color:var(--primary); border-bottom-color:var(--accent); background:var(--white); }
 .nav-tab span { display:block; font-size:1.2rem; }
 
 /* ===== TABS ===== */
@@ -52,213 +57,222 @@ header .subtitle { font-size:0.82rem; opacity:0.8; margin-top:4px; }
 .tab.active { display:block; }
 
 /* ===== WEEK SECTION ===== */
-.week-section { margin-bottom:8px; }
+.week-section { margin-bottom:10px; }
 .week-header {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-  color:white; padding:11px 16px; border-radius:10px 10px 0 0;
-  font-size:1rem; font-weight:700; margin-top:16px; cursor:pointer;
+  background: #111111;
+  color:white; padding:12px 16px; border-radius:12px 12px 0 0;
+  font-size:1rem; font-weight:800; margin-top:18px; cursor:pointer;
   display:flex; justify-content:space-between; align-items:center;
+  letter-spacing:0.3px;
 }
-.week-header .week-arrow { transition:transform 0.3s; font-size:0.85rem; }
+.week-header::before { content:''; display:inline-block; width:4px; height:18px; background:var(--accent); border-radius:2px; margin-left:10px; }
+.week-header .week-arrow { transition:transform 0.3s; font-size:0.85rem; color:var(--accent); }
 .week-header.collapsed .week-arrow { transform:rotate(-90deg); }
-.week-days { border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; overflow:hidden; }
+.week-days { border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px; overflow:hidden; }
 .week-days.collapsed { display:none; }
 
 /* ===== DAY CARD ===== */
-.day-card { background:white; border-bottom:1px solid var(--border); }
+.day-card { background:var(--white); border-bottom:1px solid var(--border); }
 .day-card:last-child { border-bottom:none; }
 .day-header {
-  padding:13px 14px; display:flex; align-items:center; cursor:pointer;
-  gap:10px; transition:background 0.15s;
+  padding:14px 14px; display:flex; align-items:center; cursor:pointer;
+  gap:12px; transition:background 0.15s;
 }
-.day-header:hover { background:var(--bg); }
+.day-header:hover { background:var(--light); }
 .day-num {
-  background:var(--primary); color:white; width:30px; height:30px;
-  border-radius:50%; display:flex; align-items:center; justify-content:center;
-  font-weight:700; font-size:0.85rem; flex-shrink:0;
+  background:var(--accent); color:var(--primary); width:32px; height:32px;
+  border-radius:8px; display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:0.88rem; flex-shrink:0;
 }
 .day-meta { flex:1; }
 .day-name { font-weight:700; font-size:0.95rem; }
-.day-focus { font-size:0.75rem; color:var(--primary-light); margin-top:1px; }
+.day-focus { font-size:0.74rem; color:var(--text-mid); margin-top:2px; }
 .day-badge {
-  font-size:0.72rem; background:var(--light); color:var(--primary);
-  padding:3px 9px; border-radius:12px; font-weight:600; white-space:nowrap;
+  font-size:0.7rem; background:var(--light); color:var(--primary);
+  padding:3px 9px; border-radius:20px; font-weight:700; white-space:nowrap;
+  border:1px solid var(--border);
 }
-.day-arrow { color:var(--accent); transition:transform 0.3s; }
+.day-arrow { color:var(--accent); transition:transform 0.3s; font-size:1.1rem; }
 .day-arrow.open { transform:rotate(180deg); }
-.day-body { display:none; padding:2px 14px 14px; border-top:1px solid var(--light); }
+.day-body { display:none; padding:4px 14px 14px; border-top:1px solid var(--light); }
 .day-body.open { display:block; }
 
 /* ===== EXERCISES ===== */
 .ex-row {
-  display:flex; align-items:flex-start; padding:9px 0;
+  display:flex; align-items:flex-start; padding:10px 0;
   border-bottom:1px dashed var(--border); gap:10px;
 }
 .ex-row:last-child { border-bottom:none; }
 .ex-check {
-  width:22px; height:22px; border:2px solid var(--accent); border-radius:5px;
+  width:24px; height:24px; border:2px solid #CCCCCC; border-radius:6px;
   flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center;
   transition:all 0.2s; margin-top:1px; font-size:0.85rem;
 }
-.ex-check.done { background:var(--primary); border-color:var(--primary); color:white; }
+.ex-check.done { background:var(--accent); border-color:var(--accent); color:var(--primary); font-weight:900; }
 .ex-info { flex:1; }
-.ex-name { font-size:0.9rem; font-weight:600; }
-.ex-sets { font-size:0.78rem; color:var(--primary-light); margin-top:1px; }
-.ex-note { font-size:0.74rem; color:#666; font-style:italic; margin-top:2px; }
+.ex-name { font-size:0.9rem; font-weight:700; }
+.ex-sets { font-size:0.76rem; color:var(--text-mid); margin-top:2px; }
+.ex-note { font-size:0.73rem; color:#888; font-style:italic; margin-top:3px; }
 .sci-tag {
-  display:inline-block; background:#FEF3C7; color:#92400E;
-  font-size:0.68rem; padding:1px 6px; border-radius:8px;
-  border:1px solid #FCD34D; margin-top:3px;
+  display:inline-block; background:var(--accent); color:var(--primary);
+  font-size:0.67rem; padding:2px 7px; border-radius:8px;
+  font-weight:800; margin-top:3px; letter-spacing:0.2px;
 }
 
 /* ===== SCIATICA TIPS ===== */
 .tip-box {
-  background:#FEF9EC; border:1px solid #FCD34D; border-radius:10px;
-  padding:12px 14px; margin-bottom:12px; font-size:0.82rem;
+  background:#1A1A1A; border:none; border-radius:12px;
+  padding:14px 16px; margin-bottom:14px; font-size:0.82rem;
+  border-right:4px solid var(--accent);
 }
-.tip-title { font-weight:700; color:#92400E; margin-bottom:5px; }
-.tip-box li { color:#854D0E; padding:2px 0; list-style:none; }
-.tip-box li::before { content:"⚡ "; }
+.tip-title { font-weight:800; color:var(--accent); margin-bottom:7px; font-size:0.88rem; letter-spacing:0.3px; }
+.tip-box li { color:#DDDDDD; padding:3px 0; list-style:none; }
+.tip-box li::before { content:"⚡ "; color:var(--accent); }
 
 /* ===== LOG FORM ===== */
 .card {
-  background:white; border-radius:12px; padding:18px 16px;
+  background:var(--white); border-radius:14px; padding:18px 16px;
   margin-bottom:14px; box-shadow:var(--shadow); border:1px solid var(--border);
 }
 .card h3 {
-  color:var(--primary); font-size:1rem; margin-bottom:13px;
-  padding-bottom:8px; border-bottom:2px solid var(--light);
+  color:var(--primary); font-size:0.95rem; font-weight:800; margin-bottom:14px;
+  padding-bottom:10px; border-bottom:2px solid var(--light);
+  display:flex; align-items:center; gap:7px;
 }
 .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .form-group label {
-  display:block; font-size:0.78rem; color:var(--primary);
-  margin-bottom:4px; font-weight:600;
+  display:block; font-size:0.75rem; color:var(--text-mid);
+  margin-bottom:5px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px;
 }
 .form-group input, .form-group select, .form-group textarea {
-  width:100%; padding:9px 11px; border:1.5px solid var(--border);
-  border-radius:8px; font-size:0.88rem; color:var(--text-dark);
-  background:white; transition:border-color 0.2s; font-family:inherit;
+  width:100%; padding:10px 12px; border:1.5px solid var(--border);
+  border-radius:9px; font-size:0.88rem; color:var(--text-dark);
+  background:var(--white); transition:border-color 0.2s; font-family:inherit;
 }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-  outline:none; border-color:var(--primary);
+  outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(245,197,24,0.15);
 }
 .form-group.full { grid-column:1/-1; }
 .form-group textarea { min-height:80px; resize:vertical; }
 
 /* ===== SLIDERS ===== */
-.slider-wrap { margin-bottom:10px; }
+.slider-wrap { margin-bottom:12px; }
 .slider-wrap label {
-  font-size:0.78rem; color:var(--primary); font-weight:600;
-  display:flex; justify-content:space-between; margin-bottom:6px;
+  font-size:0.75rem; color:var(--text-mid); font-weight:700;
+  display:flex; justify-content:space-between; margin-bottom:8px;
+  text-transform:uppercase; letter-spacing:0.4px;
 }
-.slider-wrap label span { font-size:1rem; }
+.slider-wrap label span { font-size:1.05rem; color:var(--primary); font-weight:900; }
 input[type="range"] {
   width:100%; height:7px; -webkit-appearance:none; border-radius:4px;
   cursor:pointer; background:linear-gradient(to left, var(--pain-high), var(--pain-mid), var(--pain-low));
 }
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance:none; width:22px; height:22px; border-radius:50%;
-  background:var(--primary); border:2px solid white; box-shadow:0 1px 4px rgba(0,0,0,0.25); cursor:pointer;
+  -webkit-appearance:none; width:24px; height:24px; border-radius:50%;
+  background:var(--primary); border:3px solid var(--accent); box-shadow:0 2px 6px rgba(0,0,0,0.25); cursor:pointer;
 }
 .slider-labels {
-  display:flex; justify-content:space-between; font-size:0.68rem; color:#888; margin-top:2px;
+  display:flex; justify-content:space-between; font-size:0.67rem; color:#999; margin-top:4px;
 }
 
 /* ===== BUTTONS ===== */
 .btn {
-  padding:12px 20px; border:none; border-radius:9px; cursor:pointer;
-  font-size:0.9rem; font-weight:700; transition:all 0.2s; font-family:inherit;
+  padding:13px 20px; border:none; border-radius:10px; cursor:pointer;
+  font-size:0.92rem; font-weight:800; transition:all 0.2s; font-family:inherit; letter-spacing:0.3px;
 }
 .btn-primary { background:var(--primary); color:white; width:100%; }
-.btn-primary:hover { background:#1B4332; }
-.btn-danger { background:#FEE2E2; color:#991B1B; font-size:0.8rem; padding:6px 12px; }
-.btn-danger:hover { background:#FCA5A5; }
+.btn-primary:hover { background:var(--accent); color:var(--primary); }
+.btn-primary:active { transform:scale(0.98); }
+.btn-danger { background:var(--light); color:#888; font-size:0.78rem; padding:6px 12px; border:1px solid var(--border); }
+.btn-danger:hover { background:#FEE2E2; color:#991B1B; border-color:#FCA5A5; }
 
 /* ===== SUCCESS ===== */
 .success-msg {
-  background:#D1FAE5; color:#065F46; padding:11px 14px; border-radius:8px;
-  margin-bottom:12px; display:none; font-size:0.88rem; border:1px solid #6EE7B7;
+  background:var(--accent); color:var(--primary); padding:12px 14px; border-radius:10px;
+  margin-bottom:12px; display:none; font-size:0.88rem; font-weight:700;
 }
 
 /* ===== PROGRESS ===== */
 .stats-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:14px; }
 .stat-card {
-  background:white; border-radius:10px; padding:14px; text-align:center;
-  box-shadow:var(--shadow); border:1px solid var(--border);
+  background:var(--white); border-radius:12px; padding:16px; text-align:center;
+  box-shadow:var(--shadow); border:1px solid var(--border); position:relative; overflow:hidden;
 }
-.stat-val { font-size:1.9rem; font-weight:800; color:var(--primary); line-height:1.1; }
-.stat-lbl { font-size:0.72rem; color:#666; margin-top:4px; }
+.stat-card::after { content:''; position:absolute; bottom:0; right:0; left:0; height:3px; background:var(--accent); }
+.stat-val { font-size:2rem; font-weight:900; color:var(--primary); line-height:1.1; }
+.stat-lbl { font-size:0.7rem; color:#888; margin-top:5px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
 
 /* ===== CHART ===== */
 .chart-wrap {
-  background:white; border-radius:12px; padding:16px;
+  background:var(--white); border-radius:14px; padding:16px;
   box-shadow:var(--shadow); border:1px solid var(--border); margin-bottom:14px;
 }
-.chart-title { font-size:0.9rem; font-weight:700; color:var(--primary); margin-bottom:12px; }
+.chart-title { font-size:0.88rem; font-weight:800; color:var(--primary); margin-bottom:14px; text-transform:uppercase; letter-spacing:0.4px; }
 .bar-chart { display:flex; align-items:flex-end; gap:4px; height:90px; border-bottom:2px solid var(--border); }
 .bar-col { display:flex; flex-direction:column; align-items:center; flex:1; height:100%; justify-content:flex-end; }
 .bar { width:100%; border-radius:4px 4px 0 0; min-height:3px; transition:height 0.5s; }
-.bar-lbl { font-size:0.6rem; color:#888; margin-top:3px; text-align:center; }
+.bar-lbl { font-size:0.58rem; color:#999; margin-top:4px; text-align:center; }
 
 /* ===== LOG TABLE ===== */
 .log-table-wrap {
-  background:white; border-radius:12px; overflow:hidden;
+  background:var(--white); border-radius:14px; overflow:hidden;
   box-shadow:var(--shadow); border:1px solid var(--border); overflow-x:auto;
 }
 .log-table-wrap table { width:100%; border-collapse:collapse; min-width:520px; }
 .log-table-wrap th {
-  background:var(--primary); color:white; padding:9px 10px;
-  font-size:0.78rem; text-align:right; white-space:nowrap;
+  background:var(--primary); color:white; padding:10px 10px;
+  font-size:0.75rem; text-align:right; white-space:nowrap; font-weight:700; letter-spacing:0.3px;
 }
 .log-table-wrap td {
   padding:9px 10px; font-size:0.78rem; border-bottom:1px solid var(--border);
 }
-.log-table-wrap tr:hover td { background:var(--bg); }
+.log-table-wrap tr:hover td { background:var(--light); }
 .pain-pill {
   display:inline-block; padding:2px 8px; border-radius:10px; font-size:0.72rem; font-weight:700;
 }
-.pain-low { background:#D1FAE5; color:#065F46; }
-.pain-mid { background:#FEF3C7; color:#92400E; }
+.pain-low { background:#E8E8E8; color:#444; }
+.pain-mid { background:rgba(245,197,24,0.25); color:#7A5F00; }
 .pain-high { background:#FEE2E2; color:#991B1B; }
-.empty-state { text-align:center; padding:40px 20px; color:#888; }
+.empty-state { text-align:center; padding:40px 20px; color:#AAA; }
 .empty-icon { font-size:2.8rem; margin-bottom:10px; }
 
 /* ===== EXERCISE SVG ===== */
-.ex-svg { margin-top:8px; background:var(--bg); border-radius:8px; padding:4px 6px 2px; border:1px solid var(--border); text-align:center; }
+.ex-svg { margin-top:8px; background:var(--light); border-radius:8px; padding:4px 6px 2px; border:1px solid var(--border); text-align:center; }
 .ex-svg svg { max-width:115px; height:auto; display:block; margin:0 auto; }
 
 @media(max-width:480px) {
   .form-grid { grid-template-columns:1fr; }
   .stats-grid { grid-template-columns:1fr 1fr; }
-  header h1 { font-size:1.25rem; }
+  header h1 { font-size:1.3rem; }
 }
 
 /* ===== RUNNA SCANNER ===== */
-.runna-card { border:2px dashed #0096C7; background:linear-gradient(135deg,#f0f8ff 0%,#e6f4fa 100%); }
-.runna-hint { font-size:0.82rem; color:#555; margin:4px 0 12px; }
+.runna-card { border:2px dashed var(--accent) !important; background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%) !important; }
+.runna-card h3 { color:var(--accent) !important; border-bottom-color:#3A3A3A !important; }
+.runna-hint { font-size:0.82rem; color:#AAAAAA; margin:4px 0 12px; }
 .btn-runna {
-  display:block; width:100%; background:linear-gradient(135deg,#0077B6,#0096C7);
-  color:white; border:none; padding:13px 20px; border-radius:10px;
-  font-size:1rem; font-weight:600; cursor:pointer; text-align:center;
-  box-shadow:0 3px 10px rgba(0,119,182,0.3);
+  display:block; width:100%; background:var(--accent);
+  color:var(--primary); border:none; padding:13px 20px; border-radius:10px;
+  font-size:1rem; font-weight:800; cursor:pointer; text-align:center;
+  box-shadow:0 3px 12px rgba(245,197,24,0.4); letter-spacing:0.3px;
 }
-.btn-runna:active { opacity:0.85; }
-#runna-status { margin-top:10px; font-size:0.88rem; color:var(--primary); min-height:20px; text-align:center; }
-#runna-preview { width:100%; border-radius:8px; margin-top:10px; border:1px solid var(--border); max-height:220px; object-fit:contain; display:none; }
-.runna-found-box { background:white; border-radius:10px; padding:12px; margin-top:12px; border:1px solid var(--border); }
-.runna-found-title { font-size:0.8rem; color:#777; margin-bottom:8px; }
+.btn-runna:active { opacity:0.85; transform:scale(0.98); }
+#runna-status { margin-top:10px; font-size:0.85rem; color:#AAAAAA; min-height:20px; text-align:center; }
+#runna-preview { width:100%; border-radius:10px; margin-top:10px; border:1px solid #3A3A3A; max-height:220px; object-fit:contain; display:none; }
+.runna-found-box { background:#1E1E1E; border-radius:10px; padding:12px; margin-top:12px; border:1px solid #3A3A3A; }
+.runna-found-title { font-size:0.78rem; color:#888; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.4px; }
 .runna-found-items { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
-.runna-found-item { background:var(--light); border-radius:8px; padding:8px 14px; font-size:0.9rem; color:var(--text-dark); font-weight:700; display:flex; flex-direction:column; align-items:center; }
-.runna-found-item small { font-size:0.72rem; color:#666; font-weight:400; margin-bottom:2px; }
-.btn-runna-confirm { background:var(--primary); color:white; border:none; padding:10px; border-radius:8px; font-size:0.92rem; cursor:pointer; font-weight:600; width:100%; }
+.runna-found-item { background:#2A2A2A; border:1px solid #3A3A3A; border-radius:9px; padding:10px 16px; font-size:0.95rem; color:var(--accent); font-weight:800; display:flex; flex-direction:column; align-items:center; }
+.runna-found-item small { font-size:0.68rem; color:#777; font-weight:500; margin-bottom:3px; text-transform:uppercase; letter-spacing:0.3px; }
+.btn-runna-confirm { background:var(--accent); color:var(--primary); border:none; padding:11px; border-radius:9px; font-size:0.92rem; cursor:pointer; font-weight:800; width:100%; letter-spacing:0.3px; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>💪 תוכנית קליסטניקס – שלב ראשון</h1>
-  <div class="subtitle">3 שבועות ראשונים | 15 דקות ביום | ידידותי לאישיאס</div>
-  <div class="user-badge">🏃‍♀️ הליכה/ריצה יומית + קליסטניקס + פילאטיס שבועי</div>
+  <h1>💪 תוכנית <em>קליסטניקס</em> – שלב ראשון</h1>
+  <div class="subtitle">3 שבועות ראשונים &nbsp;·&nbsp; 15 דקות ביום &nbsp;·&nbsp; ידידותי לאישיאס</div>
+  <div class="user-badge">🏃‍♀️ הליכה יומית · קליסטניקס · פילאטיס</div>
 </header>
 
 <div class="nav-tabs">
@@ -790,7 +804,7 @@ wallPushup:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <line x1="82" y1="35" x2="60" y2="58" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="71" y1="44" x2="48" y2="38" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="48" y1="38" x2="14" y2="44" stroke="#2D6A4F" stroke-width="2.5"/>
-  <circle cx="12" cy="44" r="3" fill="#40916C"/>
+  <circle cx="12" cy="44" r="3" fill="#F5C518"/>
   <line x1="60" y1="58" x2="50" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="60" y1="58" x2="70" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
   <text x="60" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">← קיר</text>
@@ -879,7 +893,7 @@ catCow:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <line x1="72" y1="36" x2="72" y2="54" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="72" y1="54" x2="64" y2="74" stroke="#2D6A4F" stroke-width="2"/>
   <line x1="72" y1="54" x2="80" y2="74" stroke="#2D6A4F" stroke-width="2"/>
-  <text x="57" y="14" font-size="8" fill="#40916C" font-family="sans-serif" text-anchor="middle">↑↓ גב עולה ויורד</text>
+  <text x="57" y="14" font-size="8" fill="#F5C518" font-family="sans-serif" text-anchor="middle">↑↓ גב עולה ויורד</text>
 </svg>`,
 
 deadBug:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
@@ -887,9 +901,9 @@ deadBug:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <circle cx="90" cy="54" r="7" fill="#2D6A4F"/>
   <line x1="90" y1="60" x2="25" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="75" y1="57" x2="80" y2="30" stroke="#2D6A4F" stroke-width="2.5"/>
-  <text x="80" y="25" font-size="9" fill="#40916C">↑</text>
+  <text x="80" y="25" font-size="9" fill="#F5C518">↑</text>
   <line x1="45" y1="60" x2="22" y2="36" stroke="#2D6A4F" stroke-width="2.5"/>
-  <text x="15" y="34" font-size="9" fill="#40916C">←</text>
+  <text x="15" y="34" font-size="9" fill="#F5C518">←</text>
   <line x1="58" y1="60" x2="55" y2="44" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="55" y1="44" x2="67" y2="37" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="70" y1="57" x2="92" y2="55" stroke="#2D6A4F" stroke-width="2"/>
@@ -905,9 +919,9 @@ birdDog:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <line x1="50" y1="43" x2="52" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="52" y1="60" x2="55" y2="74" stroke="#2D6A4F" stroke-width="2"/>
   <line x1="64" y1="40" x2="100" y2="37" stroke="#2D6A4F" stroke-width="2.5"/>
-  <text x="104" y="41" font-size="9" fill="#40916C">→</text>
+  <text x="104" y="41" font-size="9" fill="#F5C518">→</text>
   <line x1="34" y1="43" x2="8" y2="43" stroke="#2D6A4F" stroke-width="2.5"/>
-  <text x="2" y="47" font-size="9" fill="#40916C">←</text>
+  <text x="2" y="47" font-size="9" fill="#F5C518">←</text>
   <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">יד ורגל נגדית</text>
 </svg>`,
 
@@ -931,7 +945,7 @@ sidePlank:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <line x1="36" y1="59" x2="16" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="16" y1="74" x2="6" y2="74" stroke="#2D6A4F" stroke-width="3"/>
   <line x1="78" y1="46" x2="84" y2="22" stroke="#2D6A4F" stroke-width="2.5"/>
-  <text x="84" y="18" font-size="9" fill="#40916C">↑</text>
+  <text x="84" y="18" font-size="9" fill="#F5C518">↑</text>
   <line x1="22" y1="66" x2="14" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
   <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">גוף ישר בקו אחד</text>
 </svg>`,
@@ -956,7 +970,7 @@ gluteBridge:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <line x1="46" y1="70" x2="60" y2="42" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="60" y1="42" x2="82" y2="56" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="82" y1="56" x2="82" y2="70" stroke="#2D6A4F" stroke-width="2.5"/>
-  <text x="58" y="32" font-size="12" fill="#40916C" text-anchor="middle">↑</text>
+  <text x="58" y="32" font-size="12" fill="#F5C518" text-anchor="middle">↑</text>
   <text x="57" y="80" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">האגן למעלה – סחטי ישבן!</text>
 </svg>`,
 
@@ -969,7 +983,7 @@ singleLegBridge:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <line x1="80" y1="56" x2="80" y2="70" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="60" y1="42" x2="70" y2="22" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="70" y1="22" x2="90" y2="16" stroke="#2D6A4F" stroke-width="2.5"/>
-  <text x="94" y="14" font-size="9" fill="#40916C">→</text>
+  <text x="94" y="14" font-size="9" fill="#F5C518">→</text>
   <text x="57" y="80" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">רגל אחת מורמת למעלה</text>
 </svg>`,
 
@@ -983,7 +997,7 @@ wallSit:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <line x1="64" y1="52" x2="64" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="14" y1="38" x2="6" y2="52" stroke="#2D6A4F" stroke-width="2"/>
   <line x1="22" y1="38" x2="32" y2="48" stroke="#2D6A4F" stroke-width="2"/>
-  <text x="72" y="56" font-size="8" fill="#40916C">90°</text>
+  <text x="72" y="56" font-size="8" fill="#F5C518">90°</text>
 </svg>`,
 
 stepUp:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
@@ -1025,8 +1039,8 @@ bandPullApart:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <line x1="57" y1="32" x2="16" y2="32" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="57" y1="32" x2="98" y2="32" stroke="#2D6A4F" stroke-width="2.5"/>
   <path d="M18 31 Q57 27 96 31" fill="none" stroke="#F4A261" stroke-width="2.5" stroke-dasharray="5,3"/>
-  <text x="4" y="36" font-size="10" fill="#40916C">←</text>
-  <text x="101" y="36" font-size="10" fill="#40916C">→</text>
+  <text x="4" y="36" font-size="10" fill="#F5C518">←</text>
+  <text x="101" y="36" font-size="10" fill="#F5C518">→</text>
   <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">פרידה לצדדים</text>
 </svg>`,
 
@@ -1081,7 +1095,7 @@ clamshell:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <line x1="38" y1="63" x2="46" y2="44" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="46" y1="44" x2="72" y2="51" stroke="#2D6A4F" stroke-width="2.5"/>
   <ellipse cx="62" cy="49" rx="14" ry="5" fill="none" stroke="#F4A261" stroke-width="2" stroke-dasharray="3,2"/>
-  <text x="46" y="34" font-size="10" fill="#40916C">↑</text>
+  <text x="46" y="34" font-size="10" fill="#F5C518">↑</text>
   <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">ברך עליונה נפתחת</text>
 </svg>`,
 
@@ -1135,7 +1149,7 @@ hip9090:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
   <line x1="57" y1="74" x2="28" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
   <line x1="52" y1="35" x2="36" y2="42" stroke="#2D6A4F" stroke-width="2"/>
   <line x1="62" y1="35" x2="78" y2="42" stroke="#2D6A4F" stroke-width="2"/>
-  <text x="86" y="58" font-size="7" fill="#40916C">90°</text>
+  <text x="86" y="58" font-size="7" fill="#F5C518">90°</text>
   <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">שתי הרגליים ב-90°</text>
 </svg>`,
 
@@ -1424,7 +1438,7 @@ function renderProgress() {
 
   // Charts – last 14 days
   renderBarChart('pain-chart', 14, 'pain', '#E63946', 10);
-  renderBarChart('km-chart', 14, 'km', '#40916C', null);
+  renderBarChart('km-chart', 14, 'km', '#F5C518', null);
 
   // Table
   renderTable();
