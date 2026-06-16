@@ -6,50 +6,45 @@
 <title>תוכנית קליסטניקס | מעקב אישי</title>
 <style>
 :root {
-  --primary: #111111;
-  --primary-light: #333333;
-  --accent: #F5C518;
-  --accent-dark: #D4A017;
-  --light: #F0F0F0;
-  --bg: #EBEBEB;
+  --primary: #2D6A4F;
+  --primary-light: #40916C;
+  --accent: #74C69D;
+  --light: #D8F3DC;
+  --bg: #F0FBF4;
   --white: #FFFFFF;
-  --text-dark: #111111;
-  --text-mid: #555555;
-  --border: #DCDCDC;
-  --shadow: 0 2px 16px rgba(0,0,0,0.10);
+  --text-dark: #1B4332;
+  --border: #B7E4C7;
+  --shadow: 0 2px 12px rgba(45,106,79,0.12);
   --pain-high: #E63946;
-  --pain-mid: #F5C518;
-  --pain-low: #AAAAAA;
+  --pain-mid: #F4A261;
+  --pain-low: #52B788;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text-dark); direction:rtl; }
+body { font-family:'Segoe UI',Tahoma,sans-serif; background:var(--bg); color:var(--text-dark); direction:rtl; }
 
 /* ===== HEADER ===== */
 header {
-  background: #111111;
-  color: white; padding: 26px 20px 18px; text-align:center;
-  border-bottom: 4px solid var(--accent);
+  background: linear-gradient(135deg, #1B4332 0%, #40916C 100%);
+  color: white; padding: 22px 20px 16px; text-align:center;
 }
-header h1 { font-size:1.5rem; font-weight:800; letter-spacing:0.5px; }
-header h1 em { color:var(--accent); font-style:normal; }
-header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
+header h1 { font-size:1.5rem; letter-spacing:0.5px; }
+header .subtitle { font-size:0.82rem; opacity:0.8; margin-top:4px; }
 .user-badge {
-  display:inline-block; border:1.5px solid var(--accent);
-  border-radius:20px; padding:4px 14px; font-size:0.76rem;
-  margin-top:10px; color:var(--accent); font-weight:600; letter-spacing:0.3px;
+  display:inline-block; background:rgba(255,255,255,0.15);
+  border-radius:20px; padding:4px 14px; font-size:0.78rem; margin-top:8px;
 }
 
 /* ===== NAVIGATION ===== */
 .nav-tabs {
-  display:flex; background:var(--white); border-bottom:1px solid var(--border);
-  position:sticky; top:0; z-index:100; box-shadow:0 2px 10px rgba(0,0,0,0.10);
+  display:flex; background:white; border-bottom:2px solid var(--border);
+  position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.07);
 }
 .nav-tab {
   flex:1; padding:13px 4px; text-align:center; cursor:pointer;
-  font-size:0.8rem; color:#888; border-bottom:3px solid transparent;
-  transition:all 0.2s; font-weight:600; line-height:1.3;
+  font-size:0.82rem; color:#666; border-bottom:3px solid transparent;
+  transition:all 0.2s; font-weight:500; line-height:1.3;
 }
-.nav-tab.active { color:var(--primary); border-bottom-color:var(--accent); background:var(--white); }
+.nav-tab.active { color:var(--primary); border-bottom-color:var(--primary); background:var(--bg); }
 .nav-tab span { display:block; font-size:1.2rem; }
 
 /* ===== TABS ===== */
@@ -57,222 +52,194 @@ header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
 .tab.active { display:block; }
 
 /* ===== WEEK SECTION ===== */
-.week-section { margin-bottom:10px; }
+.week-section { margin-bottom:8px; }
 .week-header {
-  background: #111111;
-  color:white; padding:12px 16px; border-radius:12px 12px 0 0;
-  font-size:1rem; font-weight:800; margin-top:18px; cursor:pointer;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color:white; padding:11px 16px; border-radius:10px 10px 0 0;
+  font-size:1rem; font-weight:700; margin-top:16px; cursor:pointer;
   display:flex; justify-content:space-between; align-items:center;
-  letter-spacing:0.3px;
 }
-.week-header::before { content:''; display:inline-block; width:4px; height:18px; background:var(--accent); border-radius:2px; margin-left:10px; }
-.week-header .week-arrow { transition:transform 0.3s; font-size:0.85rem; color:var(--accent); }
+.week-header .week-arrow { transition:transform 0.3s; font-size:0.85rem; }
 .week-header.collapsed .week-arrow { transform:rotate(-90deg); }
-.week-days { border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px; overflow:hidden; }
+.week-days { border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; overflow:hidden; }
 .week-days.collapsed { display:none; }
 
 /* ===== DAY CARD ===== */
-.day-card { background:var(--white); border-bottom:1px solid var(--border); }
+.day-card { background:white; border-bottom:1px solid var(--border); }
 .day-card:last-child { border-bottom:none; }
 .day-header {
-  padding:14px 14px; display:flex; align-items:center; cursor:pointer;
-  gap:12px; transition:background 0.15s;
+  padding:13px 14px; display:flex; align-items:center; cursor:pointer;
+  gap:10px; transition:background 0.15s;
 }
-.day-header:hover { background:var(--light); }
+.day-header:hover { background:var(--bg); }
 .day-num {
-  background:var(--accent); color:var(--primary); width:32px; height:32px;
-  border-radius:8px; display:flex; align-items:center; justify-content:center;
-  font-weight:900; font-size:0.88rem; flex-shrink:0;
+  background:var(--primary); color:white; width:30px; height:30px;
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:0.85rem; flex-shrink:0;
 }
 .day-meta { flex:1; }
 .day-name { font-weight:700; font-size:0.95rem; }
-.day-focus { font-size:0.74rem; color:var(--text-mid); margin-top:2px; }
+.day-focus { font-size:0.75rem; color:var(--primary-light); margin-top:1px; }
 .day-badge {
-  font-size:0.7rem; background:var(--light); color:var(--primary);
-  padding:3px 9px; border-radius:20px; font-weight:700; white-space:nowrap;
-  border:1px solid var(--border);
+  font-size:0.72rem; background:var(--light); color:var(--primary);
+  padding:3px 9px; border-radius:12px; font-weight:600; white-space:nowrap;
 }
-.day-arrow { color:var(--accent); transition:transform 0.3s; font-size:1.1rem; }
+.day-arrow { color:var(--accent); transition:transform 0.3s; }
 .day-arrow.open { transform:rotate(180deg); }
-.day-body { display:none; padding:4px 14px 14px; border-top:1px solid var(--light); }
+.day-body { display:none; padding:2px 14px 14px; border-top:1px solid var(--light); }
 .day-body.open { display:block; }
 
 /* ===== EXERCISES ===== */
 .ex-row {
-  display:flex; align-items:flex-start; padding:10px 0;
+  display:flex; align-items:flex-start; padding:9px 0;
   border-bottom:1px dashed var(--border); gap:10px;
 }
 .ex-row:last-child { border-bottom:none; }
 .ex-check {
-  width:24px; height:24px; border:2px solid #CCCCCC; border-radius:6px;
+  width:22px; height:22px; border:2px solid var(--accent); border-radius:5px;
   flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center;
   transition:all 0.2s; margin-top:1px; font-size:0.85rem;
 }
-.ex-check.done { background:var(--accent); border-color:var(--accent); color:var(--primary); font-weight:900; }
+.ex-check.done { background:var(--primary); border-color:var(--primary); color:white; }
 .ex-info { flex:1; }
-.ex-name { font-size:0.9rem; font-weight:700; }
-.ex-sets { font-size:0.76rem; color:var(--text-mid); margin-top:2px; }
-.ex-note { font-size:0.73rem; color:#888; font-style:italic; margin-top:3px; }
+.ex-name { font-size:0.9rem; font-weight:600; }
+.ex-sets { font-size:0.78rem; color:var(--primary-light); margin-top:1px; }
+.ex-note { font-size:0.74rem; color:#666; font-style:italic; margin-top:2px; }
 .sci-tag {
-  display:inline-block; background:var(--accent); color:var(--primary);
-  font-size:0.67rem; padding:2px 7px; border-radius:8px;
-  font-weight:800; margin-top:3px; letter-spacing:0.2px;
+  display:inline-block; background:#FEF3C7; color:#92400E;
+  font-size:0.68rem; padding:1px 6px; border-radius:8px;
+  border:1px solid #FCD34D; margin-top:3px;
 }
 
 /* ===== SCIATICA TIPS ===== */
 .tip-box {
-  background:#1A1A1A; border:none; border-radius:12px;
-  padding:14px 16px; margin-bottom:14px; font-size:0.82rem;
-  border-right:4px solid var(--accent);
+  background:#FEF9EC; border:1px solid #FCD34D; border-radius:10px;
+  padding:12px 14px; margin-bottom:12px; font-size:0.82rem;
 }
-.tip-title { font-weight:800; color:var(--accent); margin-bottom:7px; font-size:0.88rem; letter-spacing:0.3px; }
-.tip-box li { color:#DDDDDD; padding:3px 0; list-style:none; }
-.tip-box li::before { content:"⚡ "; color:var(--accent); }
+.tip-title { font-weight:700; color:#92400E; margin-bottom:5px; }
+.tip-box li { color:#854D0E; padding:2px 0; list-style:none; }
+.tip-box li::before { content:"⚡ "; }
 
 /* ===== LOG FORM ===== */
 .card {
-  background:var(--white); border-radius:14px; padding:18px 16px;
+  background:white; border-radius:12px; padding:18px 16px;
   margin-bottom:14px; box-shadow:var(--shadow); border:1px solid var(--border);
 }
 .card h3 {
-  color:var(--primary); font-size:0.95rem; font-weight:800; margin-bottom:14px;
-  padding-bottom:10px; border-bottom:2px solid var(--light);
-  display:flex; align-items:center; gap:7px;
+  color:var(--primary); font-size:1rem; margin-bottom:13px;
+  padding-bottom:8px; border-bottom:2px solid var(--light);
 }
 .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .form-group label {
-  display:block; font-size:0.75rem; color:var(--text-mid);
-  margin-bottom:5px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px;
+  display:block; font-size:0.78rem; color:var(--primary);
+  margin-bottom:4px; font-weight:600;
 }
 .form-group input, .form-group select, .form-group textarea {
-  width:100%; padding:10px 12px; border:1.5px solid var(--border);
-  border-radius:9px; font-size:0.88rem; color:var(--text-dark);
-  background:var(--white); transition:border-color 0.2s; font-family:inherit;
+  width:100%; padding:9px 11px; border:1.5px solid var(--border);
+  border-radius:8px; font-size:0.88rem; color:var(--text-dark);
+  background:white; transition:border-color 0.2s; font-family:inherit;
 }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-  outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(245,197,24,0.15);
+  outline:none; border-color:var(--primary);
 }
 .form-group.full { grid-column:1/-1; }
 .form-group textarea { min-height:80px; resize:vertical; }
 
 /* ===== SLIDERS ===== */
-.slider-wrap { margin-bottom:12px; }
+.slider-wrap { margin-bottom:10px; }
 .slider-wrap label {
-  font-size:0.75rem; color:var(--text-mid); font-weight:700;
-  display:flex; justify-content:space-between; margin-bottom:8px;
-  text-transform:uppercase; letter-spacing:0.4px;
+  font-size:0.78rem; color:var(--primary); font-weight:600;
+  display:flex; justify-content:space-between; margin-bottom:6px;
 }
-.slider-wrap label span { font-size:1.05rem; color:var(--primary); font-weight:900; }
+.slider-wrap label span { font-size:1rem; }
 input[type="range"] {
   width:100%; height:7px; -webkit-appearance:none; border-radius:4px;
   cursor:pointer; background:linear-gradient(to left, var(--pain-high), var(--pain-mid), var(--pain-low));
 }
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance:none; width:24px; height:24px; border-radius:50%;
-  background:var(--primary); border:3px solid var(--accent); box-shadow:0 2px 6px rgba(0,0,0,0.25); cursor:pointer;
+  -webkit-appearance:none; width:22px; height:22px; border-radius:50%;
+  background:var(--primary); border:2px solid white; box-shadow:0 1px 4px rgba(0,0,0,0.25); cursor:pointer;
 }
 .slider-labels {
-  display:flex; justify-content:space-between; font-size:0.67rem; color:#999; margin-top:4px;
+  display:flex; justify-content:space-between; font-size:0.68rem; color:#888; margin-top:2px;
 }
 
 /* ===== BUTTONS ===== */
 .btn {
-  padding:13px 20px; border:none; border-radius:10px; cursor:pointer;
-  font-size:0.92rem; font-weight:800; transition:all 0.2s; font-family:inherit; letter-spacing:0.3px;
+  padding:12px 20px; border:none; border-radius:9px; cursor:pointer;
+  font-size:0.9rem; font-weight:700; transition:all 0.2s; font-family:inherit;
 }
 .btn-primary { background:var(--primary); color:white; width:100%; }
-.btn-primary:hover { background:var(--accent); color:var(--primary); }
-.btn-primary:active { transform:scale(0.98); }
-.btn-danger { background:var(--light); color:#888; font-size:0.78rem; padding:6px 12px; border:1px solid var(--border); }
-.btn-danger:hover { background:#FEE2E2; color:#991B1B; border-color:#FCA5A5; }
+.btn-primary:hover { background:#1B4332; }
+.btn-danger { background:#FEE2E2; color:#991B1B; font-size:0.8rem; padding:6px 12px; }
+.btn-danger:hover { background:#FCA5A5; }
 
 /* ===== SUCCESS ===== */
 .success-msg {
-  background:var(--accent); color:var(--primary); padding:12px 14px; border-radius:10px;
-  margin-bottom:12px; display:none; font-size:0.88rem; font-weight:700;
+  background:#D1FAE5; color:#065F46; padding:11px 14px; border-radius:8px;
+  margin-bottom:12px; display:none; font-size:0.88rem; border:1px solid #6EE7B7;
 }
 
 /* ===== PROGRESS ===== */
 .stats-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:14px; }
 .stat-card {
-  background:var(--white); border-radius:12px; padding:16px; text-align:center;
-  box-shadow:var(--shadow); border:1px solid var(--border); position:relative; overflow:hidden;
+  background:white; border-radius:10px; padding:14px; text-align:center;
+  box-shadow:var(--shadow); border:1px solid var(--border);
 }
-.stat-card::after { content:''; position:absolute; bottom:0; right:0; left:0; height:3px; background:var(--accent); }
-.stat-val { font-size:2rem; font-weight:900; color:var(--primary); line-height:1.1; }
-.stat-lbl { font-size:0.7rem; color:#888; margin-top:5px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
+.stat-val { font-size:1.9rem; font-weight:800; color:var(--primary); line-height:1.1; }
+.stat-lbl { font-size:0.72rem; color:#666; margin-top:4px; }
 
 /* ===== CHART ===== */
 .chart-wrap {
-  background:var(--white); border-radius:14px; padding:16px;
+  background:white; border-radius:12px; padding:16px;
   box-shadow:var(--shadow); border:1px solid var(--border); margin-bottom:14px;
 }
-.chart-title { font-size:0.88rem; font-weight:800; color:var(--primary); margin-bottom:14px; text-transform:uppercase; letter-spacing:0.4px; }
+.chart-title { font-size:0.9rem; font-weight:700; color:var(--primary); margin-bottom:12px; }
 .bar-chart { display:flex; align-items:flex-end; gap:4px; height:90px; border-bottom:2px solid var(--border); }
 .bar-col { display:flex; flex-direction:column; align-items:center; flex:1; height:100%; justify-content:flex-end; }
 .bar { width:100%; border-radius:4px 4px 0 0; min-height:3px; transition:height 0.5s; }
-.bar-lbl { font-size:0.58rem; color:#999; margin-top:4px; text-align:center; }
+.bar-lbl { font-size:0.6rem; color:#888; margin-top:3px; text-align:center; }
 
 /* ===== LOG TABLE ===== */
 .log-table-wrap {
-  background:var(--white); border-radius:14px; overflow:hidden;
+  background:white; border-radius:12px; overflow:hidden;
   box-shadow:var(--shadow); border:1px solid var(--border); overflow-x:auto;
 }
 .log-table-wrap table { width:100%; border-collapse:collapse; min-width:520px; }
 .log-table-wrap th {
-  background:var(--primary); color:white; padding:10px 10px;
-  font-size:0.75rem; text-align:right; white-space:nowrap; font-weight:700; letter-spacing:0.3px;
+  background:var(--primary); color:white; padding:9px 10px;
+  font-size:0.78rem; text-align:right; white-space:nowrap;
 }
 .log-table-wrap td {
   padding:9px 10px; font-size:0.78rem; border-bottom:1px solid var(--border);
 }
-.log-table-wrap tr:hover td { background:var(--light); }
+.log-table-wrap tr:hover td { background:var(--bg); }
 .pain-pill {
   display:inline-block; padding:2px 8px; border-radius:10px; font-size:0.72rem; font-weight:700;
 }
-.pain-low { background:#E8E8E8; color:#444; }
-.pain-mid { background:rgba(245,197,24,0.25); color:#7A5F00; }
+.pain-low { background:#D1FAE5; color:#065F46; }
+.pain-mid { background:#FEF3C7; color:#92400E; }
 .pain-high { background:#FEE2E2; color:#991B1B; }
-.empty-state { text-align:center; padding:40px 20px; color:#AAA; }
+.empty-state { text-align:center; padding:40px 20px; color:#888; }
 .empty-icon { font-size:2.8rem; margin-bottom:10px; }
 
 /* ===== EXERCISE SVG ===== */
-.ex-svg { margin-top:8px; background:var(--light); border-radius:8px; padding:4px 6px 2px; border:1px solid var(--border); text-align:center; }
-.ex-svg svg { max-width:165px; width:100%; height:auto; display:block; margin:0 auto; }
+.ex-svg { margin-top:8px; background:var(--bg); border-radius:8px; padding:4px 6px 2px; border:1px solid var(--border); text-align:center; }
+.ex-svg svg { max-width:115px; height:auto; display:block; margin:0 auto; }
 
 @media(max-width:480px) {
   .form-grid { grid-template-columns:1fr; }
   .stats-grid { grid-template-columns:1fr 1fr; }
-  header h1 { font-size:1.3rem; }
+  header h1 { font-size:1.25rem; }
 }
-
-/* ===== RUNNA SCANNER ===== */
-.runna-card { border:2px dashed var(--accent) !important; background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%) !important; }
-.runna-card h3 { color:var(--accent) !important; border-bottom-color:#3A3A3A !important; }
-.runna-hint { font-size:0.82rem; color:#AAAAAA; margin:4px 0 12px; }
-.btn-runna {
-  display:block; width:100%; background:var(--accent);
-  color:var(--primary); border:none; padding:13px 20px; border-radius:10px;
-  font-size:1rem; font-weight:800; cursor:pointer; text-align:center;
-  box-shadow:0 3px 12px rgba(245,197,24,0.4); letter-spacing:0.3px;
-}
-.btn-runna:active { opacity:0.85; transform:scale(0.98); }
-#runna-status { margin-top:10px; font-size:0.85rem; color:#AAAAAA; min-height:20px; text-align:center; }
-#runna-preview { width:100%; border-radius:10px; margin-top:10px; border:1px solid #3A3A3A; max-height:220px; object-fit:contain; display:none; }
-.runna-found-box { background:#1E1E1E; border-radius:10px; padding:12px; margin-top:12px; border:1px solid #3A3A3A; }
-.runna-found-title { font-size:0.78rem; color:#888; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.4px; }
-.runna-found-items { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
-.runna-found-item { background:#2A2A2A; border:1px solid #3A3A3A; border-radius:9px; padding:10px 16px; font-size:0.95rem; color:var(--accent); font-weight:800; display:flex; flex-direction:column; align-items:center; }
-.runna-found-item small { font-size:0.68rem; color:#777; font-weight:500; margin-bottom:3px; text-transform:uppercase; letter-spacing:0.3px; }
-.btn-runna-confirm { background:var(--accent); color:var(--primary); border:none; padding:11px; border-radius:9px; font-size:0.92rem; cursor:pointer; font-weight:800; width:100%; letter-spacing:0.3px; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>💪 תוכנית <em>קליסטניקס</em> – שלב ראשון</h1>
-  <div class="subtitle">3 שבועות ראשונים &nbsp;·&nbsp; 15 דקות ביום &nbsp;·&nbsp; ידידותי לאישיאס</div>
-  <div class="user-badge">🏃‍♀️ הליכה יומית · קליסטניקס · פילאטיס</div>
+  <h1>💪 תוכנית קליסטניקס – שלב ראשון</h1>
+  <div class="subtitle">3 שבועות ראשונים | 15 דקות ביום | ידידותי לאישיאס</div>
+  <div class="user-badge">🏃‍♀️ הליכה/ריצה יומית + קליסטניקס + פילאטיס שבועי</div>
 </header>
 
 <div class="nav-tabs">
@@ -677,16 +644,6 @@ input[type="range"]::-webkit-slider-thumb {
     </div>
   </div>
 
-  <div class="card runna-card">
-    <h3>📸 סריקת Runna – אוטומטי</h3>
-    <p class="runna-hint">צלמי צילום מסך מ-Runna → לחצי כאן → הנתונים ימולאו לבד ✨</p>
-    <button class="btn-runna" onclick="document.getElementById('runna-input').click()">📱 העלי צילום מסך מ-Runna</button>
-    <input type="file" id="runna-input" accept="image/*" style="display:none" onchange="scanRunna(this)">
-    <div id="runna-status"></div>
-    <img id="runna-preview" alt="תצוגה מקדימה">
-    <div id="runna-found"></div>
-  </div>
-
   <div class="card">
     <h3>🏃‍♀️ קרדיו – הליכה / ריצה</h3>
     <div class="form-grid">
@@ -710,18 +667,6 @@ input[type="range"]::-webkit-slider-thumb {
       <div class="form-group">
         <label>קצב ממוצע (דק'/ק"מ)</label>
         <input type="text" id="cardio-pace" placeholder="9:26" pattern="[0-9]+:[0-5][0-9]">
-      </div>
-      <div class="form-group">
-        <label>קצב מקסימלי (דק'/ק"מ)</label>
-        <input type="text" id="cardio-maxpace" placeholder="6:01" pattern="[0-9]+:[0-5][0-9]">
-      </div>
-      <div class="form-group">
-        <label>קדנס ממוצע (צעד/דקה)</label>
-        <input type="number" id="cardio-cadence" placeholder="123" min="0" max="250">
-      </div>
-      <div class="form-group">
-        <label>עלייה מצטברת (מ')</label>
-        <input type="number" id="cardio-elevation" placeholder="48" min="0">
       </div>
     </div>
   </div>
@@ -786,12 +731,9 @@ input[type="range"]::-webkit-slider-thumb {
           <th>תאריך</th>
           <th>שבוע</th>
           <th>אימון</th>
-          <th>ק"מ</th>
-          <th>זמן</th>
-          <th>קצב</th>
-          <th>קדנס</th>
-          <th>עלייה</th>
+          <th>קרדיו</th>
           <th>כאב</th>
+          <th>אנרגיה</th>
           <th>הערות</th>
           <th></th>
         </tr>
@@ -812,431 +754,375 @@ let logs = JSON.parse(localStorage.getItem('cali-logs') || '[]');
 // ===== EXERCISE SVG ILLUSTRATIONS =====
 const EX_SVGS = {
 
-birdDog: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="130" cy="52" r="9" fill="#222"/>
-<line x1="121" y1="56" x2="55" y2="56" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="121" y1="56" x2="150" y2="40" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="155,34 148,42 142,37" fill="#F5C518"/>
-<line x1="55" y1="56" x2="28" y2="40" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="20,36 30,43 24,50" fill="#F5C518"/>
-<line x1="110" y1="56" x2="110" y2="80" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<circle cx="110" cy="80" r="5" fill="#333"/>
-<line x1="65" y1="56" x2="65" y2="80" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<circle cx="65" cy="80" r="5" fill="#333"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Bird Dog</text>
+wallPushup:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="4" width="6" height="70" fill="#74C69D" rx="2"/>
+  <line x1="6" y1="74" x2="113" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="82" cy="28" r="7" fill="#2D6A4F"/>
+  <line x1="82" y1="35" x2="60" y2="58" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="71" y1="44" x2="48" y2="38" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="48" y1="38" x2="14" y2="44" stroke="#2D6A4F" stroke-width="2.5"/>
+  <circle cx="12" cy="44" r="3" fill="#40916C"/>
+  <line x1="60" y1="58" x2="50" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="60" y1="58" x2="70" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="60" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">← קיר</text>
 </svg>`,
 
-gluteBridge: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="20" cy="83" r="9" fill="#222"/>
-<line x1="28" y1="79" x2="70" y2="58" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="75" cy="54" r="8" fill="#F5C518"/>
-<polygon points="75,40 69,50 81,50" fill="#F5C518"/>
-<line x1="75" y1="58" x2="110" y2="78" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="110" y1="78" x2="125" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="115" y1="92" x2="138" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="35" y1="76" x2="55" y2="88" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Glute Bridge</text>
+inclinePushup:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <rect x="5" y="44" width="30" height="7" fill="#74C69D" rx="2"/>
+  <line x1="9" y1="51" x2="9" y2="74" stroke="#74C69D" stroke-width="2.5"/>
+  <line x1="31" y1="51" x2="31" y2="74" stroke="#74C69D" stroke-width="2.5"/>
+  <line x1="5" y1="74" x2="113" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="90" cy="26" r="7" fill="#2D6A4F"/>
+  <line x1="90" y1="33" x2="64" y2="56" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="77" y1="44" x2="52" y2="47" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="52" y1="47" x2="20" y2="47" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="64" y1="56" x2="54" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="64" y1="56" x2="74" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">ידיים על כיסא</text>
 </svg>`,
 
-singleLegBridge: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="20" cy="83" r="9" fill="#222"/>
-<line x1="28" y1="79" x2="70" y2="58" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="75" cy="54" r="8" fill="#F5C518"/>
-<polygon points="75,40 69,50 81,50" fill="#F5C518"/>
-<line x1="75" y1="58" x2="108" y2="75" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="108" y1="75" x2="120" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="112" y1="92" x2="135" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="75" y1="58" x2="140" y2="55" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<polygon points="148,55 138,50 138,60" fill="#F5C518"/>
-<line x1="35" y1="76" x2="55" y2="88" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">חד-רגלי</text>
+fullPushup:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="66" x2="110" y2="66" stroke="#ccc" stroke-width="2"/>
+  <circle cx="96" cy="46" r="7" fill="#2D6A4F"/>
+  <line x1="96" y1="53" x2="18" y2="53" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="78" y1="53" x2="74" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="52" y1="53" x2="48" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="18" y1="53" x2="10" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="57" y="77" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">גוף ישר כמו קרש</text>
 </svg>`,
 
-deadBug: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="25" y1="70" x2="95" y2="70" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="18" cy="70" r="9" fill="#222"/>
-<line x1="45" y1="70" x2="45" y2="42" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<circle cx="45" cy="42" r="5" fill="#333"/>
-<line x1="80" y1="70" x2="80" y2="42" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="80" y1="42" x2="95" y2="42" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="35" y1="70" x2="8" y2="45" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="4,40 12,47 6,52" fill="#F5C518"/>
-<line x1="88" y1="70" x2="148" y2="80" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<polygon points="155,82 145,75 145,85" fill="#F5C518"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Dead Bug</text>
+widePushup:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="66" x2="110" y2="66" stroke="#ccc" stroke-width="2"/>
+  <circle cx="96" cy="46" r="7" fill="#2D6A4F"/>
+  <line x1="96" y1="53" x2="18" y2="53" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="78" y1="53" x2="100" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="52" y1="53" x2="5" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="18" y1="53" x2="12" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="57" y="77" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">ידיים רחבות מהכתפיים</text>
 </svg>`,
 
-catCow: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<line x1="82" y1="10" x2="82" y2="95" stroke="#EEE" stroke-width="1"/>
-<line x1="15" y1="72" x2="15" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="38" y1="72" x2="38" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<path d="M15,70 Q26,35 50,35 Q63,35 75,70" stroke="#F5C518" stroke-width="8" fill="none" stroke-linecap="round"/>
-<circle cx="73" cy="68" r="7" fill="#222"/>
-<line x1="50" y1="68" x2="50" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<line x1="68" y1="74" x2="68" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<text x="40" y="104" text-anchor="middle" font-size="7" fill="#888" font-family="sans-serif">Cat</text>
-<line x1="92" y1="72" x2="92" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="115" y1="72" x2="115" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<path d="M92,65 Q103,82 127,82 Q140,82 153,65" stroke="#F5C518" stroke-width="8" fill="none" stroke-linecap="round"/>
-<circle cx="92" cy="64" r="7" fill="#222"/>
-<line x1="108" y1="70" x2="108" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<line x1="138" y1="70" x2="138" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<text x="122" y="104" text-anchor="middle" font-size="7" fill="#888" font-family="sans-serif">Cow</text>
+diamondPushup:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="66" x2="110" y2="66" stroke="#ccc" stroke-width="2"/>
+  <circle cx="96" cy="43" r="7" fill="#2D6A4F"/>
+  <line x1="96" y1="50" x2="18" y2="54" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="70" y1="52" x2="57" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="50" y1="52" x2="57" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="60" x2="57" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <polygon points="57,52 50,60 57,66 64,60" fill="none" stroke="#F4A261" stroke-width="1.5"/>
+  <line x1="18" y1="54" x2="12" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="57" y="77" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">ידיים צרות – יהלום</text>
 </svg>`,
 
-clamshell: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="18" cy="68" r="9" fill="#222"/>
-<line x1="26" y1="68" x2="100" y2="68" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="100" cy="68" r="6" fill="#333"/>
-<line x1="100" y1="68" x2="118" y2="82" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="118" y1="82" x2="140" y2="85" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="100" y1="68" x2="115" y2="52" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<line x1="115" y1="52" x2="138" y2="55" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<path d="M120,80 Q135,65 135,55" stroke="#F5C518" stroke-width="2" fill="none" stroke-dasharray="3,2"/>
-<polygon points="135,52 130,58 140,60" fill="#F5C518"/>
-<line x1="45" y1="68" x2="40" y2="86" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Clamshell</text>
+tricepDips:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="32" width="74" height="8" fill="#74C69D" rx="2"/>
+  <line x1="24" y1="40" x2="24" y2="74" stroke="#74C69D" stroke-width="2.5"/>
+  <line x1="90" y1="40" x2="90" y2="74" stroke="#74C69D" stroke-width="2.5"/>
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="57" cy="43" r="7" fill="#2D6A4F"/>
+  <line x1="57" y1="50" x2="57" y2="64" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="50" y1="52" x2="28" y2="36" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="64" y1="52" x2="86" y2="36" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="64" x2="45" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="64" x2="69" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">↓ הורידי עד 90°</text>
 </svg>`,
 
-forearmPlank: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<line x1="15" y1="85" x2="30" y2="85" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="25" y1="85" x2="80" y2="62" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="80" y1="62" x2="125" y2="52" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<circle cx="138" cy="50" r="9" fill="#222"/>
-<line x1="112" y1="54" x2="115" y2="70" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="115" y1="70" x2="135" y2="70" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<circle cx="115" cy="70" r="5" fill="#333"/>
-<line x1="92" y1="57" x2="95" y2="70" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="95" y1="70" x2="115" y2="70" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Forearm Plank</text>
+pikePushup:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="57" cy="18" r="7" fill="#2D6A4F"/>
+  <line x1="57" y1="25" x2="30" y2="52" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="30" y1="52" x2="18" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="18" y1="60" x2="12" y2="74" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="57" y1="25" x2="78" y2="52" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="78" y1="52" x2="90" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="90" y1="60" x2="96" y2="74" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="57" y="10" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">V הפוך – ירכיים למעלה</text>
 </svg>`,
 
-sidePlank: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<line x1="30" y1="85" x2="55" y2="85" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<circle cx="30" cy="85" r="5" fill="#333"/>
-<line x1="15" y1="92" x2="32" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="25" y1="88" x2="110" y2="48" stroke="#F5C518" stroke-width="10" stroke-linecap="round"/>
-<circle cx="122" cy="42" r="9" fill="#222"/>
-<line x1="85" y1="58" x2="100" y2="38" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<polygon points="100,32 95,40 106,40" fill="#555"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Side Plank</text>
+catCow:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="90" cy="34" r="7" fill="#2D6A4F"/>
+  <path d="M90 41 C76 36 56 26 36 42" fill="none" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="36" y1="42" x2="26" y2="58" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="26" y1="58" x2="18" y2="74" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="36" y1="42" x2="36" y2="58" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="36" y1="58" x2="36" y2="74" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="72" y1="36" x2="72" y2="54" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="72" y1="54" x2="64" y2="74" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="72" y1="54" x2="80" y2="74" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="57" y="14" font-size="8" fill="#40916C" font-family="sans-serif" text-anchor="middle">↑↓ גב עולה ויורד</text>
 </svg>`,
 
-piriformis: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="82" cy="28" r="9" fill="#222"/>
-<line x1="82" y1="37" x2="82" y2="68" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="82" cy="68" r="6" fill="#333"/>
-<line x1="82" y1="68" x2="145" y2="78" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="145" y1="78" x2="155" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="82" y1="68" x2="60" y2="55" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<line x1="60" y1="55" x2="100" y2="48" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="100" cy="48" r="6" fill="#F5C518"/>
-<line x1="76" y1="50" x2="65" y2="50" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<polygon points="60,50 67,46 67,54" fill="#555"/>
-<line x1="82" y1="68" x2="50" y2="75" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Piriformis</text>
+deadBug:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="60" x2="110" y2="60" stroke="#ccc" stroke-width="2"/>
+  <circle cx="90" cy="54" r="7" fill="#2D6A4F"/>
+  <line x1="90" y1="60" x2="25" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="75" y1="57" x2="80" y2="30" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="80" y="25" font-size="9" fill="#40916C">↑</text>
+  <line x1="45" y1="60" x2="22" y2="36" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="15" y="34" font-size="9" fill="#40916C">←</text>
+  <line x1="58" y1="60" x2="55" y2="44" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="55" y1="44" x2="67" y2="37" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="70" y1="57" x2="92" y2="55" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="57" y="74" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">גב מלוחץ לרצפה</text>
 </svg>`,
 
-wallSit: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<line x1="30" y1="5" x2="30" y2="95" stroke="#AAA" stroke-width="5" stroke-linecap="round"/>
-<circle cx="50" cy="22" r="9" fill="#222"/>
-<line x1="46" y1="31" x2="46" y2="65" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="46" y1="65" x2="100" y2="65" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<line x1="100" y1="65" x2="100" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="90" y1="92" x2="115" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="46" y1="45" x2="62" y2="60" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Wall Sit 90</text>
+birdDog:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="64" cy="36" r="7" fill="#2D6A4F"/>
+  <line x1="64" y1="43" x2="34" y2="43" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="34" y1="43" x2="26" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="26" y1="60" x2="18" y2="74" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="50" y1="43" x2="52" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="52" y1="60" x2="55" y2="74" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="64" y1="40" x2="100" y2="37" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="104" y="41" font-size="9" fill="#40916C">→</text>
+  <line x1="34" y1="43" x2="8" y2="43" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="2" y="47" font-size="9" fill="#40916C">←</text>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">יד ורגל נגדית</text>
 </svg>`,
 
-stepUp: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<rect x="105" y="68" width="52" height="24" fill="#DDD" rx="3"/>
-<line x1="105" y1="68" x2="157" y2="68" stroke="#BBB" stroke-width="2"/>
-<circle cx="75" cy="22" r="9" fill="#222"/>
-<line x1="75" y1="31" x2="75" y2="62" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="75" cy="62" r="6" fill="#333"/>
-<line x1="75" y1="62" x2="108" y2="55" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<line x1="108" y1="55" x2="115" y2="68" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="115" cy="68" r="5" fill="#F5C518"/>
-<line x1="75" y1="62" x2="65" y2="80" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="65" y1="80" x2="58" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="75" y1="42" x2="58" y2="55" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Step Up</text>
+forearmPlank:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="66" x2="110" y2="66" stroke="#ccc" stroke-width="2"/>
+  <circle cx="96" cy="50" r="7" fill="#2D6A4F"/>
+  <line x1="96" y1="57" x2="16" y2="57" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="78" y1="57" x2="70" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="70" y1="66" x2="55" y2="66" stroke="#2D6A4F" stroke-width="3"/>
+  <line x1="58" y1="57" x2="50" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="50" y1="66" x2="36" y2="66" stroke="#2D6A4F" stroke-width="3"/>
+  <line x1="16" y1="57" x2="10" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="16" y1="57" x2="14" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="57" y="78" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">אמות ברצפה | גוף ישר</text>
 </svg>`,
 
-hipFlexor: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="105" cy="22" r="9" fill="#222"/>
-<line x1="105" y1="31" x2="100" y2="62" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="100" cy="62" r="8" fill="#F5C518"/>
-<line x1="100" y1="62" x2="130" y2="72" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="130" y1="72" x2="140" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="132" y1="92" x2="155" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="100" y1="62" x2="65" y2="75" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="65" y1="75" x2="50" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<circle cx="50" cy="92" r="5" fill="#555"/>
-<polygon points="100,74 94,65 106,65" fill="#F5C518"/>
-<line x1="100" y1="45" x2="118" y2="35" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Hip Flexor</text>
+sidePlank:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="94" cy="28" r="7" fill="#2D6A4F"/>
+  <line x1="94" y1="35" x2="22" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="36" y1="59" x2="16" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="16" y1="74" x2="6" y2="74" stroke="#2D6A4F" stroke-width="3"/>
+  <line x1="78" y1="46" x2="84" y2="22" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="84" y="18" font-size="9" fill="#40916C">↑</text>
+  <line x1="22" y1="66" x2="14" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">גוף ישר בקו אחד</text>
 </svg>`,
 
-hip9090: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="82" cy="22" r="9" fill="#222"/>
-<line x1="82" y1="31" x2="82" y2="62" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="82" cy="62" r="8" fill="#F5C518"/>
-<line x1="82" y1="62" x2="118" y2="62" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="118" y1="62" x2="118" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="108" y1="92" x2="130" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="82" y1="62" x2="46" y2="62" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="46" y1="62" x2="46" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="36" y1="92" x2="58" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="82" y1="45" x2="62" y2="55" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="82" y1="45" x2="102" y2="55" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">90/90 Hip</text>
+piriformis:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="64" x2="110" y2="64" stroke="#ccc" stroke-width="2"/>
+  <circle cx="95" cy="58" r="7" fill="#2D6A4F"/>
+  <line x1="95" y1="64" x2="20" y2="64" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="55" y1="64" x2="50" y2="40" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="50" y1="40" x2="68" y2="30" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="38" y1="64" x2="36" y2="48" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="36" y1="48" x2="52" y2="40" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="72" y1="60" x2="66" y2="32" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="80" y1="60" x2="75" y2="35" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="57" y="76" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">רגל מוצלבת | משכי לחזה</text>
 </svg>`,
 
-bandPullApart: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<circle cx="82" cy="20" r="9" fill="#222"/>
-<line x1="82" y1="29" x2="82" y2="65" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="55" y1="38" x2="110" y2="38" stroke="#222" stroke-width="8" stroke-linecap="round"/>
-<line x1="55" y1="38" x2="18" y2="52" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="10,54 20,47 22,57" fill="#F5C518"/>
-<line x1="110" y1="38" x2="148" y2="52" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="156,54 146,47 144,57" fill="#F5C518"/>
-<line x1="18" y1="52" x2="148" y2="52" stroke="#F5C518" stroke-width="3" stroke-linecap="round" stroke-dasharray="5,3"/>
-<line x1="82" y1="65" x2="65" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="82" y1="65" x2="98" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="55" y1="92" x2="78" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<line x1="86" y1="92" x2="110" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Pull-Apart</text>
+gluteBridge:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="70" x2="110" y2="70" stroke="#ccc" stroke-width="2"/>
+  <circle cx="96" cy="64" r="7" fill="#2D6A4F"/>
+  <line x1="96" y1="70" x2="18" y2="70" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="46" y1="70" x2="60" y2="42" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="60" y1="42" x2="82" y2="56" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="82" y1="56" x2="82" y2="70" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="58" y="32" font-size="12" fill="#40916C" text-anchor="middle">↑</text>
+  <text x="57" y="80" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">האגן למעלה – סחטי ישבן!</text>
 </svg>`,
 
-supinatedPulldown: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<circle cx="82" cy="28" r="9" fill="#222"/>
-<line x1="82" y1="37" x2="82" y2="72" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="60" y1="45" x2="104" y2="45" stroke="#222" stroke-width="8" stroke-linecap="round"/>
-<line x1="60" y1="45" x2="42" y2="20" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="104" y1="45" x2="122" y2="20" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<polygon points="48,50 42,40 56,40" fill="#F5C518"/>
-<polygon points="116,50 110,40 124,40" fill="#F5C518"/>
-<line x1="60" y1="45" x2="55" y2="62" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="104" y1="45" x2="110" y2="62" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="82" y1="72" x2="66" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="82" y1="72" x2="98" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="56" y1="92" x2="78" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<line x1="86" y1="92" x2="108" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Pulldown</text>
+singleLegBridge:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="70" x2="110" y2="70" stroke="#ccc" stroke-width="2"/>
+  <circle cx="96" cy="64" r="7" fill="#2D6A4F"/>
+  <line x1="96" y1="70" x2="18" y2="70" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="46" y1="70" x2="60" y2="42" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="60" y1="42" x2="80" y2="56" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="80" y1="56" x2="80" y2="70" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="60" y1="42" x2="70" y2="22" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="70" y1="22" x2="90" y2="16" stroke="#2D6A4F" stroke-width="2.5"/>
+  <text x="94" y="14" font-size="9" fill="#40916C">→</text>
+  <text x="57" y="80" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">רגל אחת מורמת למעלה</text>
 </svg>`,
 
-bandRows: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="118" cy="28" r="9" fill="#222"/>
-<line x1="112" y1="36" x2="90" y2="60" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="90" y1="60" x2="80" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="90" y1="60" x2="102" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="155" y1="44" x2="155" y2="58" stroke="#888" stroke-width="4"/>
-<line x1="62" y1="50" x2="155" y2="53" stroke="#F5C518" stroke-width="2" stroke-dasharray="5,3"/>
-<line x1="102" y1="48" x2="62" y2="50" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="62" y1="50" x2="58" y2="42" stroke="#F5C518" stroke-width="7" stroke-linecap="round"/>
-<polygon points="52,38 62,44 58,52" fill="#F5C518"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Band Rows</text>
+wallSit:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="4" width="6" height="70" fill="#74C69D" rx="2"/>
+  <line x1="6" y1="74" x2="113" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="18" cy="24" r="7" fill="#2D6A4F"/>
+  <line x1="18" y1="31" x2="18" y2="52" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="18" y1="52" x2="64" y2="52" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="46" y1="52" x2="46" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="64" y1="52" x2="64" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="14" y1="38" x2="6" y2="52" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="22" y1="38" x2="32" y2="48" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="72" y="56" font-size="8" fill="#40916C">90°</text>
 </svg>`,
 
-facePulls: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="55" cy="28" r="9" fill="#222"/>
-<line x1="55" y1="37" x2="55" y2="70" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="35" y1="45" x2="75" y2="45" stroke="#222" stroke-width="8" stroke-linecap="round"/>
-<line x1="35" y1="45" x2="18" y2="38" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="75" y1="45" x2="92" y2="38" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="18" y1="38" x2="48" y2="32" stroke="#F5C518" stroke-width="7" stroke-linecap="round"/>
-<line x1="92" y1="38" x2="62" y2="32" stroke="#F5C518" stroke-width="7" stroke-linecap="round"/>
-<line x1="150" y1="35" x2="150" y2="45" stroke="#888" stroke-width="4"/>
-<line x1="55" y1="35" x2="150" y2="40" stroke="#F5C518" stroke-width="2" stroke-dasharray="5,3"/>
-<polygon points="48,30 55,36 42,38" fill="#F5C518"/>
-<polygon points="62,30 55,36 68,38" fill="#F5C518"/>
-<line x1="55" y1="70" x2="42" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="55" y1="70" x2="68" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Face Pulls</text>
+stepUp:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <rect x="58" y="44" width="50" height="8" fill="#74C69D" rx="2"/>
+  <line x1="62" y1="52" x2="62" y2="74" stroke="#74C69D" stroke-width="2.5"/>
+  <line x1="104" y1="52" x2="104" y2="74" stroke="#74C69D" stroke-width="2.5"/>
+  <line x1="5" y1="74" x2="113" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="73" cy="18" r="7" fill="#2D6A4F"/>
+  <line x1="73" y1="25" x2="73" y2="46" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="73" y1="46" x2="84" y2="44" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="84" y1="44" x2="84" y2="52" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="73" y1="46" x2="60" y2="56" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="60" y1="56" x2="44" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="68" y1="33" x2="54" y2="40" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="78" y1="33" x2="92" y2="38" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">עלי לכיסא – ברך מעל קרסול</text>
 </svg>`,
 
-bicepCurls: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="82" cy="20" r="9" fill="#222"/>
-<line x1="82" y1="29" x2="82" y2="68" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="65" y1="38" x2="98" y2="38" stroke="#222" stroke-width="7" stroke-linecap="round"/>
-<line x1="95" y1="38" x2="95" y2="60" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="95" y1="60" x2="80" y2="42" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="95" cy="60" r="6" fill="#333"/>
-<line x1="68" y1="38" x2="68" y2="68" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="82" y1="68" x2="68" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="82" y1="68" x2="96" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="58" y1="92" x2="80" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<line x1="84" y1="92" x2="108" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Bicep Curls</text>
+hipFlexor:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="57" cy="18" r="7" fill="#2D6A4F"/>
+  <line x1="57" y1="25" x2="57" y2="48" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="48" x2="84" y2="56" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="84" y1="56" x2="84" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="48" x2="28" y2="56" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="28" y1="56" x2="28" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <circle cx="28" cy="74" r="4" fill="#74C69D" opacity="0.7"/>
+  <line x1="52" y1="33" x2="38" y2="26" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="62" y1="33" x2="76" y2="26" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">ברך על הרצפה</text>
 </svg>`,
 
-calfRaises: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="82" cy="16" r="9" fill="#222"/>
-<line x1="82" y1="25" x2="82" y2="62" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="82" cy="62" r="6" fill="#333"/>
-<line x1="82" y1="62" x2="68" y2="82" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="82" y1="62" x2="96" y2="82" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="65" y1="82" x2="62" y2="88" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="93" y1="82" x2="96" y2="88" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="58" y1="92" x2="68" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="92" y1="92" x2="102" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<polygon points="62,76 58,84 66,84" fill="#F5C518"/>
-<polygon points="96,76 92,84 100,84" fill="#F5C518"/>
-<line x1="82" y1="42" x2="65" y2="58" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="82" y1="42" x2="99" y2="58" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Calf Raises</text>
+bandPullApart:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="57" cy="16" r="7" fill="#2D6A4F"/>
+  <line x1="57" y1="23" x2="57" y2="50" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="50" x2="44" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="50" x2="70" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="32" x2="16" y2="32" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="32" x2="98" y2="32" stroke="#2D6A4F" stroke-width="2.5"/>
+  <path d="M18 31 Q57 27 96 31" fill="none" stroke="#F4A261" stroke-width="2.5" stroke-dasharray="5,3"/>
+  <text x="4" y="36" font-size="10" fill="#40916C">←</text>
+  <text x="101" y="36" font-size="10" fill="#40916C">→</text>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">פרידה לצדדים</text>
 </svg>`,
 
-childPose: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="138" cy="78" r="8" fill="#222"/>
-<line x1="130" y1="76" x2="85" y2="68" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="85" y1="68" x2="45" y2="65" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="38,65 48,61 48,69" fill="#F5C518"/>
-<circle cx="45" cy="65" r="5" fill="#F5C518"/>
-<path d="M138,78 Q118,52 90,58 Q68,62 48,72" stroke="#222" stroke-width="9" fill="none" stroke-linecap="round"/>
-<circle cx="48" cy="72" r="7" fill="#333"/>
-<line x1="48" y1="72" x2="38" y2="90" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="38" y1="90" x2="28" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Child Pose</text>
+bandRows:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <rect x="104" y="26" width="8" height="10" fill="#74C69D" rx="2"/>
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="28" cy="22" r="7" fill="#2D6A4F"/>
+  <line x1="28" y1="29" x2="32" y2="54" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="32" y1="54" x2="22" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="32" y1="54" x2="44" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="30" y1="38" x2="14" y2="31" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="14" y1="31" x2="24" y2="31" stroke="#2D6A4F" stroke-width="2.5"/>
+  <path d="M24 31 Q64 28 104 31" fill="none" stroke="#F4A261" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">משכי המרפקים אחורה</text>
 </svg>`,
 
-pikePushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="30" cy="88" r="5" fill="#555"/>
-<line x1="18" y1="92" x2="38" y2="88" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<circle cx="38" cy="82" r="8" fill="#222"/>
-<line x1="28" y1="88" x2="55" y2="60" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="55" y1="60" x2="82" y2="35" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="82" cy="35" r="8" fill="#F5C518"/>
-<polygon points="82,22 76,32 88,32" fill="#F5C518"/>
-<line x1="82" y1="35" x2="115" y2="72" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="118" cy="88" r="5" fill="#555"/>
-<line x1="112" y1="85" x2="135" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Pike Push-Up</text>
+facePulls:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <rect x="104" y="24" width="8" height="10" fill="#74C69D" rx="2"/>
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="22" cy="18" r="7" fill="#2D6A4F"/>
+  <line x1="22" y1="25" x2="26" y2="52" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="26" y1="52" x2="16" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="26" y1="52" x2="36" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="22" y1="27" x2="8" y2="22" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="22" y1="27" x2="38" y2="22" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="38" y1="22" x2="60" y2="29" stroke="#2D6A4F" stroke-width="2.5"/>
+  <path d="M60 29 Q84 28 104 29" fill="none" stroke="#F4A261" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">ידיים לגובה הפנים</text>
 </svg>`,
 
-sumoSquat: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="82" cy="22" r="9" fill="#222"/>
-<line x1="82" y1="31" x2="82" y2="60" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="55" y1="60" x2="108" y2="60" stroke="#222" stroke-width="8" stroke-linecap="round"/>
-<line x1="55" y1="60" x2="28" y2="80" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<line x1="28" y1="80" x2="20" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="12" y1="92" x2="32" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="108" y1="60" x2="136" y2="80" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<line x1="136" y1="80" x2="145" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="135" y1="92" x2="158" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="82" y1="42" x2="65" y2="52" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="82" y1="42" x2="100" y2="52" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="65" y1="52" x2="100" y2="52" stroke="#555" stroke-width="5" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Sumo Squat</text>
+bicepCurls:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="57" cy="12" r="7" fill="#2D6A4F"/>
+  <line x1="57" y1="19" x2="57" y2="48" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="48" x2="44" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="48" x2="70" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="51" y1="28" x2="34" y2="38" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="34" y1="38" x2="30" y2="22" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="63" y1="28" x2="80" y2="38" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="80" y1="38" x2="84" y2="22" stroke="#2D6A4F" stroke-width="2.5"/>
+  <path d="M44 74 Q57 80 70 74" fill="none" stroke="#F4A261" stroke-width="2.5" stroke-dasharray="4,2"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">↑ כיפוף מרפקים</text>
 </svg>`,
 
-diamondPushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="145" cy="45" r="9" fill="#222"/>
-<line x1="136" y1="50" x2="55" y2="65" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="55" y1="65" x2="25" y2="60" stroke="#222" stroke-width="8" stroke-linecap="round"/>
-<line x1="22" y1="88" x2="30" y2="88" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="22" y1="65" x2="22" y2="88" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="110" y1="46" x2="100" y2="65" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="90" y1="46" x2="100" y2="65" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<polygon points="98,65 105,58 92,58" fill="#F5C518"/>
-<circle cx="100" cy="65" r="4" fill="#F5C518"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Diamond Push-Up</text>
+clamshell:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="90" cy="42" r="7" fill="#2D6A4F"/>
+  <line x1="90" y1="49" x2="18" y2="66" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="76" y1="54" x2="64" y2="46" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="38" y1="63" x2="52" y2="48" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="52" y1="48" x2="80" y2="58" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="38" y1="63" x2="46" y2="44" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="46" y1="44" x2="72" y2="51" stroke="#2D6A4F" stroke-width="2.5"/>
+  <ellipse cx="62" cy="49" rx="14" ry="5" fill="none" stroke="#F4A261" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="46" y="34" font-size="10" fill="#40916C">↑</text>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">ברך עליונה נפתחת</text>
 </svg>`,
 
-widePushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="82" cy="28" r="9" fill="#222"/>
-<line x1="82" y1="37" x2="82" y2="65" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="35" y1="45" x2="128" y2="45" stroke="#222" stroke-width="8" stroke-linecap="round"/>
-<line x1="35" y1="45" x2="18" y2="68" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="18" cy="68" r="5" fill="#F5C518"/>
-<polygon points="10,62 20,70 12,76" fill="#F5C518"/>
-<line x1="128" y1="45" x2="148" y2="68" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="148" cy="68" r="5" fill="#F5C518"/>
-<polygon points="156,62 146,70 154,76" fill="#F5C518"/>
-<line x1="82" y1="65" x2="72" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="82" y1="65" x2="92" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Wide Push-Up</text>
+calfRaises:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <rect x="104" y="4" width="6" height="70" fill="#B7E4C7" rx="1"/>
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="46" cy="10" r="7" fill="#2D6A4F"/>
+  <line x1="46" y1="17" x2="46" y2="42" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="46" y1="42" x2="34" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="46" y1="42" x2="58" y2="60" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="34" y1="60" x2="30" y2="70" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="30" y1="70" x2="38" y2="74" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="58" y1="60" x2="54" y2="70" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="54" y1="70" x2="62" y2="74" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="48" y1="26" x2="88" y2="36" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="46" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">↑ עמדי על קצות אצבעות</text>
 </svg>`,
 
-wallPushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<line x1="22" y1="5" x2="22" y2="95" stroke="#AAA" stroke-width="5" stroke-linecap="round"/>
-<circle cx="138" cy="30" r="9" fill="#222"/>
-<line x1="130" y1="38" x2="78" y2="55" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="95" y1="50" x2="55" y2="42" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="55" y1="42" x2="28" y2="48" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="28" cy="48" r="5" fill="#F5C518"/>
-<line x1="78" y1="55" x2="100" y2="72" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="100" y1="72" x2="110" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="102" y1="92" x2="125" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Wall Push-Up</text>
+childPose:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <line x1="72" y1="64" x2="88" y2="64" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="72" y1="64" x2="72" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="88" y1="64" x2="88" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <path d="M76 62 Q60 54 38 54" fill="none" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="38" y1="54" x2="12" y2="52" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="12" y1="52" x2="6" y2="55" stroke="#2D6A4F" stroke-width="2"/>
+  <circle cx="33" cy="60" r="7" fill="#2D6A4F"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">מצח למטה | ידיים מתארכות</text>
 </svg>`,
 
-inclinePushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<rect x="8" y="58" width="38" height="34" fill="#DDD" rx="3"/>
-<line x1="8" y1="58" x2="46" y2="58" stroke="#BBB" stroke-width="2"/>
-<circle cx="140" cy="62" r="9" fill="#222"/>
-<line x1="131" y1="66" x2="60" y2="50" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="98" y1="55" x2="72" y2="52" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="72" y1="52" x2="50" y2="58" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="50" cy="58" r="5" fill="#F5C518"/>
-<line x1="130" y1="68" x2="148" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="140" y1="92" x2="160" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Incline Push-Up</text>
+sumoSquat:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="57" cy="14" r="7" fill="#2D6A4F"/>
+  <line x1="57" y1="21" x2="57" y2="44" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="44" x2="28" y2="58" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="28" y1="58" x2="14" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="44" x2="86" y2="58" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="86" y1="58" x2="100" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="52" y1="31" x2="36" y2="36" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="62" y1="31" x2="78" y2="36" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">רגליים רחבות, אצבעות החוצה</text>
 </svg>`,
 
-fullPushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<circle cx="145" cy="45" r="9" fill="#222"/>
-<line x1="136" y1="50" x2="55" y2="65" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="22" y1="90" x2="40" y2="90" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="38" y1="68" x2="30" y2="90" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="118" y1="52" x2="105" y2="72" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="105" y1="72" x2="92" y2="70" stroke="#F5C518" stroke-width="7" stroke-linecap="round"/>
-<circle cx="105" cy="72" r="5" fill="#333"/>
-<polygon points="92,66 100,73 92,80" fill="#F5C518"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Push-Up</text>
+hip9090:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <circle cx="57" cy="16" r="7" fill="#2D6A4F"/>
+  <line x1="57" y1="23" x2="57" y2="50" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="50" x2="86" y2="50" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="86" y1="50" x2="86" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="50" x2="57" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="74" x2="28" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="52" y1="35" x2="36" y2="42" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="62" y1="35" x2="78" y2="42" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="86" y="58" font-size="7" fill="#40916C">90°</text>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">שתי הרגליים ב-90°</text>
 </svg>`,
 
-tricepDips: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
-<line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
-<rect x="110" y="45" width="48" height="12" fill="#DDD" rx="3"/>
-<line x1="110" y1="45" x2="158" y2="45" stroke="#BBB" stroke-width="2"/>
-<line x1="118" y1="57" x2="118" y2="92" stroke="#CCC" stroke-width="5"/>
-<line x1="150" y1="57" x2="150" y2="92" stroke="#CCC" stroke-width="5"/>
-<circle cx="65" cy="30" r="9" fill="#222"/>
-<line x1="65" y1="39" x2="68" y2="68" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="68" y1="52" x2="88" y2="45" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="88" y1="45" x2="112" y2="48" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="88" cy="45" r="6" fill="#333"/>
-<circle cx="112" cy="48" r="5" fill="#F5C518"/>
-<line x1="68" y1="68" x2="40" y2="80" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="40" y1="80" x2="22" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<polygon points="68,74 62,65 74,65" fill="#F5C518"/>
-<text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Tricep Dips</text>
+supinatedPulldown:`<svg viewBox="0 0 115 82" xmlns="http://www.w3.org/2000/svg">
+  <line x1="5" y1="74" x2="110" y2="74" stroke="#ccc" stroke-width="2"/>
+  <path d="M22 8 Q57 5 92 8" fill="none" stroke="#74C69D" stroke-width="3"/>
+  <path d="M22 8 Q57 5 92 8" fill="none" stroke="#F4A261" stroke-width="2" stroke-dasharray="4,3"/>
+  <circle cx="57" cy="22" r="7" fill="#2D6A4F"/>
+  <line x1="57" y1="29" x2="57" y2="54" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="54" x2="44" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="57" y1="54" x2="70" y2="74" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="50" y1="34" x2="30" y2="22" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="30" y1="22" x2="28" y2="10" stroke="#2D6A4F" stroke-width="2"/>
+  <line x1="64" y1="34" x2="84" y2="22" stroke="#2D6A4F" stroke-width="2.5"/>
+  <line x1="84" y1="22" x2="86" y2="10" stroke="#2D6A4F" stroke-width="2"/>
+  <text x="57" y="82" font-size="7" fill="#888" font-family="sans-serif" text-anchor="middle">משכי גומיה מעל ראש לחזה</text>
 </svg>`,
 
 };
@@ -1273,179 +1159,17 @@ function findSVG(name) {
   return null;
 }
 
-const BASE_IMG = 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/';
-function findRealImg(name) {
-  if (name.includes('Dead Bug') || name.includes('חרק מת')) return 'Dead_Bug/0.jpg';
-  if (name.includes('חד-רגלי') || name.includes('חד רגלי')) return 'Single_Leg_Glute_Bridge/0.jpg';
-  if (name.includes('גשר גלוטאוס') || name.includes('Glute Bridge')) return 'Barbell_Glute_Bridge/0.jpg';
-  if (name.includes('פלאנק') && !name.includes('צדדי')) return 'Plank/0.jpg';
-  if (name.includes('Cat-Cow') || name.includes('Thread') || name.includes('Cat')) return 'Cat_Stretch/0.jpg';
-  if (name.includes('היפ פלקסור') || name.includes('Hip Flexor') || name.includes('ירך קדמית')) return 'Kneeling_Hip_Flexor/0.jpg';
-  if (name.includes('עליות מדרגה') || name.includes('עליות כיסא')) return 'Dumbbell_Step_Ups/0.jpg';
-  if (name.includes('Pull-Apart') || name.includes('פרידות')) return 'Band_Pull_Apart/0.jpg';
-  if (name.includes('Face Pull') || name.includes('פנים')) return 'Face_Pull/0.jpg';
-  if (name.includes('ביצפס') || name.includes('Bicep') || name.includes('Curl')) return 'Dumbbell_Bicep_Curl/0.jpg';
-  if (name.includes('עגלי') || name.includes('Calf') || name.includes('קצות')) return 'Standing_Calf_Raises/0.jpg';
-  if (name.includes('תנוחת הילד') || name.includes('Child')) return 'Childs_Pose/0.jpg';
-  if (name.includes('טריצפס') || name.includes('דיפס') || name.includes('Dip')) return 'Bench_Dips/0.jpg';
-  if (name.includes('יהלום') || name.includes('Diamond')) return 'Push-Ups_-_Close_Triceps_Position/0.jpg';
-  if (name.includes('רוחב') || name.includes('Wide') || name.includes('wide')) return 'Push-Up_Wide/0.jpg';
-  if (name.includes('שכיבות') && (name.includes('כיסא') || name.includes('נטוי'))) return 'Incline_Push-Up/0.jpg';
-  if (name.includes('שכיבות') && name.includes('קיר')) return null;
-  if (name.includes('שכיבות')) return 'Pushups/0.jpg';
-  return null;
-}
-
 function injectExerciseSVGs() {
   document.querySelectorAll('.ex-name').forEach(el => {
     if (el.parentElement.querySelector('.ex-svg')) return;
-    const name = el.textContent.trim();
-    const imgPath = findRealImg(name);
-    const div = document.createElement('div');
-    div.className = 'ex-svg';
-
-    if (imgPath) {
-      const img = document.createElement('img');
-      img.src = BASE_IMG + imgPath;
-      img.alt = name;
-      img.style.cssText = 'width:100%;max-width:200px;border-radius:8px;display:block;margin:0 auto;background:#f5f5f5;';
-      img.onerror = () => {
-        const svg = findSVG(name);
-        div.innerHTML = svg ? svg : '';
-      };
-      div.appendChild(img);
+    const svg = findSVG(el.textContent.trim());
+    if (svg) {
+      const div = document.createElement('div');
+      div.className = 'ex-svg';
+      div.innerHTML = svg;
       el.parentElement.appendChild(div);
-    } else {
-      const svg = findSVG(name);
-      if (svg) {
-        div.innerHTML = svg;
-        el.parentElement.appendChild(div);
-      }
     }
   });
-}
-
-// ===== RUNNA SCANNER =====
-let runnaData = {};
-
-async function scanRunna(input) {
-  const file = input.files[0];
-  if (!file) return;
-  input.value = '';
-  const statusEl = document.getElementById('runna-status');
-  const previewEl = document.getElementById('runna-preview');
-  const foundEl  = document.getElementById('runna-found');
-
-  previewEl.src = URL.createObjectURL(file);
-  previewEl.style.display = 'block';
-  foundEl.innerHTML = '';
-  statusEl.textContent = '⏳ טוענת...';
-
-  if (typeof Tesseract === 'undefined') {
-    statusEl.textContent = '⏳ טוענת מנוע קריאה... (בפעם הראשונה ~30 שניות)';
-    await new Promise((res, rej) => {
-      const s = document.createElement('script');
-      s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js';
-      s.onload = res; s.onerror = rej;
-      document.head.appendChild(s);
-    });
-  }
-
-  try {
-    const result = await Tesseract.recognize(file, 'eng', {
-      logger: m => {
-        if (m.status === 'recognizing text')
-          statusEl.textContent = `⏳ קוראת... ${Math.round(m.progress * 100)}%`;
-      }
-    });
-    runnaData = parseRunnaText(result.data.text);
-    if (runnaData.km || runnaData.time || runnaData.pace) {
-      showRunnaFound();
-      statusEl.textContent = '✅ נמצאו נתונים!';
-    } else {
-      statusEl.textContent = '⚠️ לא זוהו נתונים. נסי תמונה ברורה יותר או הזיני ידנית.';
-    }
-  } catch(e) {
-    statusEl.textContent = '❌ שגיאה בקריאה. אנא הזיני ידנית.';
-  }
-}
-
-function parseRunnaText(text) {
-  const data = { km: null, time: null, pace: null, maxPace: null, cadence: null, elevation: null };
-
-  // Distance
-  const dM = text.match(/(\d+[.,]\d+|\d+)\s*km\b/i);
-  if (dM) data.km = parseFloat(dM[1].replace(',', '.'));
-
-  // H:MM:SS total duration
-  const hmsM = text.match(/\b(\d{1,2}):(\d{2}):(\d{2})\b/);
-  if (hmsM) data.time = parseInt(hmsM[1])*60 + parseInt(hmsM[2]) + Math.round(parseInt(hmsM[3])/60);
-
-  // Pace labeled near /km
-  const paceMatches = [...text.matchAll(/(\d{1,2}):(\d{2})\s*(?:\/km|min\/km|'\/km|per\s*km)/gi)];
-  if (paceMatches.length >= 1) data.pace = `${paceMatches[0][1]}:${paceMatches[0][2]}`;
-  if (paceMatches.length >= 2) data.maxPace = `${paceMatches[1][1]}:${paceMatches[1][2]}`;
-
-  // Cadence: number near "spm" or "cadence"
-  const cadM = text.match(/(\d{2,3})\s*spm/i) || text.match(/cadence[^\d]*(\d{2,3})/i);
-  if (cadM) data.cadence = parseInt(cadM[1]);
-
-  // Elevation: number near "m" or "elevation"
-  const elevM = text.match(/(?:elevation|elev)[^\d]*(\d+)\s*m\b/i) || text.match(/(\d+)\s*m\b(?!\s*\/)/i);
-  if (elevM) data.elevation = parseInt(elevM[1]);
-
-  // Collect all MM:SS for fallback duration/pace detection
-  const allT = [];
-  const reT = /\b(\d{1,2}):(\d{2})\b/g;
-  let m;
-  while ((m = reT.exec(text)) !== null) {
-    const mn = parseInt(m[1]), sc = parseInt(m[2]);
-    if (sc <= 59) allT.push({ str: m[0], mn, sc, tot: mn*60+sc });
-  }
-
-  if (!data.time) {
-    const usedPaces = [data.pace, data.maxPace].filter(Boolean);
-    const cands = allT.filter(t => !usedPaces.includes(t.str));
-    if (cands.length) {
-      const longest = cands.reduce((a,b) => a.tot > b.tot ? a : b);
-      data.time = longest.mn + Math.round(longest.sc/60);
-    }
-  }
-  if (!data.pace) {
-    const pc = allT.find(t => t.mn >= 4 && t.mn <= 20);
-    if (pc) data.pace = `${pc.mn}:${String(pc.sc).padStart(2,'0')}`;
-  }
-  return data;
-}
-
-function showRunnaFound() {
-  const items = [
-    runnaData.km        ? `<div class="runna-found-item"><small>מרחק</small>${runnaData.km} ק"מ</div>` : '',
-    runnaData.time      ? `<div class="runna-found-item"><small>זמן</small>${runnaData.time} דק'</div>` : '',
-    runnaData.pace      ? `<div class="runna-found-item"><small>קצב ממוצע</small>${runnaData.pace} /ק"מ</div>` : '',
-    runnaData.maxPace   ? `<div class="runna-found-item"><small>קצב מקס'</small>${runnaData.maxPace} /ק"מ</div>` : '',
-    runnaData.cadence   ? `<div class="runna-found-item"><small>קדנס</small>${runnaData.cadence} spm</div>` : '',
-    runnaData.elevation ? `<div class="runna-found-item"><small>עלייה</small>↑${runnaData.elevation} מ'</div>` : '',
-  ].join('');
-  document.getElementById('runna-found').innerHTML =
-    `<div class="runna-found-box">
-       <div class="runna-found-title">זוהה מהצילום:</div>
-       <div class="runna-found-items">${items}</div>
-       <button class="btn-runna-confirm" onclick="applyRunnaData()">✅ מלאי את הטופס</button>
-     </div>`;
-}
-
-function applyRunnaData() {
-  if (runnaData.km)        document.getElementById('cardio-km').value        = runnaData.km;
-  if (runnaData.time)      document.getElementById('cardio-time').value      = runnaData.time;
-  if (runnaData.pace)      document.getElementById('cardio-pace').value      = runnaData.pace;
-  if (runnaData.maxPace)   document.getElementById('cardio-maxpace').value   = runnaData.maxPace;
-  if (runnaData.cadence)   document.getElementById('cardio-cadence').value   = runnaData.cadence;
-  if (runnaData.elevation) document.getElementById('cardio-elevation').value = runnaData.elevation;
-  if (runnaData.pace && parseInt(runnaData.pace) < 7)
-    document.getElementById('cardio-type').value = 'ריצה';
-  document.getElementById('cardio-km').scrollIntoView({ behavior:'smooth', block:'center' });
-  document.getElementById('runna-status').textContent = '✅ הנתונים מולאו! בדקי ושמרי.';
 }
 
 // ===== INIT =====
@@ -1506,9 +1230,6 @@ function saveLog() {
     km: km,
     time: document.getElementById('cardio-time').value,
     pace: document.getElementById('cardio-pace').value,
-    maxPace: document.getElementById('cardio-maxpace').value,
-    cadence: parseInt(document.getElementById('cardio-cadence').value) || null,
-    elevation: parseInt(document.getElementById('cardio-elevation').value) || null,
     pain: parseInt(document.getElementById('pain-slider').value),
     energy: parseInt(document.getElementById('energy-slider').value),
     painLocation: document.getElementById('pain-location').value,
@@ -1525,9 +1246,6 @@ function saveLog() {
   document.getElementById('cardio-km').value = '';
   document.getElementById('cardio-time').value = '';
   document.getElementById('cardio-pace').value = '';
-  document.getElementById('cardio-maxpace').value = '';
-  document.getElementById('cardio-cadence').value = '';
-  document.getElementById('cardio-elevation').value = '';
   document.getElementById('pain-slider').value = 0;
   document.getElementById('energy-slider').value = 5;
   updateSlider('pain'); updateSlider('energy');
@@ -1570,7 +1288,7 @@ function renderProgress() {
 
   // Charts – last 14 days
   renderBarChart('pain-chart', 14, 'pain', '#E63946', 10);
-  renderBarChart('km-chart', 14, 'km', '#F5C518', null);
+  renderBarChart('km-chart', 14, 'km', '#40916C', null);
 
   // Table
   renderTable();
@@ -1608,18 +1326,14 @@ function renderTable() {
     const painClass = l.pain <= 3 ? 'pain-low' : l.pain <= 6 ? 'pain-mid' : 'pain-high';
     const dateStr = l.date ? new Date(l.date+'T12:00').toLocaleDateString('he-IL',{day:'numeric',month:'short'}) : '–';
     const tr = document.createElement('tr');
-    const paceCell = l.pace ? `<span style="font-weight:700">${l.pace}</span>${l.maxPace?'<br><small style="color:#999">מקס: '+l.maxPace+'</small>':''}` : '–';
     tr.innerHTML = `
       <td>${dateStr}</td>
       <td>שבוע ${l.week||'?'}</td>
       <td>${l.workout||'–'}</td>
-      <td>${l.km ? '<b>'+l.km+'</b>' : '–'}</td>
-      <td>${l.time ? l.time+'דק\'' : '–'}</td>
-      <td>${paceCell}</td>
-      <td>${l.cadence ? l.cadence+' spm' : '–'}</td>
-      <td>${l.elevation ? '↑'+l.elevation+'מ\'' : '–'}</td>
+      <td>${l.km ? l.km+'ק"מ' : '–'} ${l.pace ? '|'+l.pace : ''}</td>
       <td><span class="pain-pill ${painClass}">${l.pain}/10</span></td>
-      <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${l.notes||''}">${l.notes||'–'}</td>
+      <td>${l.energy}/10 ⚡</td>
+      <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${l.notes||''}">${l.notes||'–'}</td>
       <td><button class="btn btn-danger" onclick="deleteLog(${l.id})">🗑</button></td>
     `;
     tbody.appendChild(tr);
