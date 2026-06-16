@@ -1273,15 +1273,54 @@ function findSVG(name) {
   return null;
 }
 
+const BASE_IMG = 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/';
+function findRealImg(name) {
+  if (name.includes('Dead Bug') || name.includes('חרק מת')) return 'Dead_Bug/0.jpg';
+  if (name.includes('חד-רגלי') || name.includes('חד רגלי')) return 'Single_Leg_Glute_Bridge/0.jpg';
+  if (name.includes('גשר גלוטאוס') || name.includes('Glute Bridge')) return 'Barbell_Glute_Bridge/0.jpg';
+  if (name.includes('פלאנק') && !name.includes('צדדי')) return 'Plank/0.jpg';
+  if (name.includes('Cat-Cow') || name.includes('Thread') || name.includes('Cat')) return 'Cat_Stretch/0.jpg';
+  if (name.includes('היפ פלקסור') || name.includes('Hip Flexor') || name.includes('ירך קדמית')) return 'Kneeling_Hip_Flexor/0.jpg';
+  if (name.includes('עליות מדרגה') || name.includes('עליות כיסא')) return 'Dumbbell_Step_Ups/0.jpg';
+  if (name.includes('Pull-Apart') || name.includes('פרידות')) return 'Band_Pull_Apart/0.jpg';
+  if (name.includes('Face Pull') || name.includes('פנים')) return 'Face_Pull/0.jpg';
+  if (name.includes('ביצפס') || name.includes('Bicep') || name.includes('Curl')) return 'Dumbbell_Bicep_Curl/0.jpg';
+  if (name.includes('עגלי') || name.includes('Calf') || name.includes('קצות')) return 'Standing_Calf_Raises/0.jpg';
+  if (name.includes('תנוחת הילד') || name.includes('Child')) return 'Childs_Pose/0.jpg';
+  if (name.includes('טריצפס') || name.includes('דיפס') || name.includes('Dip')) return 'Bench_Dips/0.jpg';
+  if (name.includes('יהלום') || name.includes('Diamond')) return 'Push-Ups_-_Close_Triceps_Position/0.jpg';
+  if (name.includes('רוחב') || name.includes('Wide') || name.includes('wide')) return 'Push-Up_Wide/0.jpg';
+  if (name.includes('שכיבות') && (name.includes('כיסא') || name.includes('נטוי'))) return 'Incline_Push-Up/0.jpg';
+  if (name.includes('שכיבות') && name.includes('קיר')) return null;
+  if (name.includes('שכיבות')) return 'Pushups/0.jpg';
+  return null;
+}
+
 function injectExerciseSVGs() {
   document.querySelectorAll('.ex-name').forEach(el => {
     if (el.parentElement.querySelector('.ex-svg')) return;
-    const svg = findSVG(el.textContent.trim());
-    if (svg) {
-      const div = document.createElement('div');
-      div.className = 'ex-svg';
-      div.innerHTML = svg;
+    const name = el.textContent.trim();
+    const imgPath = findRealImg(name);
+    const div = document.createElement('div');
+    div.className = 'ex-svg';
+
+    if (imgPath) {
+      const img = document.createElement('img');
+      img.src = BASE_IMG + imgPath;
+      img.alt = name;
+      img.style.cssText = 'width:100%;max-width:200px;border-radius:8px;display:block;margin:0 auto;background:#f5f5f5;';
+      img.onerror = () => {
+        const svg = findSVG(name);
+        div.innerHTML = svg ? svg : '';
+      };
+      div.appendChild(img);
       el.parentElement.appendChild(div);
+    } else {
+      const svg = findSVG(name);
+      if (svg) {
+        div.innerHTML = svg;
+        el.parentElement.appendChild(div);
+      }
     }
   });
 }
