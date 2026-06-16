@@ -4,39 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>תוכנית קליסטניקס | מעקב אישי</title>
+<link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary: #111111;
-  --primary-light: #333333;
-  --accent: #F5C518;
-  --accent-dark: #D4A017;
-  --light: #F0F0F0;
+  --primary: #000000;
+  --primary-light: #1A1A1A;
+  --accent: #000000;
+  --accent-dark: #222222;
+  --light: #F5F5F5;
   --bg: #EBEBEB;
   --white: #FFFFFF;
   --text-dark: #111111;
-  --text-mid: #555555;
-  --border: #DCDCDC;
-  --shadow: 0 2px 16px rgba(0,0,0,0.10);
-  --pain-high: #E63946;
-  --pain-mid: #F5C518;
-  --pain-low: #AAAAAA;
+  --text-mid: #666666;
+  --border: #E0E0E0;
+  --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  --pain-high: #111111;
+  --pain-mid: #666666;
+  --pain-low: #BBBBBB;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text-dark); direction:rtl; }
+body { font-family:'Alef', -apple-system, BlinkMacSystemFont, sans-serif; background:var(--bg); color:var(--text-dark); direction:rtl; }
 
 /* ===== HEADER ===== */
 header {
-  background: #111111;
-  color: white; padding: 26px 20px 18px; text-align:center;
-  border-bottom: 4px solid var(--accent);
+  background: #000000;
+  color: white; padding: 28px 20px 20px; text-align:center;
+  border-bottom: none;
 }
 header h1 { font-size:1.5rem; font-weight:800; letter-spacing:0.5px; }
-header h1 em { color:var(--accent); font-style:normal; }
+header h1 em { color:rgba(255,255,255,0.65); font-style:normal; font-weight:400; }
 header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
 .user-badge {
-  display:inline-block; border:1.5px solid var(--accent);
+  display:inline-block; border:1px solid rgba(255,255,255,0.2);
   border-radius:20px; padding:4px 14px; font-size:0.76rem;
-  margin-top:10px; color:var(--accent); font-weight:600; letter-spacing:0.3px;
+  margin-top:10px; color:rgba(255,255,255,0.65); font-weight:400; letter-spacing:0.3px;
 }
 
 /* ===== NAVIGATION ===== */
@@ -45,12 +46,12 @@ header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
   position:sticky; top:0; z-index:100; box-shadow:0 2px 10px rgba(0,0,0,0.10);
 }
 .nav-tab {
-  flex:1; padding:13px 4px; text-align:center; cursor:pointer;
-  font-size:0.8rem; color:#888; border-bottom:3px solid transparent;
-  transition:all 0.2s; font-weight:600; line-height:1.3;
+  flex:1; padding:15px 4px; text-align:center; cursor:pointer;
+  font-size:0.82rem; color:#888; border-bottom:2px solid transparent;
+  transition:all 0.2s; font-weight:700; line-height:1.3; letter-spacing:0.2px;
 }
-.nav-tab.active { color:var(--primary); border-bottom-color:var(--accent); background:var(--white); }
-.nav-tab span { display:block; font-size:1.2rem; }
+.nav-tab.active { color:#000; border-bottom-color:#000; background:var(--white); }
+.nav-tab span { display:none; }
 
 /* ===== TABS ===== */
 .tab { display:none; padding:14px 14px 80px; max-width:800px; margin:0 auto; }
@@ -59,14 +60,14 @@ header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
 /* ===== WEEK SECTION ===== */
 .week-section { margin-bottom:10px; }
 .week-header {
-  background: #111111;
-  color:white; padding:12px 16px; border-radius:12px 12px 0 0;
+  background: #000000;
+  color:white; padding:12px 16px; border-radius:10px 10px 0 0;
   font-size:1rem; font-weight:800; margin-top:18px; cursor:pointer;
   display:flex; justify-content:space-between; align-items:center;
   letter-spacing:0.3px;
 }
-.week-header::before { content:''; display:inline-block; width:4px; height:18px; background:var(--accent); border-radius:2px; margin-left:10px; }
-.week-header .week-arrow { transition:transform 0.3s; font-size:0.85rem; color:var(--accent); }
+.week-header::before { content:''; display:inline-block; width:3px; height:18px; background:white; border-radius:2px; margin-left:10px; opacity:0.4; }
+.week-header .week-arrow { transition:transform 0.3s; font-size:0.85rem; color:rgba(255,255,255,0.65); }
 .week-header.collapsed .week-arrow { transform:rotate(-90deg); }
 .week-days { border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px; overflow:hidden; }
 .week-days.collapsed { display:none; }
@@ -80,9 +81,9 @@ header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
 }
 .day-header:hover { background:var(--light); }
 .day-num {
-  background:var(--accent); color:var(--primary); width:32px; height:32px;
-  border-radius:8px; display:flex; align-items:center; justify-content:center;
-  font-weight:900; font-size:0.88rem; flex-shrink:0;
+  background:#000; color:#fff; width:32px; height:32px;
+  border-radius:6px; display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:0.88rem; flex-shrink:0;
 }
 .day-meta { flex:1; }
 .day-name { font-weight:700; font-size:0.95rem; }
@@ -92,7 +93,7 @@ header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
   padding:3px 9px; border-radius:20px; font-weight:700; white-space:nowrap;
   border:1px solid var(--border);
 }
-.day-arrow { color:var(--accent); transition:transform 0.3s; font-size:1.1rem; }
+.day-arrow { color:#BBBBBB; transition:transform 0.3s; font-size:1.1rem; }
 .day-arrow.open { transform:rotate(180deg); }
 .day-body { display:none; padding:4px 14px 14px; border-top:1px solid var(--light); }
 .day-body.open { display:block; }
@@ -104,40 +105,41 @@ header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
 }
 .ex-row:last-child { border-bottom:none; }
 .ex-check {
-  width:24px; height:24px; border:2px solid #CCCCCC; border-radius:6px;
+  width:22px; height:22px; border:1.5px solid #CCCCCC; border-radius:5px;
   flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center;
   transition:all 0.2s; margin-top:1px; font-size:0.85rem;
 }
-.ex-check.done { background:var(--accent); border-color:var(--accent); color:var(--primary); font-weight:900; }
+.ex-check.done { background:#000; border-color:#000; color:#fff; font-weight:900; }
 .ex-info { flex:1; }
 .ex-name { font-size:0.9rem; font-weight:700; }
 .ex-sets { font-size:0.76rem; color:var(--text-mid); margin-top:2px; }
 .ex-note { font-size:0.73rem; color:#888; font-style:italic; margin-top:3px; }
 .sci-tag {
-  display:inline-block; background:var(--accent); color:var(--primary);
-  font-size:0.67rem; padding:2px 7px; border-radius:8px;
-  font-weight:800; margin-top:3px; letter-spacing:0.2px;
+  display:inline-block; background:#111; color:#fff;
+  font-size:0.67rem; padding:2px 8px; border-radius:4px;
+  font-weight:700; margin-top:3px; letter-spacing:0.2px;
 }
 
 /* ===== SCIATICA TIPS ===== */
 .tip-box {
-  background:#1A1A1A; border:none; border-radius:12px;
-  padding:14px 16px; margin-bottom:14px; font-size:0.82rem;
-  border-right:4px solid var(--accent);
+  background:#111; border:none; border-radius:10px;
+  padding:14px 18px; margin-bottom:14px; font-size:0.82rem;
+  border-right:3px solid rgba(255,255,255,0.3);
 }
-.tip-title { font-weight:800; color:var(--accent); margin-bottom:7px; font-size:0.88rem; letter-spacing:0.3px; }
-.tip-box li { color:#DDDDDD; padding:3px 0; list-style:none; }
-.tip-box li::before { content:"⚡ "; color:var(--accent); }
+.tip-title { font-weight:700; color:#fff; margin-bottom:8px; font-size:0.85rem; letter-spacing:0.3px; text-transform:uppercase; }
+.tip-box li { color:#CCCCCC; padding:3px 0; list-style:none; }
+.tip-box li::before { content:"– "; color:rgba(255,255,255,0.4); }
 
 /* ===== LOG FORM ===== */
 .card {
-  background:var(--white); border-radius:14px; padding:18px 16px;
+  background:var(--white); border-radius:10px; padding:20px 18px;
   margin-bottom:14px; box-shadow:var(--shadow); border:1px solid var(--border);
 }
 .card h3 {
-  color:var(--primary); font-size:0.95rem; font-weight:800; margin-bottom:14px;
-  padding-bottom:10px; border-bottom:2px solid var(--light);
-  display:flex; align-items:center; gap:7px;
+  color:#000; font-size:0.9rem; font-weight:700; margin-bottom:14px;
+  padding-bottom:10px; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:7px; text-transform:uppercase;
+  letter-spacing:0.5px;
 }
 .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .form-group label {
@@ -150,7 +152,7 @@ header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
   background:var(--white); transition:border-color 0.2s; font-family:inherit;
 }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-  outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(245,197,24,0.15);
+  outline:none; border-color:#000; box-shadow:0 0 0 2px rgba(0,0,0,0.08);
 }
 .form-group.full { grid-column:1/-1; }
 .form-group textarea { min-height:80px; resize:vertical; }
@@ -162,14 +164,14 @@ header .subtitle { font-size:0.8rem; color:#AAAAAA; margin-top:5px; }
   display:flex; justify-content:space-between; margin-bottom:8px;
   text-transform:uppercase; letter-spacing:0.4px;
 }
-.slider-wrap label span { font-size:1.05rem; color:var(--primary); font-weight:900; }
+.slider-wrap label span { font-size:1.05rem; color:#000; font-weight:700; }
 input[type="range"] {
   width:100%; height:7px; -webkit-appearance:none; border-radius:4px;
   cursor:pointer; background:linear-gradient(to left, var(--pain-high), var(--pain-mid), var(--pain-low));
 }
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance:none; width:24px; height:24px; border-radius:50%;
-  background:var(--primary); border:3px solid var(--accent); box-shadow:0 2px 6px rgba(0,0,0,0.25); cursor:pointer;
+  -webkit-appearance:none; width:22px; height:22px; border-radius:50%;
+  background:#000; border:3px solid #fff; box-shadow:0 0 0 2px #000; cursor:pointer;
 }
 .slider-labels {
   display:flex; justify-content:space-between; font-size:0.67rem; color:#999; margin-top:4px;
@@ -180,15 +182,15 @@ input[type="range"]::-webkit-slider-thumb {
   padding:13px 20px; border:none; border-radius:10px; cursor:pointer;
   font-size:0.92rem; font-weight:800; transition:all 0.2s; font-family:inherit; letter-spacing:0.3px;
 }
-.btn-primary { background:var(--primary); color:white; width:100%; }
-.btn-primary:hover { background:var(--accent); color:var(--primary); }
+.btn-primary { background:#000; color:white; width:100%; }
+.btn-primary:hover { background:#333; color:#fff; }
 .btn-primary:active { transform:scale(0.98); }
-.btn-danger { background:var(--light); color:#888; font-size:0.78rem; padding:6px 12px; border:1px solid var(--border); }
-.btn-danger:hover { background:#FEE2E2; color:#991B1B; border-color:#FCA5A5; }
+.btn-danger { background:#F5F5F5; color:#555; font-size:0.72rem; padding:5px 10px; border:1px solid #DDD; border-radius:4px; }
+.btn-danger:hover { background:#000; color:#fff; border-color:#000; }
 
 /* ===== SUCCESS ===== */
 .success-msg {
-  background:var(--accent); color:var(--primary); padding:12px 14px; border-radius:10px;
+  background:#000; color:#fff; padding:12px 14px; border-radius:8px;
   margin-bottom:12px; display:none; font-size:0.88rem; font-weight:700;
 }
 
@@ -198,8 +200,8 @@ input[type="range"]::-webkit-slider-thumb {
   background:var(--white); border-radius:12px; padding:16px; text-align:center;
   box-shadow:var(--shadow); border:1px solid var(--border); position:relative; overflow:hidden;
 }
-.stat-card::after { content:''; position:absolute; bottom:0; right:0; left:0; height:3px; background:var(--accent); }
-.stat-val { font-size:2rem; font-weight:900; color:var(--primary); line-height:1.1; }
+.stat-card::after { content:''; position:absolute; bottom:0; right:0; left:0; height:2px; background:#000; }
+.stat-val { font-size:2rem; font-weight:700; color:#000; line-height:1.1; }
 .stat-lbl { font-size:0.7rem; color:#888; margin-top:5px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }
 
 /* ===== CHART ===== */
@@ -207,11 +209,11 @@ input[type="range"]::-webkit-slider-thumb {
   background:var(--white); border-radius:14px; padding:16px;
   box-shadow:var(--shadow); border:1px solid var(--border); margin-bottom:14px;
 }
-.chart-title { font-size:0.88rem; font-weight:800; color:var(--primary); margin-bottom:14px; text-transform:uppercase; letter-spacing:0.4px; }
+.chart-title { font-size:0.78rem; font-weight:700; color:#000; margin-bottom:14px; text-transform:uppercase; letter-spacing:0.5px; }
 .bar-chart { display:flex; align-items:flex-end; gap:4px; height:90px; border-bottom:2px solid var(--border); }
 .bar-col { display:flex; flex-direction:column; align-items:center; flex:1; height:100%; justify-content:flex-end; }
 .bar { width:100%; border-radius:4px 4px 0 0; min-height:3px; transition:height 0.5s; }
-.bar-lbl { font-size:0.58rem; color:#999; margin-top:4px; text-align:center; }
+.bar-lbl { font-size:0.6rem; color:#AAA; margin-top:4px; text-align:center; }
 
 /* ===== LOG TABLE ===== */
 .log-table-wrap {
@@ -220,8 +222,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .log-table-wrap table { width:100%; border-collapse:collapse; min-width:520px; }
 .log-table-wrap th {
-  background:var(--primary); color:white; padding:10px 10px;
-  font-size:0.75rem; text-align:right; white-space:nowrap; font-weight:700; letter-spacing:0.3px;
+  background:#000; color:white; padding:10px 10px;
+  font-size:0.72rem; text-align:right; white-space:nowrap; font-weight:700; letter-spacing:0.4px;
 }
 .log-table-wrap td {
   padding:9px 10px; font-size:0.78rem; border-bottom:1px solid var(--border);
@@ -231,10 +233,10 @@ input[type="range"]::-webkit-slider-thumb {
   display:inline-block; padding:2px 8px; border-radius:10px; font-size:0.72rem; font-weight:700;
 }
 .pain-low { background:#E8E8E8; color:#444; }
-.pain-mid { background:rgba(245,197,24,0.25); color:#7A5F00; }
-.pain-high { background:#FEE2E2; color:#991B1B; }
+.pain-mid { background:#DCDCDC; color:#333; }
+.pain-high { background:#222; color:#fff; }
 .empty-state { text-align:center; padding:40px 20px; color:#AAA; }
-.empty-icon { font-size:2.8rem; margin-bottom:10px; }
+.empty-icon { font-size:2rem; margin-bottom:10px; color:#CCC; }
 
 /* ===== EXERCISE SVG ===== */
 .ex-svg { margin-top:8px; background:var(--light); border-radius:8px; padding:4px 6px 2px; border:1px solid var(--border); text-align:center; }
@@ -247,45 +249,45 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 /* ===== RUNNA SCANNER ===== */
-.runna-card { border:2px dashed var(--accent) !important; background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%) !important; }
-.runna-card h3 { color:var(--accent) !important; border-bottom-color:#3A3A3A !important; }
-.runna-hint { font-size:0.82rem; color:#AAAAAA; margin:4px 0 12px; }
+.runna-card { border:1.5px solid #000 !important; background:#fff !important; }
+.runna-card h3 { color:#000 !important; border-bottom-color:var(--border) !important; }
+.runna-hint { font-size:0.82rem; color:#888; margin:4px 0 12px; }
 .btn-runna {
-  display:block; width:100%; background:var(--accent);
-  color:var(--primary); border:none; padding:13px 20px; border-radius:10px;
-  font-size:1rem; font-weight:800; cursor:pointer; text-align:center;
-  box-shadow:0 3px 12px rgba(245,197,24,0.4); letter-spacing:0.3px;
+  display:block; width:100%; background:#000;
+  color:#fff; border:none; padding:13px 20px; border-radius:8px;
+  font-size:0.92rem; font-weight:700; cursor:pointer; text-align:center;
+  letter-spacing:0.3px;
 }
 .btn-runna:active { opacity:0.85; transform:scale(0.98); }
-#runna-status { margin-top:10px; font-size:0.85rem; color:#AAAAAA; min-height:20px; text-align:center; }
-#runna-preview { width:100%; border-radius:10px; margin-top:10px; border:1px solid #3A3A3A; max-height:220px; object-fit:contain; display:none; }
-.runna-found-box { background:#1E1E1E; border-radius:10px; padding:12px; margin-top:12px; border:1px solid #3A3A3A; }
-.runna-found-title { font-size:0.78rem; color:#888; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.4px; }
+#runna-status { margin-top:10px; font-size:0.85rem; color:#888; min-height:20px; text-align:center; }
+#runna-preview { width:100%; border-radius:8px; margin-top:10px; border:1px solid var(--border); max-height:220px; object-fit:contain; display:none; }
+.runna-found-box { background:#F5F5F5; border-radius:8px; padding:12px; margin-top:12px; border:1px solid #E0E0E0; }
+.runna-found-title { font-size:0.72rem; color:#666; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.4px; font-weight:700; }
 .runna-found-items { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
-.runna-found-item { background:#2A2A2A; border:1px solid #3A3A3A; border-radius:9px; padding:10px 16px; font-size:0.95rem; color:var(--accent); font-weight:800; display:flex; flex-direction:column; align-items:center; }
-.runna-found-item small { font-size:0.68rem; color:#777; font-weight:500; margin-bottom:3px; text-transform:uppercase; letter-spacing:0.3px; }
-.btn-runna-confirm { background:var(--accent); color:var(--primary); border:none; padding:11px; border-radius:9px; font-size:0.92rem; cursor:pointer; font-weight:800; width:100%; letter-spacing:0.3px; }
+.runna-found-item { background:#fff; border:1px solid #E0E0E0; border-radius:8px; padding:10px 16px; font-size:0.95rem; color:#000; font-weight:700; display:flex; flex-direction:column; align-items:center; }
+.runna-found-item small { font-size:0.68rem; color:#888; font-weight:500; margin-bottom:3px; text-transform:uppercase; letter-spacing:0.3px; }
+.btn-runna-confirm { background:#000; color:#fff; border:none; padding:11px; border-radius:8px; font-size:0.92rem; cursor:pointer; font-weight:700; width:100%; letter-spacing:0.3px; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>💪 תוכנית <em>קליסטניקס</em> – שלב ראשון</h1>
+  <h1>תוכנית <em>קליסטניקס</em> – שלב ראשון</h1>
   <div class="subtitle">3 שבועות ראשונים &nbsp;·&nbsp; 15 דקות ביום &nbsp;·&nbsp; ידידותי לאישיאס</div>
-  <div class="user-badge">🏃‍♀️ הליכה יומית · קליסטניקס · פילאטיס</div>
+  <div class="user-badge">הליכה יומית &nbsp;·&nbsp; קליסטניקס &nbsp;·&nbsp; פילאטיס</div>
 </header>
 
 <div class="nav-tabs">
-  <div class="nav-tab active" onclick="showTab('program')"><span>📋</span>תוכנית</div>
-  <div class="nav-tab" onclick="showTab('log')"><span>✍️</span>יומן יומי</div>
-  <div class="nav-tab" onclick="showTab('progress')"><span>📊</span>התקדמות</div>
+  <div class="nav-tab active" onclick="showTab('program')">תוכנית</div>
+  <div class="nav-tab" onclick="showTab('log')">יומן יומי</div>
+  <div class="nav-tab" onclick="showTab('progress')">התקדמות</div>
 </div>
 
 <!-- ========== TAB 1: PROGRAM ========== -->
 <div id="tab-program" class="tab active">
 
   <div class="tip-box">
-    <div class="tip-title">⚠️ הנחיות אישיאס – חשוב לקרוא לפני כל אימון</div>
+    <div class="tip-title">הנחיות אישיאס – חשוב לקרוא לפני כל אימון</div>
     <ul>
       <li>עצרי מיד אם מרגישה צריבה/נימול שיורד ברגל ימין</li>
       <li>הימנעי מכיפוף קדמי עמוק של הגב התחתון</li>
@@ -333,11 +335,11 @@ input[type="range"]::-webkit-slider-thumb {
           <div class="day-arrow">▼</div>
         </div>
         <div class="day-body">
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">חימום – Cat-Cow על ארבע</div><div class="ex-sets">2 × 10 חזרות</div><div class="ex-note">נשימה: שאיפה בקמרון, נשיפה בקימור.</div><div class="sci-tag">🌿 מצוין לאישיאס</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Dead Bug – חרק מת</div><div class="ex-sets">3 × 6 חזרות כל צד</div><div class="ex-note">שוכבת על הגב, גב מלוחץ לרצפה. יד אחת מתארכת, רגל הנגדית. אחורה לאט!</div><div class="sci-tag">🌿 עמוד שדרה ניטרלי – בטוח לאישיאס</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Bird-Dog – ציפור-כלב</div><div class="ex-sets">3 × 8 חזרות כל צד</div><div class="ex-note">על ארבע, יד ישרה קדימה ורגל נגדית אחורה. החזיקי 2 שניות. שמרי על גב ישר!</div><div class="sci-tag">🌿 מחזק את השרירים התומכים בעמ"ש</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">חימום – Cat-Cow על ארבע</div><div class="ex-sets">2 × 10 חזרות</div><div class="ex-note">נשימה: שאיפה בקמרון, נשיפה בקימור.</div><div class="sci-tag">מצוין לאישיאס</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Dead Bug – חרק מת</div><div class="ex-sets">3 × 6 חזרות כל צד</div><div class="ex-note">שוכבת על הגב, גב מלוחץ לרצפה. יד אחת מתארכת, רגל הנגדית. אחורה לאט!</div><div class="sci-tag">עמוד שדרה ניטרלי – בטוח לאישיאס</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Bird-Dog – ציפור-כלב</div><div class="ex-sets">3 × 8 חזרות כל צד</div><div class="ex-note">על ארבע, יד ישרה קדימה ורגל נגדית אחורה. החזיקי 2 שניות. שמרי על גב ישר!</div><div class="sci-tag">מחזק את השרירים התומכים בעמ"ש</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">פלאנק על האמות</div><div class="ex-sets">3 × 20 שניות</div><div class="ex-note">אמות בקרקע, גוף ישר, אל תרימי/תורידי את האגן.</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס – חובה!</div><div class="ex-sets">2 × 30 שניות כל צד</div><div class="ex-note">שוכבת, ברך ימין מוצלבת על השמאלית, משכי ברך שמאל לחזה. תרגישי מתח בישבן הימני.</div><div class="sci-tag">⚡ קריטי לאישיאס!</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס – חובה!</div><div class="ex-sets">2 × 30 שניות כל צד</div><div class="ex-note">שוכבת, ברך ימין מוצלבת על השמאלית, משכי ברך שמאל לחזה. תרגישי מתח בישבן הימני.</div><div class="sci-tag">קריטי לאישיאס!</div></div></div>
         </div>
       </div>
       <!-- Day 3 -->
@@ -353,10 +355,10 @@ input[type="range"]::-webkit-slider-thumb {
         </div>
         <div class="day-body">
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">חימום – סיבובי ירכיים עמידה</div><div class="ex-sets">2 × 10 כל כיוון</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">גשר גלוטאוס – Glute Bridge</div><div class="ex-sets">3 × 12 חזרות</div><div class="ex-note">שוכבת, כפות רגליים שטוחות על הרצפה קרוב לישבן. הרמת האגן למעלה, סיכוי האגן, 2 שניות למעלה.</div><div class="sci-tag">🌿 מחזק גלוטאוס – מפחית לחץ על עצב הסיאטי!</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">גשר גלוטאוס – Glute Bridge</div><div class="ex-sets">3 × 12 חזרות</div><div class="ex-note">שוכבת, כפות רגליים שטוחות על הרצפה קרוב לישבן. הרמת האגן למעלה, סיכוי האגן, 2 שניות למעלה.</div><div class="sci-tag">מחזק גלוטאוס – מפחית לחץ על עצב הסיאטי!</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">ישיבת קיר – Wall Sit</div><div class="ex-sets">2 × 30 שניות</div><div class="ex-note">גב מלוחץ לקיר, ברכיים 90 מעלות. אל תושיבי נמוך מדי אם כואב.</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">עליות מדרגה על כיסא</div><div class="ex-sets">2 × 8 כל רגל</div><div class="ex-note">כיסא יציב בלבד! עלי עם רגל ימין, הביאי שמאל, רדי. ברך מעל קרסול. איטי ומבוקר.</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת היפ פלקסור</div><div class="ex-sets">2 × 30 שניות כל צד</div><div class="ex-note">ברך אחת על הרצפה, הרגל השנייה קדימה בזווית 90°. הסיגי האגן קדימה קלות.</div><div class="sci-tag">🌿 מפחית מתח על עצב הסיאטי</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת היפ פלקסור</div><div class="ex-sets">2 × 30 שניות כל צד</div><div class="ex-note">ברך אחת על הרצפה, הרגל השנייה קדימה בזווית 90°. הסיגי האגן קדימה קלות.</div><div class="sci-tag">מפחית מתח על עצב הסיאטי</div></div></div>
         </div>
       </div>
       <!-- Day 4 -->
@@ -410,10 +412,10 @@ input[type="range"]::-webkit-slider-thumb {
           <div class="day-arrow">▼</div>
         </div>
         <div class="day-body">
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Cat-Cow</div><div class="ex-sets">2 × 10, איטי ומודע</div><div class="sci-tag">🌿 מתח ושחרור עמ"ש</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Cat-Cow</div><div class="ex-sets">2 × 10, איטי ומודע</div><div class="sci-tag">מתח ושחרור עמ"ש</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">פלאנק צדדי</div><div class="ex-sets">2 × 15 שניות כל צד</div><div class="ex-note">ניתן לבצע על ברך לשינוי. גוף ישר בקו אחד.</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Clamshell עם גומיה</div><div class="ex-sets">3 × 12 כל צד</div><div class="ex-note">שוכבת בצד, גומיה על הברכיים, פתחי ברך עליונה כמו צדפה. ירכיים קדימה!</div><div class="sci-tag">⚡ Glute Medius – מחזק מניעת לחץ על סיאטי</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס</div><div class="ex-sets">2 × 45 שניות כל צד</div><div class="sci-tag">⚡ חיוני! עשי זאת בכל יום!</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Clamshell עם גומיה</div><div class="ex-sets">3 × 12 כל צד</div><div class="ex-note">שוכבת בצד, גומיה על הברכיים, פתחי ברך עליונה כמו צדפה. ירכיים קדימה!</div><div class="sci-tag">Glute Medius – מחזק מניעת לחץ על סיאטי</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס</div><div class="ex-sets">2 × 45 שניות כל צד</div><div class="sci-tag">חיוני! עשי זאת בכל יום!</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת היפ פלקסור</div><div class="ex-sets">2 × 45 שניות כל צד</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">נשימות בטן עמוקות</div><div class="ex-sets">2 דקות שכיבה</div><div class="ex-note">שאיפה לבטן 4 ספירות, נשיפה 6 ספירות. מרגיע את מערכת העצבים.</div></div></div>
         </div>
@@ -434,7 +436,7 @@ input[type="range"]::-webkit-slider-thumb {
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת חזה בפינת חדר</div><div class="ex-sets">2 × 30 שניות</div><div class="ex-note">ידיים נגד קירות בפינה, הישני קדימה. פתח יפה!</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת ירך קדמית</div><div class="ex-sets">2 × 30 שניות כל צד</div><div class="ex-note">עמידה, ידית דלת לאיזון, קרבי עקב לישבן.</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת שוק</div><div class="ex-sets">2 × 30 שניות כל צד</div><div class="ex-note">ידיים בקיר, רגל אחת אחורה, עקב ברצפה.</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Child's Pose – תנוחת הילד</div><div class="ex-sets">60 שניות</div><div class="ex-note">ברכיים מחולקות, ידיים מתארכות קדימה. נשמי לגב.</div><div class="sci-tag">🌿 שחרור מצוין לגב תחתון</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Child's Pose – תנוחת הילד</div><div class="ex-sets">60 שניות</div><div class="ex-note">ברכיים מחולקות, ידיים מתארכות קדימה. נשמי לגב.</div><div class="sci-tag">שחרור מצוין לגב תחתון</div></div></div>
         </div>
       </div>
     </div>
@@ -472,7 +474,7 @@ input[type="range"]::-webkit-slider-thumb {
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Bird-Dog עם החזקה</div><div class="ex-sets">3 × 10 כל צד</div><div class="ex-note">החזיקי 3 שניות בכל חזרה.</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">פלאנק על האמות</div><div class="ex-sets">3 × 30 שניות</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">פלאנק צדדי</div><div class="ex-sets">2 × 20 שניות כל צד</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס</div><div class="ex-sets">2 × 40 שניות כל צד</div><div class="sci-tag">⚡ חובה!</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס</div><div class="ex-sets">2 × 40 שניות כל צד</div><div class="sci-tag">חובה!</div></div></div>
         </div>
       </div>
       <div class="day-card">
@@ -483,7 +485,7 @@ input[type="range"]::-webkit-slider-thumb {
         </div>
         <div class="day-body">
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">גשר גלוטאוס עם עצירה</div><div class="ex-sets">3 × 15 חזרות</div><div class="ex-note">עצרי 2 שניות בחלק העליון. סחטי את הגלוטאוס!</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">גשר גלוטאוס חד-רגלי (התחלה)</div><div class="ex-sets">2 × 5 כל רגל</div><div class="ex-note">רגל אחת מורמת, עלי על הרגל השנייה בלבד. איטי!</div><div class="sci-tag">⚡ עצרי אם כואב ברגל ימין</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">גשר גלוטאוס חד-רגלי (התחלה)</div><div class="ex-sets">2 × 5 כל רגל</div><div class="ex-note">רגל אחת מורמת, עלי על הרגל השנייה בלבד. איטי!</div><div class="sci-tag">עצרי אם כואב ברגל ימין</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Clamshell עם גומיה</div><div class="ex-sets">3 × 15 כל צד</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">ישיבת קיר</div><div class="ex-sets">3 × 40 שניות</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחות ירך ופיריפורמיס</div><div class="ex-sets">2 דקות</div></div></div>
@@ -524,7 +526,7 @@ input[type="range"]::-webkit-slider-thumb {
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Cat-Cow + Thread the Needle</div><div class="ex-sets">2 × 8 כל צד</div><div class="ex-note">על ארבע, הכניסי יד אחת מתחת לגוף בסיבוב.</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Clamshell מתקדם</div><div class="ex-sets">3 × 15 כל צד</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">פלאנק צדדי עם הרמת רגל</div><div class="ex-sets">2 × 10 כל צד</div><div class="ex-note">פלאנק צדדי, הרמי ברך עליונה קלות. רק אם לא כואב!</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס עמוקה</div><div class="ex-sets">3 × 45 שניות כל צד</div><div class="sci-tag">⚡ חיוני!</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס עמוקה</div><div class="ex-sets">3 × 45 שניות כל צד</div><div class="sci-tag">חיוני!</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">נשימות תיאפרגמה</div><div class="ex-sets">3 דקות</div></div></div>
         </div>
       </div>
@@ -571,7 +573,7 @@ input[type="range"]::-webkit-slider-thumb {
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Bird-Dog + גומיה</div><div class="ex-sets">3 × 10 כל צד</div><div class="ex-note">גומיה על כף הרגל בזמן הרמת הרגל. כוח!</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">פלאנק על האמות</div><div class="ex-sets">3 × 40 שניות</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">פלאנק צדדי</div><div class="ex-sets">3 × 25 שניות כל צד</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס</div><div class="ex-sets">2 × 45 שניות</div><div class="sci-tag">⚡ חובה!</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס</div><div class="ex-sets">2 × 45 שניות</div><div class="sci-tag">חובה!</div></div></div>
         </div>
       </div>
       <div class="day-card">
@@ -580,7 +582,7 @@ input[type="range"]::-webkit-slider-thumb {
           <div class="day-badge">15 דקות</div><div class="day-arrow">▼</div>
         </div>
         <div class="day-body">
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">גשר גלוטאוס חד-רגלי</div><div class="ex-sets">3 × 8 כל רגל</div><div class="ex-note">רגל אחת מורמת, עלי על הרגל השנייה. מלא ביטחון!</div><div class="sci-tag">⚡ עצרי אם כואב ברגל ימין</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">גשר גלוטאוס חד-רגלי</div><div class="ex-sets">3 × 8 כל רגל</div><div class="ex-note">רגל אחת מורמת, עלי על הרגל השנייה. מלא ביטחון!</div><div class="sci-tag">עצרי אם כואב ברגל ימין</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Sumo Squat – סקווט סומו</div><div class="ex-sets">3 × 12 חזרות</div><div class="ex-note">רגליים רחבות, אצבעות החוצה 45°. ירדי רק עד שלא כואב. גב ישר!</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Clamshell עם גומיה</div><div class="ex-sets">3 × 18 כל צד</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">עליות כיסא</div><div class="ex-sets">3 × 12 כל רגל</div></div></div>
@@ -620,9 +622,9 @@ input[type="range"]::-webkit-slider-thumb {
           <div class="day-badge">15 דקות</div><div class="day-arrow">▼</div>
         </div>
         <div class="day-body">
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">90/90 Hip Stretch</div><div class="ex-sets">2 × 60 שניות כל צד</div><div class="ex-note">ישיבה על הרצפה, שתי הרגליים ב-90°. נשמי לתוך המתיחה.</div><div class="sci-tag">🌿 מצוין לאישיאס!</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">90/90 Hip Stretch</div><div class="ex-sets">2 × 60 שניות כל צד</div><div class="ex-note">ישיבה על הרצפה, שתי הרגליים ב-90°. נשמי לתוך המתיחה.</div><div class="sci-tag">מצוין לאישיאס!</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Clamshell מתקדם</div><div class="ex-sets">3 × 20 כל צד</div></div></div>
-          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס עמוקה</div><div class="ex-sets">3 × 60 שניות כל צד</div><div class="sci-tag">⚡ חיוני!</div></div></div>
+          <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">מתיחת פיריפורמיס עמוקה</div><div class="ex-sets">3 × 60 שניות כל צד</div><div class="sci-tag">חיוני!</div></div></div>
           <div class="ex-row"><div class="ex-check" onclick="toggleEx(this)"></div><div class="ex-info"><div class="ex-name">Child's Pose מורחב</div><div class="ex-sets">2 × 60 שניות</div></div></div>
         </div>
       </div>
@@ -643,10 +645,10 @@ input[type="range"]::-webkit-slider-thumb {
 
 <!-- ========== TAB 2: LOG ========== -->
 <div id="tab-log" class="tab">
-  <div class="success-msg" id="success-msg">✅ הרשומה נשמרה בהצלחה!</div>
+  <div class="success-msg" id="success-msg">הרשומה נשמרה בהצלחה</div>
 
   <div class="card">
-    <h3>📅 פרטי היום</h3>
+    <h3>פרטי היום</h3>
     <div class="form-grid">
       <div class="form-group">
         <label>תאריך</label>
@@ -678,9 +680,9 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 
   <div class="card runna-card">
-    <h3>📸 סריקת Runna – אוטומטי</h3>
-    <p class="runna-hint">צלמי צילום מסך מ-Runna → לחצי כאן → הנתונים ימולאו לבד ✨</p>
-    <button class="btn-runna" onclick="document.getElementById('runna-input').click()">📱 העלי צילום מסך מ-Runna</button>
+    <h3>סריקת Runna – אוטומטי</h3>
+    <p class="runna-hint">צלמי צילום מסך מ-Runna → לחצי כאן → הנתונים ימולאו לבד</p>
+    <button class="btn-runna" onclick="document.getElementById('runna-input').click()">העלי צילום מסך מ-Runna</button>
     <input type="file" id="runna-input" accept="image/*" style="display:none" onchange="scanRunna(this)">
     <div id="runna-status"></div>
     <img id="runna-preview" alt="תצוגה מקדימה">
@@ -688,7 +690,7 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 
   <div class="card">
-    <h3>🏃‍♀️ קרדיו – הליכה / ריצה</h3>
+    <h3>קרדיו – הליכה / ריצה</h3>
     <div class="form-grid">
       <div class="form-group">
         <label>סוג</label>
@@ -727,7 +729,7 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 
   <div class="card">
-    <h3>🩺 תחושות ואישיאס</h3>
+    <h3>תחושות ואישיאס</h3>
     <div class="slider-wrap">
       <label>
         כאב אישיאס
@@ -751,12 +753,12 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 
   <div class="card">
-    <h3>📝 הערות ותצפיות</h3>
+    <h3>הערות ותצפיות</h3>
     <div class="form-group full">
       <label>הערות חופשיות – כאב, הישגים, תחושות, שאלות לשיעור הבא:</label>
       <textarea id="log-notes" placeholder="למשל: הרגשתי טוב בגשר גלוטאוס, הצלחתי 3 סטים שלמים! כאב קצת בישבן ימין אחרי Bird-Dog..."></textarea>
     </div>
-    <button class="btn btn-primary" onclick="saveLog()">💾 שמור יומן יום זה</button>
+    <button class="btn btn-primary" onclick="saveLog()">שמור יומן יום זה</button>
   </div>
 </div>
 
@@ -770,12 +772,12 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 
   <div class="chart-wrap">
-    <div class="chart-title">📈 כאב אישיאס – 14 ימים אחרונים (0=אין, 10=חזק)</div>
+    <div class="chart-title">כאב אישיאס – 14 ימים אחרונים</div>
     <div class="bar-chart" id="pain-chart"></div>
   </div>
 
   <div class="chart-wrap">
-    <div class="chart-title">🏃‍♀️ קילומטרים – 14 ימים אחרונים</div>
+    <div class="chart-title">קילומטרים – 14 ימים אחרונים</div>
     <div class="bar-chart" id="km-chart"></div>
   </div>
 
@@ -799,7 +801,7 @@ input[type="range"]::-webkit-slider-thumb {
       <tbody id="log-tbody"></tbody>
     </table>
     <div class="empty-state" id="empty-state">
-      <div class="empty-icon">📋</div>
+      <div class="empty-icon">—</div>
       <div>עדיין אין רשומות. התחילי לתעד את האימונים שלך!</div>
     </div>
   </div>
@@ -816,10 +818,10 @@ birdDog: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect wi
 <line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
 <circle cx="130" cy="52" r="9" fill="#222"/>
 <line x1="121" y1="56" x2="55" y2="56" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="121" y1="56" x2="150" y2="40" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="155,34 148,42 142,37" fill="#F5C518"/>
-<line x1="55" y1="56" x2="28" y2="40" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="20,36 30,43 24,50" fill="#F5C518"/>
+<line x1="121" y1="56" x2="150" y2="40" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<polygon points="155,34 148,42 142,37" fill="#000000"/>
+<line x1="55" y1="56" x2="28" y2="40" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<polygon points="20,36 30,43 24,50" fill="#000000"/>
 <line x1="110" y1="56" x2="110" y2="80" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <circle cx="110" cy="80" r="5" fill="#333"/>
 <line x1="65" y1="56" x2="65" y2="80" stroke="#555" stroke-width="8" stroke-linecap="round"/>
@@ -831,8 +833,8 @@ gluteBridge: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rec
 <line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
 <circle cx="20" cy="83" r="9" fill="#222"/>
 <line x1="28" y1="79" x2="70" y2="58" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="75" cy="54" r="8" fill="#F5C518"/>
-<polygon points="75,40 69,50 81,50" fill="#F5C518"/>
+<circle cx="75" cy="54" r="8" fill="#000000"/>
+<polygon points="75,40 69,50 81,50" fill="#000000"/>
 <line x1="75" y1="58" x2="110" y2="78" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="110" y1="78" x2="125" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="115" y1="92" x2="138" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
@@ -844,13 +846,13 @@ singleLegBridge: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108">
 <line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
 <circle cx="20" cy="83" r="9" fill="#222"/>
 <line x1="28" y1="79" x2="70" y2="58" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="75" cy="54" r="8" fill="#F5C518"/>
-<polygon points="75,40 69,50 81,50" fill="#F5C518"/>
+<circle cx="75" cy="54" r="8" fill="#000000"/>
+<polygon points="75,40 69,50 81,50" fill="#000000"/>
 <line x1="75" y1="58" x2="108" y2="75" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="108" y1="75" x2="120" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="112" y1="92" x2="135" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="75" y1="58" x2="140" y2="55" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<polygon points="148,55 138,50 138,60" fill="#F5C518"/>
+<line x1="75" y1="58" x2="140" y2="55" stroke="#000000" stroke-width="9" stroke-linecap="round"/>
+<polygon points="148,55 138,50 138,60" fill="#000000"/>
 <line x1="35" y1="76" x2="55" y2="88" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">חד-רגלי</text>
 </svg>`,
@@ -862,10 +864,10 @@ deadBug: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect wi
 <circle cx="45" cy="42" r="5" fill="#333"/>
 <line x1="80" y1="70" x2="80" y2="42" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="80" y1="42" x2="95" y2="42" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="35" y1="70" x2="8" y2="45" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="4,40 12,47 6,52" fill="#F5C518"/>
-<line x1="88" y1="70" x2="148" y2="80" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<polygon points="155,82 145,75 145,85" fill="#F5C518"/>
+<line x1="35" y1="70" x2="8" y2="45" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<polygon points="4,40 12,47 6,52" fill="#000000"/>
+<line x1="88" y1="70" x2="148" y2="80" stroke="#000000" stroke-width="9" stroke-linecap="round"/>
+<polygon points="155,82 145,75 145,85" fill="#000000"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Dead Bug</text>
 </svg>`,
 
@@ -874,14 +876,14 @@ catCow: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect wid
 <line x1="82" y1="10" x2="82" y2="95" stroke="#EEE" stroke-width="1"/>
 <line x1="15" y1="72" x2="15" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <line x1="38" y1="72" x2="38" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<path d="M15,70 Q26,35 50,35 Q63,35 75,70" stroke="#F5C518" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M15,70 Q26,35 50,35 Q63,35 75,70" stroke="#000000" stroke-width="8" fill="none" stroke-linecap="round"/>
 <circle cx="73" cy="68" r="7" fill="#222"/>
 <line x1="50" y1="68" x2="50" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
 <line x1="68" y1="74" x2="68" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
 <text x="40" y="104" text-anchor="middle" font-size="7" fill="#888" font-family="sans-serif">Cat</text>
 <line x1="92" y1="72" x2="92" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <line x1="115" y1="72" x2="115" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<path d="M92,65 Q103,82 127,82 Q140,82 153,65" stroke="#F5C518" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M92,65 Q103,82 127,82 Q140,82 153,65" stroke="#000000" stroke-width="8" fill="none" stroke-linecap="round"/>
 <circle cx="92" cy="64" r="7" fill="#222"/>
 <line x1="108" y1="70" x2="108" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
 <line x1="138" y1="70" x2="138" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
@@ -895,10 +897,10 @@ clamshell: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect 
 <circle cx="100" cy="68" r="6" fill="#333"/>
 <line x1="100" y1="68" x2="118" y2="82" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="118" y1="82" x2="140" y2="85" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="100" y1="68" x2="115" y2="52" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<line x1="115" y1="52" x2="138" y2="55" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<path d="M120,80 Q135,65 135,55" stroke="#F5C518" stroke-width="2" fill="none" stroke-dasharray="3,2"/>
-<polygon points="135,52 130,58 140,60" fill="#F5C518"/>
+<line x1="100" y1="68" x2="115" y2="52" stroke="#000000" stroke-width="9" stroke-linecap="round"/>
+<line x1="115" y1="52" x2="138" y2="55" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<path d="M120,80 Q135,65 135,55" stroke="#000000" stroke-width="2" fill="none" stroke-dasharray="3,2"/>
+<polygon points="135,52 130,58 140,60" fill="#000000"/>
 <line x1="45" y1="68" x2="40" y2="86" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Clamshell</text>
 </svg>`,
@@ -907,7 +909,7 @@ forearmPlank: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><re
 <line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
 <line x1="15" y1="85" x2="30" y2="85" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <line x1="25" y1="85" x2="80" y2="62" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="80" y1="62" x2="125" y2="52" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
+<line x1="80" y1="62" x2="125" y2="52" stroke="#000000" stroke-width="9" stroke-linecap="round"/>
 <circle cx="138" cy="50" r="9" fill="#222"/>
 <line x1="112" y1="54" x2="115" y2="70" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="115" y1="70" x2="135" y2="70" stroke="#555" stroke-width="7" stroke-linecap="round"/>
@@ -922,7 +924,7 @@ sidePlank: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect 
 <line x1="30" y1="85" x2="55" y2="85" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <circle cx="30" cy="85" r="5" fill="#333"/>
 <line x1="15" y1="92" x2="32" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="25" y1="88" x2="110" y2="48" stroke="#F5C518" stroke-width="10" stroke-linecap="round"/>
+<line x1="25" y1="88" x2="110" y2="48" stroke="#000000" stroke-width="10" stroke-linecap="round"/>
 <circle cx="122" cy="42" r="9" fill="#222"/>
 <line x1="85" y1="58" x2="100" y2="38" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <polygon points="100,32 95,40 106,40" fill="#555"/>
@@ -936,9 +938,9 @@ piriformis: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect
 <circle cx="82" cy="68" r="6" fill="#333"/>
 <line x1="82" y1="68" x2="145" y2="78" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="145" y1="78" x2="155" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="82" y1="68" x2="60" y2="55" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<line x1="60" y1="55" x2="100" y2="48" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="100" cy="48" r="6" fill="#F5C518"/>
+<line x1="82" y1="68" x2="60" y2="55" stroke="#000000" stroke-width="9" stroke-linecap="round"/>
+<line x1="60" y1="55" x2="100" y2="48" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<circle cx="100" cy="48" r="6" fill="#000000"/>
 <line x1="76" y1="50" x2="65" y2="50" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <polygon points="60,50 67,46 67,54" fill="#555"/>
 <line x1="82" y1="68" x2="50" y2="75" stroke="#555" stroke-width="7" stroke-linecap="round"/>
@@ -950,7 +952,7 @@ wallSit: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect wi
 <line x1="30" y1="5" x2="30" y2="95" stroke="#AAA" stroke-width="5" stroke-linecap="round"/>
 <circle cx="50" cy="22" r="9" fill="#222"/>
 <line x1="46" y1="31" x2="46" y2="65" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="46" y1="65" x2="100" y2="65" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
+<line x1="46" y1="65" x2="100" y2="65" stroke="#000000" stroke-width="9" stroke-linecap="round"/>
 <line x1="100" y1="65" x2="100" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="90" y1="92" x2="115" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="46" y1="45" x2="62" y2="60" stroke="#555" stroke-width="7" stroke-linecap="round"/>
@@ -964,9 +966,9 @@ stepUp: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect wid
 <circle cx="75" cy="22" r="9" fill="#222"/>
 <line x1="75" y1="31" x2="75" y2="62" stroke="#222" stroke-width="9" stroke-linecap="round"/>
 <circle cx="75" cy="62" r="6" fill="#333"/>
-<line x1="75" y1="62" x2="108" y2="55" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
-<line x1="108" y1="55" x2="115" y2="68" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="115" cy="68" r="5" fill="#F5C518"/>
+<line x1="75" y1="62" x2="108" y2="55" stroke="#000000" stroke-width="9" stroke-linecap="round"/>
+<line x1="108" y1="55" x2="115" y2="68" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<circle cx="115" cy="68" r="5" fill="#000000"/>
 <line x1="75" y1="62" x2="65" y2="80" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="65" y1="80" x2="58" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="75" y1="42" x2="58" y2="55" stroke="#555" stroke-width="7" stroke-linecap="round"/>
@@ -977,14 +979,14 @@ hipFlexor: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect 
 <line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
 <circle cx="105" cy="22" r="9" fill="#222"/>
 <line x1="105" y1="31" x2="100" y2="62" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="100" cy="62" r="8" fill="#F5C518"/>
+<circle cx="100" cy="62" r="8" fill="#000000"/>
 <line x1="100" y1="62" x2="130" y2="72" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="130" y1="72" x2="140" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="132" y1="92" x2="155" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <line x1="100" y1="62" x2="65" y2="75" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="65" y1="75" x2="50" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <circle cx="50" cy="92" r="5" fill="#555"/>
-<polygon points="100,74 94,65 106,65" fill="#F5C518"/>
+<polygon points="100,74 94,65 106,65" fill="#000000"/>
 <line x1="100" y1="45" x2="118" y2="35" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Hip Flexor</text>
 </svg>`,
@@ -993,7 +995,7 @@ hip9090: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect wi
 <line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
 <circle cx="82" cy="22" r="9" fill="#222"/>
 <line x1="82" y1="31" x2="82" y2="62" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="82" cy="62" r="8" fill="#F5C518"/>
+<circle cx="82" cy="62" r="8" fill="#000000"/>
 <line x1="82" y1="62" x2="118" y2="62" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="118" y1="62" x2="118" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="108" y1="92" x2="130" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
@@ -1009,11 +1011,11 @@ bandPullApart: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><r
 <circle cx="82" cy="20" r="9" fill="#222"/>
 <line x1="82" y1="29" x2="82" y2="65" stroke="#222" stroke-width="9" stroke-linecap="round"/>
 <line x1="55" y1="38" x2="110" y2="38" stroke="#222" stroke-width="8" stroke-linecap="round"/>
-<line x1="55" y1="38" x2="18" y2="52" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="10,54 20,47 22,57" fill="#F5C518"/>
-<line x1="110" y1="38" x2="148" y2="52" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="156,54 146,47 144,57" fill="#F5C518"/>
-<line x1="18" y1="52" x2="148" y2="52" stroke="#F5C518" stroke-width="3" stroke-linecap="round" stroke-dasharray="5,3"/>
+<line x1="55" y1="38" x2="18" y2="52" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<polygon points="10,54 20,47 22,57" fill="#000000"/>
+<line x1="110" y1="38" x2="148" y2="52" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<polygon points="156,54 146,47 144,57" fill="#000000"/>
+<line x1="18" y1="52" x2="148" y2="52" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-dasharray="5,3"/>
 <line x1="82" y1="65" x2="65" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="82" y1="65" x2="98" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="55" y1="92" x2="78" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
@@ -1027,10 +1029,10 @@ supinatedPulldown: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108
 <line x1="60" y1="45" x2="104" y2="45" stroke="#222" stroke-width="8" stroke-linecap="round"/>
 <line x1="60" y1="45" x2="42" y2="20" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="104" y1="45" x2="122" y2="20" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<polygon points="48,50 42,40 56,40" fill="#F5C518"/>
-<polygon points="116,50 110,40 124,40" fill="#F5C518"/>
-<line x1="60" y1="45" x2="55" y2="62" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="104" y1="45" x2="110" y2="62" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
+<polygon points="48,50 42,40 56,40" fill="#000000"/>
+<polygon points="116,50 110,40 124,40" fill="#000000"/>
+<line x1="60" y1="45" x2="55" y2="62" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<line x1="104" y1="45" x2="110" y2="62" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
 <line x1="82" y1="72" x2="66" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="82" y1="72" x2="98" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="56" y1="92" x2="78" y2="92" stroke="#555" stroke-width="6" stroke-linecap="round"/>
@@ -1045,10 +1047,10 @@ bandRows: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect w
 <line x1="90" y1="60" x2="80" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="90" y1="60" x2="102" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="155" y1="44" x2="155" y2="58" stroke="#888" stroke-width="4"/>
-<line x1="62" y1="50" x2="155" y2="53" stroke="#F5C518" stroke-width="2" stroke-dasharray="5,3"/>
-<line x1="102" y1="48" x2="62" y2="50" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="62" y1="50" x2="58" y2="42" stroke="#F5C518" stroke-width="7" stroke-linecap="round"/>
-<polygon points="52,38 62,44 58,52" fill="#F5C518"/>
+<line x1="62" y1="50" x2="155" y2="53" stroke="#000000" stroke-width="2" stroke-dasharray="5,3"/>
+<line x1="102" y1="48" x2="62" y2="50" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<line x1="62" y1="50" x2="58" y2="42" stroke="#000000" stroke-width="7" stroke-linecap="round"/>
+<polygon points="52,38 62,44 58,52" fill="#000000"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Band Rows</text>
 </svg>`,
 
@@ -1057,14 +1059,14 @@ facePulls: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect 
 <circle cx="55" cy="28" r="9" fill="#222"/>
 <line x1="55" y1="37" x2="55" y2="70" stroke="#222" stroke-width="9" stroke-linecap="round"/>
 <line x1="35" y1="45" x2="75" y2="45" stroke="#222" stroke-width="8" stroke-linecap="round"/>
-<line x1="35" y1="45" x2="18" y2="38" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="75" y1="45" x2="92" y2="38" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="18" y1="38" x2="48" y2="32" stroke="#F5C518" stroke-width="7" stroke-linecap="round"/>
-<line x1="92" y1="38" x2="62" y2="32" stroke="#F5C518" stroke-width="7" stroke-linecap="round"/>
+<line x1="35" y1="45" x2="18" y2="38" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<line x1="75" y1="45" x2="92" y2="38" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<line x1="18" y1="38" x2="48" y2="32" stroke="#000000" stroke-width="7" stroke-linecap="round"/>
+<line x1="92" y1="38" x2="62" y2="32" stroke="#000000" stroke-width="7" stroke-linecap="round"/>
 <line x1="150" y1="35" x2="150" y2="45" stroke="#888" stroke-width="4"/>
-<line x1="55" y1="35" x2="150" y2="40" stroke="#F5C518" stroke-width="2" stroke-dasharray="5,3"/>
-<polygon points="48,30 55,36 42,38" fill="#F5C518"/>
-<polygon points="62,30 55,36 68,38" fill="#F5C518"/>
+<line x1="55" y1="35" x2="150" y2="40" stroke="#000000" stroke-width="2" stroke-dasharray="5,3"/>
+<polygon points="48,30 55,36 42,38" fill="#000000"/>
+<polygon points="62,30 55,36 68,38" fill="#000000"/>
 <line x1="55" y1="70" x2="42" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="55" y1="70" x2="68" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Face Pulls</text>
@@ -1076,7 +1078,7 @@ bicepCurls: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect
 <line x1="82" y1="29" x2="82" y2="68" stroke="#222" stroke-width="9" stroke-linecap="round"/>
 <line x1="65" y1="38" x2="98" y2="38" stroke="#222" stroke-width="7" stroke-linecap="round"/>
 <line x1="95" y1="38" x2="95" y2="60" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="95" y1="60" x2="80" y2="42" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
+<line x1="95" y1="60" x2="80" y2="42" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
 <circle cx="95" cy="60" r="6" fill="#333"/>
 <line x1="68" y1="38" x2="68" y2="68" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="82" y1="68" x2="68" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
@@ -1093,12 +1095,12 @@ calfRaises: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect
 <circle cx="82" cy="62" r="6" fill="#333"/>
 <line x1="82" y1="62" x2="68" y2="82" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="82" y1="62" x2="96" y2="82" stroke="#555" stroke-width="9" stroke-linecap="round"/>
-<line x1="65" y1="82" x2="62" y2="88" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="93" y1="82" x2="96" y2="88" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
+<line x1="65" y1="82" x2="62" y2="88" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<line x1="93" y1="82" x2="96" y2="88" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
 <line x1="58" y1="92" x2="68" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <line x1="92" y1="92" x2="102" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<polygon points="62,76 58,84 66,84" fill="#F5C518"/>
-<polygon points="96,76 92,84 100,84" fill="#F5C518"/>
+<polygon points="62,76 58,84 66,84" fill="#000000"/>
+<polygon points="96,76 92,84 100,84" fill="#000000"/>
 <line x1="82" y1="42" x2="65" y2="58" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <line x1="82" y1="42" x2="99" y2="58" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Calf Raises</text>
@@ -1107,10 +1109,10 @@ calfRaises: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect
 childPose: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect width="165" height="108" fill="white" rx="6"/>
 <line x1="5" y1="92" x2="160" y2="92" stroke="#DDD" stroke-width="1.5"/>
 <circle cx="138" cy="78" r="8" fill="#222"/>
-<line x1="130" y1="76" x2="85" y2="68" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="85" y1="68" x2="45" y2="65" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<polygon points="38,65 48,61 48,69" fill="#F5C518"/>
-<circle cx="45" cy="65" r="5" fill="#F5C518"/>
+<line x1="130" y1="76" x2="85" y2="68" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<line x1="85" y1="68" x2="45" y2="65" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<polygon points="38,65 48,61 48,69" fill="#000000"/>
+<circle cx="45" cy="65" r="5" fill="#000000"/>
 <path d="M138,78 Q118,52 90,58 Q68,62 48,72" stroke="#222" stroke-width="9" fill="none" stroke-linecap="round"/>
 <circle cx="48" cy="72" r="7" fill="#333"/>
 <line x1="48" y1="72" x2="38" y2="90" stroke="#555" stroke-width="9" stroke-linecap="round"/>
@@ -1125,8 +1127,8 @@ pikePushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect
 <circle cx="38" cy="82" r="8" fill="#222"/>
 <line x1="28" y1="88" x2="55" y2="60" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="55" y1="60" x2="82" y2="35" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<circle cx="82" cy="35" r="8" fill="#F5C518"/>
-<polygon points="82,22 76,32 88,32" fill="#F5C518"/>
+<circle cx="82" cy="35" r="8" fill="#000000"/>
+<polygon points="82,22 76,32 88,32" fill="#000000"/>
 <line x1="82" y1="35" x2="115" y2="72" stroke="#222" stroke-width="9" stroke-linecap="round"/>
 <circle cx="118" cy="88" r="5" fill="#555"/>
 <line x1="112" y1="85" x2="135" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
@@ -1138,10 +1140,10 @@ sumoSquat: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect 
 <circle cx="82" cy="22" r="9" fill="#222"/>
 <line x1="82" y1="31" x2="82" y2="60" stroke="#222" stroke-width="9" stroke-linecap="round"/>
 <line x1="55" y1="60" x2="108" y2="60" stroke="#222" stroke-width="8" stroke-linecap="round"/>
-<line x1="55" y1="60" x2="28" y2="80" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
+<line x1="55" y1="60" x2="28" y2="80" stroke="#000000" stroke-width="9" stroke-linecap="round"/>
 <line x1="28" y1="80" x2="20" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="12" y1="92" x2="32" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
-<line x1="108" y1="60" x2="136" y2="80" stroke="#F5C518" stroke-width="9" stroke-linecap="round"/>
+<line x1="108" y1="60" x2="136" y2="80" stroke="#000000" stroke-width="9" stroke-linecap="round"/>
 <line x1="136" y1="80" x2="145" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="135" y1="92" x2="158" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <line x1="82" y1="42" x2="65" y2="52" stroke="#555" stroke-width="7" stroke-linecap="round"/>
@@ -1159,8 +1161,8 @@ diamondPushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><r
 <line x1="22" y1="65" x2="22" y2="88" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <line x1="110" y1="46" x2="100" y2="65" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="90" y1="46" x2="100" y2="65" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<polygon points="98,65 105,58 92,58" fill="#F5C518"/>
-<circle cx="100" cy="65" r="4" fill="#F5C518"/>
+<polygon points="98,65 105,58 92,58" fill="#000000"/>
+<circle cx="100" cy="65" r="4" fill="#000000"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Diamond Push-Up</text>
 </svg>`,
 
@@ -1169,12 +1171,12 @@ widePushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect
 <circle cx="82" cy="28" r="9" fill="#222"/>
 <line x1="82" y1="37" x2="82" y2="65" stroke="#222" stroke-width="9" stroke-linecap="round"/>
 <line x1="35" y1="45" x2="128" y2="45" stroke="#222" stroke-width="8" stroke-linecap="round"/>
-<line x1="35" y1="45" x2="18" y2="68" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="18" cy="68" r="5" fill="#F5C518"/>
-<polygon points="10,62 20,70 12,76" fill="#F5C518"/>
-<line x1="128" y1="45" x2="148" y2="68" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="148" cy="68" r="5" fill="#F5C518"/>
-<polygon points="156,62 146,70 154,76" fill="#F5C518"/>
+<line x1="35" y1="45" x2="18" y2="68" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<circle cx="18" cy="68" r="5" fill="#000000"/>
+<polygon points="10,62 20,70 12,76" fill="#000000"/>
+<line x1="128" y1="45" x2="148" y2="68" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<circle cx="148" cy="68" r="5" fill="#000000"/>
+<polygon points="156,62 146,70 154,76" fill="#000000"/>
 <line x1="82" y1="65" x2="72" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="82" y1="65" x2="92" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Wide Push-Up</text>
@@ -1185,9 +1187,9 @@ wallPushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect
 <line x1="22" y1="5" x2="22" y2="95" stroke="#AAA" stroke-width="5" stroke-linecap="round"/>
 <circle cx="138" cy="30" r="9" fill="#222"/>
 <line x1="130" y1="38" x2="78" y2="55" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="95" y1="50" x2="55" y2="42" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="55" y1="42" x2="28" y2="48" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="28" cy="48" r="5" fill="#F5C518"/>
+<line x1="95" y1="50" x2="55" y2="42" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<line x1="55" y1="42" x2="28" y2="48" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<circle cx="28" cy="48" r="5" fill="#000000"/>
 <line x1="78" y1="55" x2="100" y2="72" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="100" y1="72" x2="110" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
 <line x1="102" y1="92" x2="125" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
@@ -1200,9 +1202,9 @@ inclinePushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><r
 <line x1="8" y1="58" x2="46" y2="58" stroke="#BBB" stroke-width="2"/>
 <circle cx="140" cy="62" r="9" fill="#222"/>
 <line x1="131" y1="66" x2="60" y2="50" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="98" y1="55" x2="72" y2="52" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="72" y1="52" x2="50" y2="58" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<circle cx="50" cy="58" r="5" fill="#F5C518"/>
+<line x1="98" y1="55" x2="72" y2="52" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<line x1="72" y1="52" x2="50" y2="58" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<circle cx="50" cy="58" r="5" fill="#000000"/>
 <line x1="130" y1="68" x2="148" y2="92" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="140" y1="92" x2="160" y2="92" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Incline Push-Up</text>
@@ -1214,10 +1216,10 @@ fullPushup: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect
 <line x1="136" y1="50" x2="55" y2="65" stroke="#222" stroke-width="9" stroke-linecap="round"/>
 <line x1="22" y1="90" x2="40" y2="90" stroke="#555" stroke-width="7" stroke-linecap="round"/>
 <line x1="38" y1="68" x2="30" y2="90" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<line x1="118" y1="52" x2="105" y2="72" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="105" y1="72" x2="92" y2="70" stroke="#F5C518" stroke-width="7" stroke-linecap="round"/>
+<line x1="118" y1="52" x2="105" y2="72" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<line x1="105" y1="72" x2="92" y2="70" stroke="#000000" stroke-width="7" stroke-linecap="round"/>
 <circle cx="105" cy="72" r="5" fill="#333"/>
-<polygon points="92,66 100,73 92,80" fill="#F5C518"/>
+<polygon points="92,66 100,73 92,80" fill="#000000"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Push-Up</text>
 </svg>`,
 
@@ -1229,13 +1231,13 @@ tricepDips: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 108"><rect
 <line x1="150" y1="57" x2="150" y2="92" stroke="#CCC" stroke-width="5"/>
 <circle cx="65" cy="30" r="9" fill="#222"/>
 <line x1="65" y1="39" x2="68" y2="68" stroke="#222" stroke-width="9" stroke-linecap="round"/>
-<line x1="68" y1="52" x2="88" y2="45" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
-<line x1="88" y1="45" x2="112" y2="48" stroke="#F5C518" stroke-width="8" stroke-linecap="round"/>
+<line x1="68" y1="52" x2="88" y2="45" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+<line x1="88" y1="45" x2="112" y2="48" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
 <circle cx="88" cy="45" r="6" fill="#333"/>
-<circle cx="112" cy="48" r="5" fill="#F5C518"/>
+<circle cx="112" cy="48" r="5" fill="#000000"/>
 <line x1="68" y1="68" x2="40" y2="80" stroke="#555" stroke-width="9" stroke-linecap="round"/>
 <line x1="40" y1="80" x2="22" y2="92" stroke="#555" stroke-width="8" stroke-linecap="round"/>
-<polygon points="68,74 62,65 74,65" fill="#F5C518"/>
+<polygon points="68,74 62,65 74,65" fill="#000000"/>
 <text x="82" y="106" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif">Tricep Dips</text>
 </svg>`,
 
@@ -1361,12 +1363,12 @@ async function scanRunna(input) {
     runnaData = parseRunnaText(result.data.text);
     if (runnaData.km || runnaData.time || runnaData.pace) {
       showRunnaFound();
-      statusEl.textContent = '✅ נמצאו נתונים!';
+      statusEl.textContent = 'נמצאו נתונים!';
     } else {
-      statusEl.textContent = '⚠️ לא זוהו נתונים. נסי תמונה ברורה יותר או הזיני ידנית.';
+      statusEl.textContent = 'לא זוהו נתונים. נסי תמונה ברורה יותר או הזיני ידנית.';
     }
   } catch(e) {
-    statusEl.textContent = '❌ שגיאה בקריאה. אנא הזיני ידנית.';
+    statusEl.textContent = 'שגיאה בקריאה. אנא הזיני ידנית.';
   }
 }
 
@@ -1431,7 +1433,7 @@ function showRunnaFound() {
     `<div class="runna-found-box">
        <div class="runna-found-title">זוהה מהצילום:</div>
        <div class="runna-found-items">${items}</div>
-       <button class="btn-runna-confirm" onclick="applyRunnaData()">✅ מלאי את הטופס</button>
+       <button class="btn-runna-confirm" onclick="applyRunnaData()">מלאי את הטופס</button>
      </div>`;
 }
 
@@ -1445,7 +1447,7 @@ function applyRunnaData() {
   if (runnaData.pace && parseInt(runnaData.pace) < 7)
     document.getElementById('cardio-type').value = 'ריצה';
   document.getElementById('cardio-km').scrollIntoView({ behavior:'smooth', block:'center' });
-  document.getElementById('runna-status').textContent = '✅ הנתונים מולאו! בדקי ושמרי.';
+  document.getElementById('runna-status').textContent = 'הנתונים מולאו! בדקי ושמרי.';
 }
 
 // ===== INIT =====
@@ -1569,8 +1571,8 @@ function renderProgress() {
   document.getElementById('stat-streak').textContent = streak;
 
   // Charts – last 14 days
-  renderBarChart('pain-chart', 14, 'pain', '#E63946', 10);
-  renderBarChart('km-chart', 14, 'km', '#F5C518', null);
+  renderBarChart('pain-chart', 14, 'pain', '#111111', 10);
+  renderBarChart('km-chart', 14, 'km', '#666666', null);
 
   // Table
   renderTable();
@@ -1620,7 +1622,7 @@ function renderTable() {
       <td>${l.elevation ? '↑'+l.elevation+'מ\'' : '–'}</td>
       <td><span class="pain-pill ${painClass}">${l.pain}/10</span></td>
       <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${l.notes||''}">${l.notes||'–'}</td>
-      <td><button class="btn btn-danger" onclick="deleteLog(${l.id})">🗑</button></td>
+      <td><button class="btn btn-danger" onclick="deleteLog(${l.id})">מחק</button></td>
     `;
     tbody.appendChild(tr);
   });
